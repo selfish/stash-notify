@@ -25,7 +25,7 @@ function go() {
     getPullRequestCount();
     getPRElement();
 
-    setTimeout(go, Math.max(Number(localStorage["store.settings.refreshInterval"].replace(/"/g,'')), 10000) || 10000)
+    setTimeout(go, Math.max(Number(localStorage["store.settings.refreshInterval"].replace(/"/g, '')), 10000) || 10000)
 }
 
 if (!localStorage["store.settings.refreshInterval"].length)

@@ -22,7 +22,9 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
     document.getElementById('body').innerHTML = (localStorage.div || '<div style="padding: 20px;">Loading...</div>');
     var remove = ['.spinner', '.source', '.destination', '.aui-avatar-project'];
     remove.forEach(function (selector) {
-        $(selector).each(function(){ this.remove() })
+        $(selector).each(function () {
+            this.remove()
+        })
     });
-    $("a").attr("target","_blank");
+    $("a").attr("target", "_blank");
 });
