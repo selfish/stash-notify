@@ -19,7 +19,7 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
     $("head").append(cssLink);
 
     // Fill in content:
-    document.getElementById('body').innerHTML = localStorage.div;
+    document.getElementById('body').innerHTML = (localStorage.div || '<div style="padding: 20px;">Loading...</div>');
     var remove = ['.spinner', '.source', '.destination', '.aui-avatar-project'];
     remove.forEach(function (selector) {
         $(selector).each(function(){ this.remove() })
