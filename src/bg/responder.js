@@ -13,7 +13,11 @@ chrome.runtime.onMessage.addListener(
             chrome.tabs.remove(sender.tab.id);
         }
         if (request.getPRdiv) {
-            sendResponse({host: localStorage["store.settings.server"]});
+            sendResponse({
+                host: localStorage["store.settings.server"],
+                hideHead: localStorage["store.settings.hide_popup_head"] == 'true',
+                multiline: localStorage["store.settings.multiline_popup"] == 'true'
+            });
         }
         if (request.login) {
             sendResponse({
