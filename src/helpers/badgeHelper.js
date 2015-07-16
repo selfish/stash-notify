@@ -5,8 +5,8 @@
  */
 
 function setBadge(text, title, color, nText) {
-    if (text.toString()) chrome.browserAction.setBadgeText({text: text.toString()});
-    if (title.toString()) chrome.browserAction.setTitle({title: title.toString()});
+    if (text && text.toString()) chrome.browserAction.setBadgeText({text: text.toString()});
+    if (title && title.toString()) chrome.browserAction.setTitle({title: title.toString()});
     if (color)chrome.browserAction.setBadgeBackgroundColor({color: color});
     if (nText) chrome.notifications.create(Date.now() + "", {
         type: "basic",
