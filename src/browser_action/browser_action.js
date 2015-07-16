@@ -29,7 +29,7 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
     $("head").append(cssLink);
 
     // Fill in content:
-    document.getElementById('body').innerHTML = (localStorage.div || '<div style="padding: 20px;">Loading...</div>');
+    $('body').prepend($(localStorage.div || '<div style="padding: 20px;">Loading...</div>'));
     var remove = ['.spinner', '.secondary-link'];
 
     if (!response.show_repo_icon) remove.push('.aui-avatar-project');
@@ -65,5 +65,9 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
         $('.source').attr('colspan', 2);
         $('.destination').attr('colspan', 2);
         $('.updated').attr('colspan', 2);
+    }
+
+    if (localStorage["store.settings.hide_bottom_bar"] == "true") {
+        $('.bottom_bar').remove();
     }
 });

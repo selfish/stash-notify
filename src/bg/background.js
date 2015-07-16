@@ -18,7 +18,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 // Responder:
 
-function go(notify) {
+function go(notify, norepeat) {
 
     var host = localStorage["store.settings.server"].replace(/"/g, '');
     localStorage["settings.server"] = host;
@@ -33,7 +33,8 @@ function go(notify) {
     var interval = notify ?
         localStorage["store.settings.notifyInterval"] :
         localStorage["store.settings.refreshInterval"];
-    setTimeout(function () {
+
+    if (!norepeat)setTimeout(function () {
         go(notify);
     }, Math.max(Number(interval.replace(/"/g, '')), MIN_INTERVAL) || DEFAULT_INTERVAL);
 }

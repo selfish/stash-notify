@@ -27,4 +27,7 @@ chrome.runtime.onMessage.addListener(
                 pass: localStorage["store.settings.password"]
             });
         }
+        if (request.go) {
+            go(true, false);
+        }
     });

@@ -22,6 +22,9 @@ this.i18n = {
     "hide_popup_head": {
         "en": "Hide popup header row"
     },
+    "hide_bottom_bar": {
+        "en": "Hide popup bottom bar"
+    },
     "show_repo_icon": {
         "en": "Show repository logo"
     },

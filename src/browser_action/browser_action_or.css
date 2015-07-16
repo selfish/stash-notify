@@ -6,3 +6,17 @@ th {
 .reviewers, .destination {
     text-align: right !important;
 }
+
+div.bottom_bar {
+    padding: 17px;
+    display: flex !important;
+    justify-content: space-around !important;
+}
+
+button.bottom_bar {
+    display: inline !important;
+    justify-content: space-around !important;
+    text-align: center !important;
+    margin: 0 !important;
+    min-width: 20%
+}
