@@ -43,7 +43,8 @@ function getPullRequestCount() {
         if (err) {
             errHandle(err);
         } else {
-            setBadge(res.size, null, "#ff0000");
+            if (res.size == 0) clearBadge();
+            else setBadge(res.size, null, "#ff0000");
             if (localStorage["store.settings.notify"] == "true")
                 res.values.forEach(notifyPullRequest);
         }
