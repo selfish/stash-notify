@@ -90,6 +90,20 @@ this.manifest = {
             "type": "checkbox",
             "label": i18n.get("login_offline")
 
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("appearance"),
+            "name": "multiline_popup",
+            "type": "checkbox",
+            "label": i18n.get("multiline_popup")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("appearance"),
+            "name": "hide_popup_head",
+            "type": "checkbox",
+            "label": i18n.get("hide_popup_head")
         }
         //{
         //    "tab": i18n.get("information"),

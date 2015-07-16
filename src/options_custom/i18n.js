@@ -13,6 +13,16 @@ this.i18n = {
         "de": "Keine Übereinstimmungen gefunden."
     },
 
+    "appearance": {
+        "en": "Appearance"
+    },
+    "multiline_popup": {
+        "en": "Multiline popup (uglier, more informative.)"
+    },
+    "hide_popup_head": {
+        "en": "Hide popup header row"
+    },
+
     "notifications": {
         "en": "Notifications"
     },

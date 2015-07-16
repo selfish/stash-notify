@@ -20,11 +20,40 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
 
     // Fill in content:
     document.getElementById('body').innerHTML = (localStorage.div || '<div style="padding: 20px;">Loading...</div>');
-    var remove = ['.spinner', '.source', '.destination', '.aui-avatar-project'];
+    var remove = ['.spinner', '.aui-avatar-project'];
+    if (response.hideHead)
+        remove.push("thead");
+    if (!response.multiline)
+        remove.push(
+            '.source',
+            '.destination',
+            '.pull-request-list-task-count-column-value',
+            '.pull-request-list-task-count-column'
+        );
     remove.forEach(function (selector) {
         $(selector).each(function () {
             this.remove()
         })
     });
     $("a").attr("target", "_blank");
+
+    if (response.multiline) {
+        // Break rows:
+
+        $('tr').each(function () {
+            var newTR = $('<tr>');
+            $.each(this.attributes, function () {
+                newTR.attr(this.name, this.value);
+            });
+
+            var oldTR = this;
+            [6, 6, 6].forEach(function (i) {
+                newTR.insertAfter(oldTR).append($('th:eq(' + i + '), td:eq(' + i + ')', oldTR));
+            })
+        });
+        //$('.title').attr('colspan',2);
+        $('.source').attr('colspan', 2);
+        $('.destination').attr('colspan', 2);
+        $('.updated').attr('colspan', 2);
+    }
 });
