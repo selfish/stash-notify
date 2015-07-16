@@ -17,6 +17,10 @@ function setBadge(text, title, color, nText) {
     });
 }
 
+function clearBadge() {
+    chrome.browserAction.setBadgeText({text: ""});
+}
+
 function errHandle(err) {
     setBadge("ERR", err, "#000000");
 }
