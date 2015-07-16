@@ -35,6 +35,7 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
 
     $("a").attr("target", "_blank");
     $('td').css('padding-top', response.line_height).css('padding-bottom', response.line_height);
+    $('th.author').html("By");
 
     if (response.multiline) {
         // Break rows:
