@@ -22,7 +22,7 @@ function notifyPullRequest(pr) {
         type: "basic",
         message: pr.title,
         title: pr.author.user.displayName,
-        iconUrl: localStorage["store.settings.server"] + pr.author.user.avatarUrl.split("?")[0]
+        iconUrl: localStorage["settings.server"] + pr.author.user.avatarUrl.split("?")[0]
     }, function () {
         chrome.notifications.onClicked.addListener(function (prID) {
             window.open(prID);
@@ -32,7 +32,7 @@ function notifyPullRequest(pr) {
 }
 
 function getPullRequestCount() {
-    var host = localStorage["store.settings.server"];
+    var host = localStorage["settings.server"];
 
     // TODO: Improve
     if (!host) return;
@@ -54,7 +54,7 @@ function login(done) {
 
     if (!JSON.parse(localStorage["store.settings.login"])) return done();
 
-    var uri = (localStorage["store.settings.server"] + loginURL).replace("/" + loginURL, loginURL);
+    var uri = (localStorage["settings.server"] + loginURL).replace("/" + loginURL, loginURL);
 
     chrome.tabs.create({
         url: uri,
@@ -72,7 +72,7 @@ function login(done) {
 
 function extract() {
 
-    var uri = localStorage["store.settings.server"];
+    var uri = localStorage["settings.server"];
 
     chrome.tabs.create({
         url: uri,
@@ -95,7 +95,7 @@ function extract() {
 }
 
 function getPRElement() {
-    if (!localStorage["store.settings.server"]) return;
+    if (!localStorage["settings.server"]) return;
     login(function () {
         setTimeout(extract, 1000)
     });

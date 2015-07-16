@@ -17,10 +17,11 @@ chrome.runtime.onInstalled.addListener(function (details) {
 function go() {
 
     var host = localStorage["store.settings.server"].replace(/"/g, '');
-    localStorage["store.settings.server"] = host;
+    localStorage["settings.server"] = host;
     if (host[host.length - 1] == "/") {
-        localStorage["store.settings.password"] = host.substring(0, host.length - 1);
+        host = host.substring(0, host.length - 1);
     }
+    localStorage["settings.server"] = host;
 
     getPullRequestCount();
     getPRElement();
