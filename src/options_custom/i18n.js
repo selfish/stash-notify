@@ -32,6 +32,12 @@ this.i18n = {
     "notify_new": {
         "en": "Notify on new pull requests?"
     },
+    "snooze_all_btn": {
+        "en": "Hide 'Snooze all' button"
+    },
+    "snooze_this_btn": {
+        "en": "Hide 'Snooze this pull request' button"
+    },
     "stash_server": {
         "en": "Stash Server"
     },

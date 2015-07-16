@@ -117,7 +117,7 @@ this.manifest = {
             "group": i18n.get("appearance"),
             "name": "line_height",
             "type": "popupButton",
-            "label": "Display density:",
+            "label": "Mailbox display density:",
             "options": {
                 "values": [
                     {
