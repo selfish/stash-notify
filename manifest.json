@@ -34,5 +34,6 @@
   ],
   "omnibox": {
     "keyword": "stash"
-  }
+  },
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'"
 }
