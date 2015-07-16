@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener(
                 hideHead: localStorage["store.settings.hide_popup_head"] == 'true',
                 multiline: localStorage["store.settings.multiline_popup"] == 'true',
                 show_repo_icon: localStorage["store.settings.show_repo_icon"] == 'true',
+                line_height: Number(localStorage["store.settings.line_height"].replace(/"/g, ''))
             });
         }
         if (request.login) {

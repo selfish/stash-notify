@@ -32,7 +32,9 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
             this.remove()
         })
     });
+
     $("a").attr("target", "_blank");
+    $('td').css('padding-top', response.line_height).css('padding-bottom', response.line_height);
 
     if (response.multiline) {
         // Break rows:

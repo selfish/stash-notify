@@ -112,6 +112,26 @@ this.manifest = {
             "type": "checkbox",
             "label": i18n.get("show_repo_icon")
         },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("appearance"),
+            "name": "line_height",
+            "type": "popupButton",
+            "label": "Display density:",
+            "options": {
+                "values": [
+                    {
+                        "text": "Comfortable",
+                        "value": "7"
+                    }, {
+                        "text": "Cozy",
+                        "value": "4"
+                    }, {
+                        "text": "Compact",
+                        "value": "1"
+                    }
+                ]
+            }
         }
         //{
         //    "tab": i18n.get("information"),
