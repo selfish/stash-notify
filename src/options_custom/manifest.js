@@ -104,6 +104,14 @@ this.manifest = {
             "name": "hide_popup_head",
             "type": "checkbox",
             "label": i18n.get("hide_popup_head")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("appearance"),
+            "name": "show_repo_icon",
+            "type": "checkbox",
+            "label": i18n.get("show_repo_icon")
+        },
         }
         //{
         //    "tab": i18n.get("information"),

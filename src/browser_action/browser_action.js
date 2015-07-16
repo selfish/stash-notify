@@ -20,16 +20,13 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
 
     // Fill in content:
     document.getElementById('body').innerHTML = (localStorage.div || '<div style="padding: 20px;">Loading...</div>');
-    var remove = ['.spinner', '.aui-avatar-project'];
-    if (response.hideHead)
-        remove.push("thead");
-    if (!response.multiline)
-        remove.push(
-            '.source',
-            '.destination',
-            '.pull-request-list-task-count-column-value',
-            '.pull-request-list-task-count-column'
-        );
+    var remove = ['.spinner', '.secondary-link'];
+
+    if (!response.show_repo_icon) remove.push('.aui-avatar-project');
+    if (response.hideHead) remove.push("thead");
+    if (!response.multiline) remove.push('.source', '.destination',
+        '.pull-request-list-task-count-column-value', '.pull-request-list-task-count-column');
+
     remove.forEach(function (selector) {
         $(selector).each(function () {
             this.remove()
