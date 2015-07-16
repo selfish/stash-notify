@@ -1,4 +1,8 @@
 // Check whether new version is installed
+
+var DEFAULT_INTERVAL = 120000;
+var MIN_INTERVAL = 10000;
+
 chrome.runtime.onInstalled.addListener(function (details) {
     chrome.tabs.create({
         url: "/src/options_custom/index.html"
@@ -14,7 +18,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
 
 // Responder:
 
-function go() {
+function go(notify) {
 
     var host = localStorage["store.settings.server"].replace(/"/g, '');
     localStorage["settings.server"] = host;
@@ -26,9 +30,19 @@ function go() {
     getPullRequestCount();
     getPRElement();
 
-    setTimeout(go, Math.max(Number(localStorage["store.settings.refreshInterval"].replace(/"/g, '')), 10000) || 10000)
+    var interval = notify ?
+        localStorage["store.settings.notifyInterval"] :
+        localStorage["store.settings.refreshInterval"];
+    setTimeout(function () {
+        go(notify);
+    }, Math.max(Number(interval.replace(/"/g, '')), MIN_INTERVAL) || DEFAULT_INTERVAL);
 }
 
 if (!localStorage["store.settings.refreshInterval"].length)
-    localStorage["store.settings.refreshInterval"] = 60000;
-go();
+    localStorage["store.settings.refreshInterval"] = DEFAULT_INTERVAL;
+go(true);
+if (localStorage["store.settings.notifyInterval"] != localStorage["store.settings.refreshInterval"]) {
+    setTimeout(function () {
+        go(false);
+    }, Math.max(Number(localStorage["store.settings.refreshInterval"].replace(/"/g, '')), MIN_INTERVAL) || DEFAULT_INTERVAL)
+}

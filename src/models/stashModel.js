@@ -61,7 +61,7 @@ function notifyPullRequest(pr) {
     });
 }
 
-function getPullRequestCount() {
+function getPullRequestCount(notify) {
     var host = localStorage["settings.server"];
 
     // TODO: Improve
@@ -76,7 +76,7 @@ function getPullRequestCount() {
             if (res.size == 0) clearBadge();
             else setBadge(res.size, null, "#ff0000");
 
-            if (localStorage["store.settings.notify"] == "true" && !(localStorage['snooze_all'] > Date.now()))
+            if (notify && localStorage["store.settings.notify"] == "true" && !(localStorage['snooze_all'] > Date.now()))
                 res.values.forEach(notifyPullRequest);
         }
     });
