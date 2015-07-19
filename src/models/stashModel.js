@@ -63,6 +63,14 @@ function notifyPullRequest(pr) {
 
 function filterResult(data) {
 
+    // Open tasks:
+    if (localStorage["store.settings.hide_pr_with_tasks"] == "true") {
+        _.filter(data.values, function (pr) {
+            return !(pr['attributes']['openTaskCount'] || 0);
+        });
+    }
+
+    // Scrum master:
     if (localStorage["store.settings.scrum_master"] == "true"
         && localStorage["store.settings.username"]
         && localStorage["store.settings.username"].length

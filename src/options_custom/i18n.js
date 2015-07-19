@@ -42,15 +42,19 @@ this.i18n = {
     "update_frequency": {
         "en": "Update frequency:"
     },
-
+    "pull_requests": {
+        "en": "Pull Requests"
+    },
 
     "scrum_master": {
         "en": "Scrum master mode"
     },
     "scrum_master_description": {
-        "en": "Scrum master mode will hide pull requests where other reviewers have yet to approve, making you the last reviewer of every pull request."
+        "en": "Scrum master mode will hide pull requests where other reviewers have yet to approve, making you the last reviewer of every pull request. (note that you MUST specify your username or this feature will be disabled.)"
     },
-
+    "hide_pr_with_tasks": {
+        "en": "Hide pull requests with open tasks"
+    },
     "notifications": {
         "en": "Notifications"
     },

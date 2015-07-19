@@ -6,28 +6,6 @@ this.manifest = {
         {
             "tab": i18n.get("information"),
             "group": i18n.get("stash_server"),
-            "name": "server",
-            "type": "text",
-            "label": i18n.get("server_address"),
-            "text": i18n.get("url_example")
-        },
-        {
-            "tab": i18n.get("information"),
-            "group": i18n.get("stash_server"),
-            "name": "scrum_master",
-            "type": "checkbox",
-            "label": i18n.get("Scrum master mode")
-        },
-        {
-            "tab": i18n.get("information"),
-            "group": i18n.get("stash_server"),
-            "name": "scrum_master_description",
-            "type": "description",
-            "text": i18n.get("scrum_master_description")
-        },
-        {
-            "tab": i18n.get("information"),
-            "group": i18n.get("stash_server"),
             "name": "refreshInterval",
             "type": "popupButton",
             "label": i18n.get("update_frequency"),
@@ -54,6 +32,43 @@ this.manifest = {
                     }
                 ]
             }
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("stash_server"),
+            "name": "server",
+            "type": "text",
+            "label": i18n.get("server_address"),
+            "text": i18n.get("url_example")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("stash_server"),
+            "name": "username",
+            "type": "text",
+            "label": i18n.get("username"),
+            "text": i18n.get("x-characters")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("pull_requests"),
+            "name": "scrum_master",
+            "type": "checkbox",
+            "label": i18n.get("Scrum master mode")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("pull_requests"),
+            "name": "scrum_master_description",
+            "type": "description",
+            "text": i18n.get("scrum_master_description")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("pull_requests"),
+            "name": "hide_pr_with_tasks",
+            "type": "checkbox",
+            "label": i18n.get("hide_pr_with_tasks")
         },
         {
             "tab": i18n.get("information"),
@@ -166,31 +181,31 @@ this.manifest = {
                 ]
             }
         },
-        {
-            "tab": i18n.get("information"),
-            "group": i18n.get("login"),
-            "name": "username",
-            "type": "text",
-            "label": i18n.get("username"),
-            "text": i18n.get("x-characters")
-        },
-        {
-            "tab": i18n.get("information"),
-            "group": i18n.get("login"),
-            "name": "password",
-            "type": "text",
-            "label": i18n.get("password"),
-            "text": i18n.get("x-characters-pw"),
-            "masked": true
-        },
-        {
-            "tab": i18n.get("information"),
-            "group": i18n.get("login"),
-            "name": "login",
-            "type": "checkbox",
-            "label": i18n.get("login_offline")
-
-        },
+        //{
+        //    "tab": i18n.get("information"),
+        //    "group": i18n.get("login"),
+        //    "name": "username",
+        //    "type": "text",
+        //    "label": i18n.get("username"),
+        //    "text": i18n.get("x-characters")
+        //},
+        //{
+        //    "tab": i18n.get("information"),
+        //    "group": i18n.get("login"),
+        //    "name": "password",
+        //    "type": "text",
+        //    "label": i18n.get("password"),
+        //    "text": i18n.get("x-characters-pw"),
+        //    "masked": true
+        //},
+        //{
+        //    "tab": i18n.get("information"),
+        //    "group": i18n.get("login"),
+        //    "name": "login",
+        //    "type": "checkbox",
+        //    "label": i18n.get("login_offline")
+        //
+        //},
         {
             "tab": i18n.get("information"),
             "group": i18n.get("appearance"),
@@ -316,8 +331,8 @@ this.manifest = {
     "alignment": [
         [
             "server",
-            "username",
-            "password"
+            "username"
+            //"password"
         ]
 
     ]
