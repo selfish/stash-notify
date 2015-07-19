@@ -5,7 +5,6 @@
  */
 
 var pullRequestsURL = '/rest/inbox/latest/pull-requests?role=reviewer&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest';
-var loginURL = '/login';
 
 function notifyPullRequest(pr) {
 
@@ -33,12 +32,12 @@ function notifyPullRequest(pr) {
         buttons.push({title: "Snooze all", iconUrl: "/assets/zzz.svg"});
     }
 
-    chrome.notifications.clear(prID);
+    chrome.notifications.clear(prID, null);
     chrome.notifications.create(prID, {
         type: "basic",
         message: pr.title,
-        title: pr.author.user.displayName,
-        iconUrl: localStorage["settings.server"] + pr.author.user.avatarUrl.split("?")[0],
+        title: pr['author']['user']['displayName'],
+        iconUrl: localStorage["settings.server"] + pr['author']['user']['avatarUrl'].split("?")[0],
         buttons: buttons
     }, function () {
         // Mark as shown:
@@ -61,6 +60,29 @@ function notifyPullRequest(pr) {
     });
 }
 
+
+function filterResult(data) {
+
+    if (localStorage["store.settings.scrum_master"] == "true"
+        && localStorage["store.settings.username"]
+        && localStorage["store.settings.username"].length
+    ) {
+        data.values = _.filter(data.values, function (pr) {
+            // If I'm the only reviewer, display:
+            if (pr["reviewers"].length == 1) return true;
+            // Else, if at least one other had reviewed:
+            return _.some(pr["reviewers"], function (rev) {
+                return (
+                    rev['approved'] == true
+                    && rev['user']['name'] != localStorage["store.settings.username"]
+                );
+            });
+        });
+        data.size = data.values.length;
+    }
+    return data;
+}
+
 function getPullRequestData(cb) {
 
     var host = localStorage["settings.server"];
@@ -71,20 +93,22 @@ function getPullRequestData(cb) {
         if (err) {
             errHandle(err);
         } else {
+            // Filter for Scrum master:
+            res = filterResult(res);
+            // Update badge:
+            if (res.size == 0) clearBadge();
+            else setBadge(res.size, null, "#ff0000");
+            // Save:
             localStorage.prData = JSON.stringify(res);
             cb(res);
         }
     });
 }
 
+
 function getPullRequestCount(notify) {
-
-    getPullRequestData(function (res) {
-
-        if (res.size == 0) clearBadge();
-        else setBadge(res.size, null, "#ff0000");
-
+    getPullRequestData(function (PRData) {
         if (notify && localStorage["store.settings.notify"] == "true" && !(localStorage['snooze_all'] > Date.now()))
-            res.values.forEach(notifyPullRequest);
+            PRData.values.forEach(notifyPullRequest);
     });
 }
