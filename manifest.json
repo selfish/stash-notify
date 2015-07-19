@@ -13,6 +13,7 @@
     "scripts": [
       "src/lib/jquery-2.1.1.min.js",
       "src/lib/lodash.js",
+      "src/lib/async.js",
       "src/helpers/badgeHelper.js",
       "src/helpers/jsHelper.js",
       "src/helpers/localStorageHelper.js",
