@@ -28,6 +28,28 @@ this.i18n = {
     "show_repo_icon": {
         "en": "Show repository logo"
     },
+    "show_notifications_every": {
+        "en": "Show notifications every:"
+    },
+
+    "display_density": {
+        "en": "Mailbox display density:"
+    },
+
+    "snooze_duration": {
+        "en": "Snooze duration:"
+    },
+    "update_frequency": {
+        "en": "Update frequency:"
+    },
+
+
+    "scrum_master": {
+        "en": "Scrum master mode"
+    },
+    "scrum_master_description": {
+        "en": "Scrum master mode will hide pull requests where other reviewers have yet to approve, making you the last reviewer of every pull request."
+    },
 
     "notifications": {
         "en": "Notifications"

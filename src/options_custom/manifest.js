@@ -14,9 +14,23 @@ this.manifest = {
         {
             "tab": i18n.get("information"),
             "group": i18n.get("stash_server"),
+            "name": "scrum_master",
+            "type": "checkbox",
+            "label": i18n.get("Scrum master mode")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("stash_server"),
+            "name": "scrum_master_description",
+            "type": "description",
+            "text": i18n.get("scrum_master_description")
+        },
+        {
+            "tab": i18n.get("information"),
+            "group": i18n.get("stash_server"),
             "name": "refreshInterval",
             "type": "popupButton",
-            "label": "Update frequency:",
+            "label": i18n.get("update_frequency"),
             "options": {
                 "values": [
                     {
@@ -88,7 +102,7 @@ this.manifest = {
             "group": i18n.get("notifications"),
             "name": "notifyInterval",
             "type": "popupButton",
-            "label": "Show notifications every:",
+            "label": i18n.get("show_notifications_every"),
             "options": {
                 "values": [
                     {
@@ -121,7 +135,7 @@ this.manifest = {
             "group": i18n.get("notifications"),
             "name": "snooze_duration",
             "type": "popupButton",
-            "label": "Snooze duration:",
+            "label": i18n.get("snooze_duration"),
             "options": {
                 "values": [
                     {
@@ -210,7 +224,7 @@ this.manifest = {
             "group": i18n.get("appearance"),
             "name": "line_height",
             "type": "popupButton",
-            "label": "Mailbox display density:",
+            "label": i18n.get("display_density"),
             "options": {
                 "values": [
                     {
