@@ -79,9 +79,8 @@ this.i18n = {
     "login_offline": {
         "en:": "Login when offline?"
     },
-    "information": {
-        "en": "Information",
-        "de": "Information"
+    "general": {
+        "en": "General"
     },
     "login": {
         "en": "Stash Credentials"

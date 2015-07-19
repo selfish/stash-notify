@@ -4,7 +4,7 @@ this.manifest = {
     "icon": "../../icons/icon32.png",
     "settings": [
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("stash_server"),
             "name": "refreshInterval",
             "type": "popupButton",
@@ -34,7 +34,7 @@ this.manifest = {
             }
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("stash_server"),
             "name": "server",
             "type": "text",
@@ -42,7 +42,7 @@ this.manifest = {
             "text": i18n.get("url_example")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("stash_server"),
             "name": "username",
             "type": "text",
@@ -50,49 +50,49 @@ this.manifest = {
             "text": i18n.get("x-characters")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("pull_requests"),
             "name": "scrum_master",
             "type": "checkbox",
             "label": i18n.get("Scrum master mode")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("pull_requests"),
             "name": "scrum_master_description",
             "type": "description",
             "text": i18n.get("scrum_master_description")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("pull_requests"),
             "name": "hide_pr_with_tasks",
             "type": "checkbox",
             "label": i18n.get("hide_pr_with_tasks")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
             "name": "notify",
             "type": "checkbox",
             "label": i18n.get("notify_new")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
             "name": "snooze_this_btn",
             "type": "checkbox",
             "label": i18n.get("snooze_this_btn")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
             "name": "snooze_all_btn",
             "type": "checkbox",
             "label": i18n.get("snooze_all_btn")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
             "name": "repeatUntilNoticed",
             "type": "popupButton",
@@ -113,7 +113,7 @@ this.manifest = {
             }
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
             "name": "notifyInterval",
             "type": "popupButton",
@@ -146,7 +146,7 @@ this.manifest = {
             }
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
             "name": "snooze_duration",
             "type": "popupButton",
@@ -182,7 +182,7 @@ this.manifest = {
             }
         },
         //{
-        //    "tab": i18n.get("information"),
+        //    "tab": i18n.get("general"),
         //    "group": i18n.get("login"),
         //    "name": "username",
         //    "type": "text",
@@ -190,7 +190,7 @@ this.manifest = {
         //    "text": i18n.get("x-characters")
         //},
         //{
-        //    "tab": i18n.get("information"),
+        //    "tab": i18n.get("general"),
         //    "group": i18n.get("login"),
         //    "name": "password",
         //    "type": "text",
@@ -199,7 +199,7 @@ this.manifest = {
         //    "masked": true
         //},
         //{
-        //    "tab": i18n.get("information"),
+        //    "tab": i18n.get("general"),
         //    "group": i18n.get("login"),
         //    "name": "login",
         //    "type": "checkbox",
@@ -207,35 +207,35 @@ this.manifest = {
         //
         //},
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
             "name": "multiline_popup",
             "type": "checkbox",
             "label": i18n.get("multiline_popup")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
             "name": "hide_popup_head",
             "type": "checkbox",
             "label": i18n.get("hide_popup_head")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
             "name": "hide_bottom_bar",
             "type": "checkbox",
             "label": i18n.get("hide_bottom_bar")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
             "name": "show_repo_icon",
             "type": "checkbox",
             "label": i18n.get("show_repo_icon")
         },
         {
-            "tab": i18n.get("information"),
+            "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
             "name": "line_height",
             "type": "popupButton",
@@ -256,21 +256,21 @@ this.manifest = {
             }
         }
         //{
-        //    "tab": i18n.get("information"),
+        //    "tab": i18n.get("general"),
         //    "group": i18n.get("login"),
         //    "name": "myDescription",
         //    "type": "description",
         //    "text": i18n.get("description")
         //},
         //{
-        //    "tab": i18n.get("information"),
+        //    "tab": i18n.get("general"),
         //    "group": i18n.get("logout"),
         //    "name": "myCheckbox",
         //    "type": "checkbox",
         //    "label": i18n.get("enable")
         //},
         //{
-        //    "tab": i18n.get("information"),
+        //    "tab": i18n.get("general"),
         //    "group": i18n.get("logout"),
         //    "name": "myButton",
         //    "type": "button",
