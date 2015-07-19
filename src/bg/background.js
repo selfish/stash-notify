@@ -17,8 +17,6 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-// Responder:
-
 function go(notify, norepeat) {
 
     var host = localStorage["store.settings.server"].replace(/"/g, '');
@@ -28,7 +26,7 @@ function go(notify, norepeat) {
     }
     localStorage["settings.server"] = host;
 
-    getPullRequestCount();
+    getPullRequestCount(notify);
     getPRElement();
 
     var interval = notify ?
