@@ -27,7 +27,6 @@ function go(notify, norepeat) {
     localStorage["settings.server"] = host;
 
     getPullRequestCount(notify);
-    getPRElement();
 
     var interval = notify ?
         localStorage["store.settings.notifyInterval"] :
@@ -40,6 +39,7 @@ function go(notify, norepeat) {
 
 if (!localStorage["store.settings.refreshInterval"].length)
     localStorage["store.settings.refreshInterval"] = DEFAULT_INTERVAL;
+
 go(true);
 if (localStorage["store.settings.notifyInterval"] != localStorage["store.settings.refreshInterval"]) {
     setTimeout(function () {

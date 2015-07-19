@@ -61,74 +61,30 @@ function notifyPullRequest(pr) {
     });
 }
 
-function getPullRequestCount(notify) {
-    var host = localStorage["settings.server"];
+function getPullRequestData(cb) {
 
+    var host = localStorage["settings.server"];
     // TODO: Improve
     if (!host) return;
-
     var uri = (host + pullRequestsURL).replace("/" + pullRequestsURL, pullRequestsURL);
-
     najax(uri, function (err, res) {
         if (err) {
             errHandle(err);
         } else {
-            if (res.size == 0) clearBadge();
-            else setBadge(res.size, null, "#ff0000");
-
-            if (notify && localStorage["store.settings.notify"] == "true" && !(localStorage['snooze_all'] > Date.now()))
-                res.values.forEach(notifyPullRequest);
+            localStorage.prData = JSON.stringify(res);
+            cb(res);
         }
     });
 }
 
-function login(done) {
+function getPullRequestCount(notify) {
 
-    if (!JSON.parse(localStorage["store.settings.login"])) return done();
+    getPullRequestData(function (res) {
 
-    var uri = (localStorage["settings.server"] + loginURL).replace("/" + loginURL, loginURL);
+        if (res.size == 0) clearBadge();
+        else setBadge(res.size, null, "#ff0000");
 
-    chrome.tabs.create({
-        url: uri,
-        active: false
-    }, function (tab) {
-        chrome.tabs.executeScript(tab.id, {
-            runAt: 'document_end',
-            file: '/src/content_script/stashReportTasks.js'
-        }, function () {
-            chrome.tabs.remove(tab.id);
-            done();
-        });
-    });
-}
-
-function extract() {
-
-    var uri = localStorage["settings.server"];
-
-    chrome.tabs.create({
-        url: uri,
-        active: false
-    }, function (tab) {
-        chrome.tabs.executeScript(tab.id, {
-                runAt: 'document_end',
-                file: '/src/lib/jquery-2.1.1.min.js'
-            },
-            function () {
-                chrome.tabs.executeScript(tab.id, {
-                    runAt: 'document_end',
-                    file: '/src/content_script/stashReportTasks.js'
-                }, function () {
-
-                    console.log('executed');
-                });
-            });
-    });
-}
-
-function getPRElement() {
-    if (!localStorage["settings.server"]) return;
-    login(function () {
-        setTimeout(extract, 1000)
+        if (notify && localStorage["store.settings.notify"] == "true" && !(localStorage['snooze_all'] > Date.now()))
+            res.values.forEach(notifyPullRequest);
     });
 }

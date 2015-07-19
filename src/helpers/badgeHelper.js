@@ -22,6 +22,7 @@ function clearBadge() {
 }
 
 function errHandle(err) {
+    console.error(err);
     setBadge("ERR", err, "#000000");
 }
 

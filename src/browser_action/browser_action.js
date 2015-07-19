@@ -29,7 +29,8 @@ chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
     $("head").append(cssLink);
 
     // Fill in content:
-    $('body').prepend($(localStorage.div || '<div style="padding: 20px;">Loading...</div>'));
+    //$('body').prepend($(localStorage.div || '<div style="padding: 20px;">Loading...</div>'));
+    $('body').prepend($(response.div));
     var remove = ['.spinner', '.secondary-link'];
 
     if (!response.show_repo_icon) remove.push('.aui-avatar-project');

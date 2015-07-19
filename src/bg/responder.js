@@ -14,6 +14,7 @@ chrome.runtime.onMessage.addListener(
         }
         if (request.getPRdiv) {
             sendResponse({
+                div: mkDIV(),
                 host: localStorage["settings.server"],
                 hideHead: localStorage["store.settings.hide_popup_head"] == 'true',
                 multiline: localStorage["store.settings.multiline_popup"] == 'true',
