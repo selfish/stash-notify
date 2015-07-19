@@ -15,6 +15,7 @@
       "src/lib/lodash.js",
       "src/helpers/badgeHelper.js",
       "src/helpers/jsHelper.js",
+      "src/helpers/localStorageHelper.js",
       "src/models/stashModel.js",
       "src/bg/responder.js",
       "src/bg/background.js"
