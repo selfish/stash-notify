@@ -60,7 +60,7 @@ function mkTD(pr, tdType) {
             var td_comm = $('<td class="comment-count"></td>');
             if (Number(comments)) {
                 td_comm.append($(
-                    '<span class="comment-count" title="' + comments + ' comment">' +
+                    '<span class="comment-count" title="' + comments + ' comments">' +
                     '<span class="aui-icon aui-icon-small aui-iconfont-comment">' + comments + ' comments</span>' + comments + '' +
                     '</span>'
                 ));
