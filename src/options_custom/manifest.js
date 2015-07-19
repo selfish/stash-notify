@@ -29,6 +29,9 @@ this.manifest = {
                     }, {
                         "text": "1 Hour",
                         "value": 1000 * 60 * 60
+                    }, {
+                        "text": "2 Hours",
+                        "value": 1000 * 60 * 60 * 2
                     }
                 ]
             }
@@ -73,7 +76,7 @@ this.manifest = {
         {
             "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
-            "name": "notify",
+            "name": "notifyPRs",
             "type": "checkbox",
             "label": i18n.get("notify_new")
         },
@@ -108,39 +111,6 @@ this.manifest = {
                     }, {
                         "text": "As long as active",
                         "value": "always"
-                    }
-                ]
-            }
-        },
-        {
-            "tab": i18n.get("general"),
-            "group": i18n.get("notifications"),
-            "name": "notifyInterval",
-            "type": "popupButton",
-            "label": i18n.get("show_notifications_every"),
-            "options": {
-                "values": [
-                    {
-                        "text": "1 Minute",
-                        "value": 1000 * 60
-                    }, {
-                        "text": "2 Minutes",
-                        "value": 1000 * 60 * 2
-                    }, {
-                        "text": "5 Minutes",
-                        "value": 1000 * 60 * 5
-                    }, {
-                        "text": "10 Minutes",
-                        "value": 1000 * 60 * 10
-                    }, {
-                        "text": "30 Minutes",
-                        "value": 1000 * 60 * 30
-                    }, {
-                        "text": "1 Hour",
-                        "value": 1000 * 60 * 60
-                    }, {
-                        "text": "2 Hours",
-                        "value": 1000 * 60 * 60 * 2
                     }
                 ]
             }

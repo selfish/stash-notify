@@ -17,32 +17,24 @@ chrome.runtime.onInstalled.addListener(function (details) {
     }
 });
 
-function go(notify, norepeat) {
+function go() {
+    async.waterfall([
+        function (cb) {
+            if (!localStorage["store.settings.refreshInterval"].length > 5)
+                localStorage["store.settings.refreshInterval"] = DEFAULT_INTERVAL;
 
-    var host = localStorage["store.settings.server"].replace(/"/g, '');
-    localStorage["settings.server"] = host;
-    if (host[host.length - 1] == "/") {
-        host = host.substring(0, host.length - 1);
-    }
-    localStorage["settings.server"] = host;
+            localStorage["settings.server"] = localStorage["store.settings.server"].replace(/^"|\/"$|"$/g, '');
+            cb();
+        },
+        getPullRequestData,
+        notifyPullRequests
+    ], function (err) {
+        chrome.runtime.sendMessage({loaded: true});
+    });
 
-    getPullRequestCount(notify);
-
-    var interval = notify ?
-        localStorage["store.settings.notifyInterval"] :
-        localStorage["store.settings.refreshInterval"];
-
-    if (!norepeat)setTimeout(function () {
-        go(notify);
-    }, Math.max(Number(interval.replace(/"/g, '')), MIN_INTERVAL) || DEFAULT_INTERVAL);
+    // Schedule nex time:
+    var interval = localStorage["store.settings.notifyInterval"];
+    setTimeout(go, Math.max(Number(interval.replace(/^"|"$/g, '')), MIN_INTERVAL) || DEFAULT_INTERVAL);
 }
 
-if (!localStorage["store.settings.refreshInterval"].length)
-    localStorage["store.settings.refreshInterval"] = DEFAULT_INTERVAL;
-
-go(true);
-if (localStorage["store.settings.notifyInterval"] != localStorage["store.settings.refreshInterval"]) {
-    setTimeout(function () {
-        go(false);
-    }, Math.max(Number(localStorage["store.settings.refreshInterval"].replace(/"/g, '')), MIN_INTERVAL) || DEFAULT_INTERVAL)
-}
+go();

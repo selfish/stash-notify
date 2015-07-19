@@ -6,6 +6,68 @@
 
 var pullRequestsURL = '/rest/inbox/latest/pull-requests?role=reviewer&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest';
 
+function filterResult(data) {
+
+    // Open tasks:
+    if (localStorage["store.settings.hide_pr_with_tasks"] == "true") {
+        data.values = _.filter(data.values, function (pr) {
+            return !(
+                pr['attributes']['openTaskCount']
+                && (pr['attributes']['openTaskCount'] != "0")
+            );
+        });
+    }
+
+    // Scrum master:
+    if (localStorage["store.settings.scrum_master"] == "true"
+        && localStorage["store.settings.username"]
+        && localStorage["store.settings.username"].length
+    ) {
+        data.values = _.filter(data.values, function (pr) {
+            // If I'm the only reviewer, display:
+            if (pr["reviewers"].length == 1) return true;
+            // Else, if at least one other had reviewed:
+            return _.some(pr["reviewers"], function (rev) {
+                return (
+                    rev['approved'] == true
+                    && rev['user']['name'] != localStorage["store.settings.username"]
+                );
+            });
+        });
+    }
+    data.size = data.values.length;
+    return data;
+}
+
+function getPullRequestData(cb) {
+
+    var host = localStorage["settings.server"];
+    // TODO: Improve
+    if (!host) return;
+    var uri = (host + pullRequestsURL).replace("/" + pullRequestsURL, pullRequestsURL);
+    najax(uri, function (err, res) {
+        if (err) {
+            errHandle(err);
+        } else {
+            // Filter for Scrum master:
+            res = filterResult(res);
+            // Update badge:
+            if (res.size == 0) clearBadge();
+            else setBadge(res.size, null, "#ff0000");
+            // Save:
+            localStorage.prData = JSON.stringify(res);
+            cb(null, res);
+        }
+    });
+}
+
+function notifyPullRequests(PRData, cb) {
+    if (localStorage["store.settings.notify"] == "true"
+        && !(localStorage['snooze_all'] > Date.now()))
+        PRData.values.forEach(notifyPullRequest);
+    cb();
+}
+
 function notifyPullRequest(pr) {
 
     var prID = pr.links.self[0].href;
@@ -57,66 +119,5 @@ function notifyPullRequest(pr) {
                 }
             }
         );
-    });
-}
-
-
-function filterResult(data) {
-
-    // Open tasks:
-    if (localStorage["store.settings.hide_pr_with_tasks"] == "true") {
-        data.values = _.filter(data.values, function (pr) {
-            return !(pr['attributes']['openTaskCount'] || 0);
-        });
-    }
-
-    // Scrum master:
-    if (localStorage["store.settings.scrum_master"] == "true"
-        && localStorage["store.settings.username"]
-        && localStorage["store.settings.username"].length
-    ) {
-        data.values = _.filter(data.values, function (pr) {
-            // If I'm the only reviewer, display:
-            if (pr["reviewers"].length == 1) return true;
-            // Else, if at least one other had reviewed:
-            return _.some(pr["reviewers"], function (rev) {
-                return (
-                    rev['approved'] == true
-                    && rev['user']['name'] != localStorage["store.settings.username"]
-                );
-            });
-        });
-        data.size = data.values.length;
-    }
-    return data;
-}
-
-function getPullRequestData(cb) {
-
-    var host = localStorage["settings.server"];
-    // TODO: Improve
-    if (!host) return;
-    var uri = (host + pullRequestsURL).replace("/" + pullRequestsURL, pullRequestsURL);
-    najax(uri, function (err, res) {
-        if (err) {
-            errHandle(err);
-        } else {
-            // Filter for Scrum master:
-            res = filterResult(res);
-            // Update badge:
-            if (res.size == 0) clearBadge();
-            else setBadge(res.size, null, "#ff0000");
-            // Save:
-            localStorage.prData = JSON.stringify(res);
-            cb(res);
-        }
-    });
-}
-
-
-function getPullRequestCount(notify) {
-    getPullRequestData(function (PRData) {
-        if (notify && localStorage["store.settings.notify"] == "true" && !(localStorage['snooze_all'] > Date.now()))
-            PRData.values.forEach(notifyPullRequest);
     });
 }

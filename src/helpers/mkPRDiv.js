@@ -18,13 +18,13 @@ function mkTD(pr, tdType) {
                 '<img src="' + host(pr['fromRef']['repository']['project']['avatarUrl']) + '" alt="' + pr['fromRef']['repository']['project']['name'] + '">' +
                 '</span>' +
                 '</span>' +
-                '<span title="apkMetadata">' + pr['fromRef']['repository']['name'] + '</span>' +
+                '<span title="apkMetadata"><a href="' + host(pr['fromRef']['repository']['link']['url']) + '">' + pr['fromRef']['repository']['name'] + '</a></span>' +
                 '</td>'
             );
         case 'title':
             return $(
                 '<td class="title">' +
-                '<a title="did basically nothing" href="' + pr['link']['url'] + '">' + pr['title'] + '</a>' +
+                '<a title="' + pr['title'] + '" href="' + pr['link']['url'] + '">' + pr['title'] + '</a>' +
                 '</td>');
         case 'author':
             return $(
