@@ -65,7 +65,7 @@ function filterResult(data) {
 
     // Open tasks:
     if (localStorage["store.settings.hide_pr_with_tasks"] == "true") {
-        _.filter(data.values, function (pr) {
+        data.values = _.filter(data.values, function (pr) {
             return !(pr['attributes']['openTaskCount'] || 0);
         });
     }
