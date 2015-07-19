@@ -8,11 +8,12 @@ chrome.runtime.onInstalled.addListener(function (details) {
         url: "/src/options_custom/index.html"
     });
     if (details.reason == "install") {
-        console.log("This is a first install!");
-
+        initSettings(true);
+        console.log("First install");
     } else if (details.reason == "update") {
+        initSettings();
         var thisVersion = chrome.runtime.getManifest().version;
-        console.log("Updated from " + details.previousVersion + " to " + thisVersion + "!");
+        console.log("Updated from " + details.previousVersion + " to " + thisVersion);
     }
 });
 
