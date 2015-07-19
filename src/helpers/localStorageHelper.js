@@ -36,5 +36,5 @@ var lsDefaults = {
 };
 
 function initSettings(override) {
-    localStorage = override ? _.assign(localStorage, lsDefaults) : _.merge(localStorage, lsDefaults)
+    localStorage = override ? _.assign(localStorage, lsDefaults) : _.assign(lsDefaults, localStorage)
 }
