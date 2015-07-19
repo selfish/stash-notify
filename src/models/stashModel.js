@@ -26,10 +26,10 @@ function notifyPullRequest(pr) {
 
     // Prepare buttons:
     var buttons = [];
-    if (!localStorage["store.settings.snooze_this_btn"] == 'true') {
+    if (!(localStorage["store.settings.snooze_this_btn"] == 'true')) {
         buttons.push({title: "Snooze this Pull Request", iconUrl: "/assets/snooze.svg"});
     }
-    if (!localStorage["store.settings.snooze_all_btn"] == 'true') {
+    if (!(localStorage["store.settings.snooze_all_btn"] == 'true')) {
         buttons.push({title: "Snooze all", iconUrl: "/assets/zzz.svg"});
     }
 
