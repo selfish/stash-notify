@@ -54,7 +54,7 @@ function mk() {
 
         $("a").attr("target", "_blank");
         $('td').css('padding-top', response.line_height).css('padding-bottom', response.line_height);
-        $('th.author').html(Math.random());
+        $('th.author').html("By");
 
         if (response.multiline) {
             // Break rows:
