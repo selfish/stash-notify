@@ -18,15 +18,13 @@
     };
 
     Store.prototype.get = function (name) {
-        name = "store." + this.name + "." + name;
-        if (localStorage.getItem(name) === null) {
-            return undefined;
-        }
-        try {
-            return JSON.parse(localStorage.getItem(name));
-        } catch (e) {
-            return null;
-        }
+        name = "_" + name;
+
+        var item = localStorage.getItem(name);
+
+        if (item == "false") return false;
+        if (item == "true") return true;
+        return localStorage.getItem(name) || undefined;
     };
 
     Store.prototype.set = function (name, value) {
@@ -35,22 +33,23 @@
         } else {
             if (typeof value === "function") {
                 value = null;
-            } else {
-                try {
-                    value = JSON.stringify(value);
-                } catch (e) {
-                    value = null;
-                }
             }
+            //else {
+            //    try {
+            //        value = JSON.stringify(value);
+            //    } catch (e) {
+            //        value = null;
+            //    }
+            //}
 
-            localStorage.setItem("store." + this.name + "." + name, value);
+            localStorage.setItem("_" + name, value);
         }
 
         return this;
     };
 
     Store.prototype.remove = function (name) {
-        localStorage.removeItem("store." + this.name + "." + name);
+        localStorage.removeItem("_" + name);
         return this;
     };
 
@@ -58,7 +57,7 @@
         var name,
             i;
 
-        name = "store." + this.name + ".";
+        name = "_";
         for (i = (localStorage.length - 1); i >= 0; i--) {
             if (localStorage.key(i).substring(0, name.length) === name) {
                 localStorage.removeItem(localStorage.key(i));
@@ -76,7 +75,7 @@
             value;
 
         values = {};
-        name = "store." + this.name + ".";
+        name = "_";
         for (i = (localStorage.length - 1); i >= 0; i--) {
             if (localStorage.key(i).substring(0, name.length) === name) {
                 key = localStorage.key(i).substring(name.length);

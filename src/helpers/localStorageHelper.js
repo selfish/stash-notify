@@ -6,35 +6,51 @@
 var lsDefaults = {
 
     // Content:
-    "div": "",
-    "settings.server": "",
-    "store.settings.server": "\"\"",
+    "_server": '',
 
     // Behaviour:
-    "store.settings.scrum_master": "false",
-    "store.settings.notify": "true",
-    "store.settings.repeatUntilNoticed": "\"click\"",
+    "_scrum_master": false,
+    "_notifyPRs": true,
+    "_repeatUntilNoticed": "click",
 
     // Appearance:
-    "store.settings.hide_popup_head": "false",
-    "store.settings.hide_bottom_bar": "false",
-    "store.settings.line_height": "\"7\"",
-    "store.settings.multiline_popup": "true",
-    "store.settings.show_repo_icon": "true",
-    "store.settings.snooze_this_btn": "false",
-    "store.settings.snooze_all_btn": "false",
+    "_hide_popup_head": false,
+    "_hide_bottom_bar": false,
+    "_line_height": 7,
+    "_multiline_popup": true,
+    "_show_repo_icon": true,
+    "_snooze_this_btn": false,
+    "_snooze_all_btn": false,
+    "_hide_pr_with_tasks": false,
+    "_hide_section_title": false,
 
     // Intervals:
-    "store.settings.notifyInterval": "\"300000\"",
-    "store.settings.refreshInterval": "\"120000\"",
-    "store.settings.snooze_duration": "\"3600000\"",
+    "_notifyInterval": 300000,
+    "_refreshInterval": 120000,
+    "_snooze_duration": 3600000,
 
     // Login settings:
-    "store.settings.username": "\"\"",
-    "store.settings.password": "\"\"",
-    "store.settings.login": "false"
+    "_username": '',
+    "_password": '',
+    "_login": false
 };
 
 function initSettings(override) {
-    localStorage = override ? _.assign(localStorage, lsDefaults) : _.assign(lsDefaults, localStorage)
+    var difference = _.xor(_.keys(localStorage), _.keys(lsDefaults));
+    if (difference.length) {
+        //console.warn("Mismatch in ls defaults: " + difference)
+        var lsMissing = _.difference(_.keys(lsDefaults), _.keys(localStorage));
+        var defaultMissing = _.filter(_.difference(_.keys(localStorage), _.keys(lsDefaults)), function (key) {
+            return !_.contains(key, "http");
+        });
+
+        if (lsMissing.length) console.warn("Mismatch in ls defaults, localStorage missing: " + lsMissing);
+        if (defaultMissing.length) console.warn("Mismatch in ls defaults, lsDefaults missing: " + defaultMissing);
+    }
+
+    _.each(lsDefaults, function (val, key) {
+        if ((!localStorage[key]) || override) {
+            localStorage[key] = val;
+        }
+    });
 }

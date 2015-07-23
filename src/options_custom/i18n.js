@@ -19,6 +19,9 @@ this.i18n = {
     "multiline_popup": {
         "en": "Multiline popup (uglier, more informative.)"
     },
+    "hide_section_title": {
+        "en": "Hide popup section titles"
+    },
     "hide_popup_head": {
         "en": "Hide popup header row"
     },

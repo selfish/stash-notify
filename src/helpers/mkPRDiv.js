@@ -2,10 +2,16 @@
  * Created by nitaip on 19/07/2015.
  */
 
-var divBase = '<div><div id="inbox-pull-request-reviewer" class="tabs-pane active-pane" aria-hidden="false"><table class="aui paged-table pull-requests-table" id="inbox-pull-request-table-reviewer" data-last-updated="1437304041274" style="display: table;"><thead><tr><th class="repository" scope="col">Repository</th><th class="title" scope="col">Title</th><th class="author" scope="col">Author</th><th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th><th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th></tr></thead><tbody></tbody></table></div></div>';
+function divBase(id, title, ignoreThead) {
+    return $('<div><div id="' + (id || '') + '" class="tabs-pane active-pane" aria-hidden="false">' +
+        ((title && !(localStorage["_hide_section_title"] == "true")) ? ('<div class="aui-inline-dialog-contents contents" style="width: 870px; max-height: 718px;"><h4>' + title + '</h4></div>') : '') +
+        '<table class="aui paged-table pull-requests-table" id="inbox-pull-request-table-reviewer" data-last-updated="1437304041274" style="display: table;">' +
+        (ignoreThead ? "" : '<thead><tr><th class="repository" scope="col">Repository</th><th class="title" scope="col">Title</th><th class="author" scope="col">Author</th><th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th><th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th></tr></thead>') +
+        '<tbody></tbody></table></div></div>');
+}
 
 function host(uri) {
-    return localStorage["settings.server"] + uri;
+    return localStorage["_server"] + uri;
 }
 
 function mkTD(pr, tdType) {
@@ -116,9 +122,9 @@ function mkTR(pr) {
     return tr;
 }
 
-function mkDIV() {
-    var div = $(divBase);
-    var data = JSON.parse(localStorage.prData);
+function mkDIV(data, divId, divTitle) {
+    var div = divBase(divId, divTitle);
+    console.log("VALUES:" + data.values.length);
     data.values.forEach(function (pr) {
         div.find('tbody').append(mkTR(pr));
     });
