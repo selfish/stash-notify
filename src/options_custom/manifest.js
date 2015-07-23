@@ -186,6 +186,13 @@ this.manifest = {
         {
             "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
+            "name": "hide_section_title",
+            "type": "checkbox",
+            "label": i18n.get("hide_section_title")
+        },
+        {
+            "tab": i18n.get("general"),
+            "group": i18n.get("appearance"),
             "name": "hide_popup_head",
             "type": "checkbox",
             "label": i18n.get("hide_popup_head")

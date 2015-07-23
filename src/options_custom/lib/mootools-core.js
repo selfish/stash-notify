@@ -1,34 +1,34 @@
 /*
----
-MooTools: the javascript framework
+ ---
+ MooTools: the javascript framework
 
-web build:
+ web build:
  - http://mootools.net/core/7c56cfef9dddcf170a5d68e3fb61cfd7
 
-packager build:
+ packager build:
  - packager build Core/Core Core/Array Core/String Core/Number Core/Function Core/Object Core/Event Core/Browser Core/Class Core/Class.Extras Core/Slick.Parser Core/Slick.Finder Core/Element Core/Element.Style Core/Element.Event Core/Element.Dimensions Core/Fx Core/Fx.CSS Core/Fx.Tween Core/Fx.Morph Core/Fx.Transitions Core/Request Core/Request.HTML Core/Request.JSON Core/Cookie Core/JSON Core/DOMReady Core/Swiff
 
-/*
----
+ /*
+ ---
 
-name: Core
+ name: Core
 
-description: The heart of MooTools.
+ description: The heart of MooTools.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-copyright: Copyright (c) 2006-2010 [Valerio Proietti](http://mad4milk.net/).
+ copyright: Copyright (c) 2006-2010 [Valerio Proietti](http://mad4milk.net/).
 
-authors: The MooTools production team (http://mootools.net/developers/)
+ authors: The MooTools production team (http://mootools.net/developers/)
 
-inspiration:
-  - Class implementation inspired by [Base.js](http://dean.edwards.name/weblog/2006/03/base/) Copyright (c) 2006 Dean Edwards, [GNU Lesser General Public License](http://opensource.org/licenses/lgpl-license.php)
-  - Some functionality inspired by [Prototype.js](http://prototypejs.org) Copyright (c) 2005-2007 Sam Stephenson, [MIT License](http://opensource.org/licenses/mit-license.php)
+ inspiration:
+ - Class implementation inspired by [Base.js](http://dean.edwards.name/weblog/2006/03/base/) Copyright (c) 2006 Dean Edwards, [GNU Lesser General Public License](http://opensource.org/licenses/lgpl-license.php)
+ - Some functionality inspired by [Prototype.js](http://prototypejs.org) Copyright (c) 2005-2007 Sam Stephenson, [MIT License](http://opensource.org/licenses/mit-license.php)
 
-provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
+ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -405,20 +405,20 @@ provides: [Core, MooTools, Type, typeOf, instanceOf, Native]
 })();
 
 /*
----
+ ---
 
-name: Array
+ name: Array
 
-description: Contains Array Prototypes like each, contains, and erase.
+ description: Contains Array Prototypes like each, contains, and erase.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Type
+ requires: Type
 
-provides: Array
+ provides: Array
 
-...
-*/
+ ...
+ */
 
 Array.implement({
 
@@ -574,20 +574,20 @@ Array.implement({
 });
 
 /*
----
+ ---
 
-name: String
+ name: String
 
-description: Contains String Prototypes like camelCase, capitalize, test, and toInt.
+ description: Contains String Prototypes like camelCase, capitalize, test, and toInt.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Type
+ requires: Type
 
-provides: String
+ provides: String
 
-...
-*/
+ ...
+ */
 
 String.implement({
 
@@ -657,20 +657,20 @@ String.implement({
 });
 
 /*
----
+ ---
 
-name: Number
+ name: Number
 
-description: Contains Number Prototypes like limit, round, times, and ceil.
+ description: Contains Number Prototypes like limit, round, times, and ceil.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Type
+ requires: Type
 
-provides: Number
+ provides: Number
 
-...
-*/
+ ...
+ */
 
 Number.implement({
 
@@ -710,20 +710,20 @@ Number.alias('each', 'times');
 })(['abs', 'acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'exp', 'floor', 'log', 'max', 'min', 'pow', 'sin', 'sqrt', 'tan']);
 
 /*
----
+ ---
 
-name: Function
+ name: Function
 
-description: Contains Function Prototypes like create, bind, pass, and delay.
+ description: Contains Function Prototypes like create, bind, pass, and delay.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Type
+ requires: Type
 
-provides: Function
+ provides: Function
 
-...
-*/
+ ...
+ */
 
 Function.extend({
 
@@ -782,20 +782,20 @@ Function.implement({
 });
 
 /*
----
+ ---
 
-name: Object
+ name: Object
 
-description: Object generic methods
+ description: Object generic methods
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Type
+ requires: Type
 
-provides: [Object, Hash]
+ provides: [Object, Hash]
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -905,20 +905,20 @@ provides: [Object, Hash]
 })();
 
 /*
----
+ ---
 
-name: Browser
+ name: Browser
 
-description: The Browser Object. Contains Browser initialization, Window and Document, and the Browser Hash.
+ description: The Browser Object. Contains Browser initialization, Window and Document, and the Browser Hash.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Array, Function, Number, String]
+ requires: [Array, Function, Number, String]
 
-provides: [Browser, Window, Document]
+ provides: [Browser, Window, Document]
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -1111,20 +1111,20 @@ provides: [Browser, Window, Document]
 })();
 
 /*
----
+ ---
 
-name: Event
+ name: Event
 
-description: Contains the Event Class, to make the event object cross-browser.
+ description: Contains the Event Class, to make the event object cross-browser.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Window, Document, Array, Function, String, Object]
+ requires: [Window, Document, Array, Function, String, Object]
 
-provides: Event
+ provides: Event
 
-...
-*/
+ ...
+ */
 
 var Event = new Type('Event', function (event, win) {
     if (!win) win = window;
@@ -1241,20 +1241,20 @@ Event.implement({
 });
 
 /*
----
+ ---
 
-name: Class
+ name: Class
 
-description: Contains the Class Function for easily creating, extending, and implementing reusable Classes.
+ description: Contains the Class Function for easily creating, extending, and implementing reusable Classes.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Array, String, Function, Number]
+ requires: [Array, String, Function, Number]
 
-provides: Class
+ provides: Class
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -1362,20 +1362,20 @@ provides: Class
 })();
 
 /*
----
+ ---
 
-name: Class.Extras
+ name: Class.Extras
 
-description: Contains Utility Classes that can be implemented into your own Classes to ease the execution of many common tasks.
+ description: Contains Utility Classes that can be implemented into your own Classes to ease the execution of many common tasks.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Class
+ requires: Class
 
-provides: [Class.Extras, Chain, Events, Options]
+ provides: [Class.Extras, Chain, Events, Options]
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -1480,12 +1480,12 @@ provides: [Class.Extras, Chain, Events, Options]
 })();
 
 /*
----
-name: Slick.Parser
-description: Standalone CSS3 Selector parser
-provides: Slick.Parser
-...
-*/
+ ---
+ name: Slick.Parser
+ description: Standalone CSS3 Selector parser
+ provides: Slick.Parser
+ ...
+ */
 
 ;
 (function () {
@@ -1552,33 +1552,33 @@ provides: Slick.Parser
 
     var regexp = new RegExp(
         /*
-#!/usr/bin/env ruby
-puts "\t\t" + DATA.read.gsub(/\(\?x\)|\s+#.*$|\s+|\\$|\\n/,'')
-__END__
-	"(?x)^(?:\
-	  \\s* ( , ) \\s*               # Separator          \n\
-	| \\s* ( <combinator>+ ) \\s*   # Combinator         \n\
-	|      ( \\s+ )                 # CombinatorChildren \n\
-	|      ( <unicode>+ | \\* )     # Tag                \n\
-	| \\#  ( <unicode>+       )     # ID                 \n\
-	| \\.  ( <unicode>+       )     # ClassName          \n\
-	|                               # Attribute          \n\
-	\\[  \
-		\\s* (<unicode1>+)  (?:  \
-			\\s* ([*^$!~|]?=)  (?:  \
-				\\s* (?:\
-					([\"']?)(.*?)\\9 \
-				)\
-			)  \
-		)?  \\s*  \
-	\\](?!\\]) \n\
-	|   :+ ( <unicode>+ )(?:\
-	\\( (?:\
-		(?:([\"'])([^\\12]*)\\12)|((?:\\([^)]+\\)|[^()]*)+)\
-	) \\)\
-	)?\
-	)"
-*/
+         #!/usr/bin/env ruby
+         puts "\t\t" + DATA.read.gsub(/\(\?x\)|\s+#.*$|\s+|\\$|\\n/,'')
+         __END__
+         "(?x)^(?:\
+         \\s* ( , ) \\s*               # Separator          \n\
+         | \\s* ( <combinator>+ ) \\s*   # Combinator         \n\
+         |      ( \\s+ )                 # CombinatorChildren \n\
+         |      ( <unicode>+ | \\* )     # Tag                \n\
+         | \\#  ( <unicode>+       )     # ID                 \n\
+         | \\.  ( <unicode>+       )     # ClassName          \n\
+         |                               # Attribute          \n\
+         \\[  \
+         \\s* (<unicode1>+)  (?:  \
+         \\s* ([*^$!~|]?=)  (?:  \
+         \\s* (?:\
+         ([\"']?)(.*?)\\9 \
+         )\
+         )  \
+         )?  \\s*  \
+         \\](?!\\]) \n\
+         |   :+ ( <unicode>+ )(?:\
+         \\( (?:\
+         (?:([\"'])([^\\12]*)\\12)|((?:\\([^)]+\\)|[^()]*)+)\
+         ) \\)\
+         )?\
+         )"
+         */
         "^(?:\\s*(,)\\s*|\\s*(<combinator>+)\\s*|(\\s+)|(<unicode>+|\\*)|\\#(<unicode>+)|\\.(<unicode>+)|\\[\\s*(<unicode1>+)(?:\\s*([*^$!~|]?=)(?:\\s*(?:([\"']?)(.*?)\\9)))?\\s*\\](?!\\])|(:+)(<unicode>+)(?:\\((?:(?:([\"'])([^\\13]*)\\13)|((?:\\([^)]+\\)|[^()]*)+))\\))?)"
             .replace(/<combinator>/, '[' + escapeRegExp(">+~`!@$%^&={}\\;</") + ']')
             .replace(/<unicode>/g, '(?:[\\w\\u00a1-\\uFFFF-]|\\\\[^\\s0-9a-f])')
@@ -1721,13 +1721,13 @@ __END__
 }).apply(/*<CommonJS>*/(typeof exports != 'undefined') ? exports : /*</CommonJS>*/this);
 
 /*
----
-name: Slick.Finder
-description: The new, superfast css selector engine.
-provides: Slick.Finder
-requires: Slick.Parser
-...
-*/
+ ---
+ name: Slick.Finder
+ description: The new, superfast css selector engine.
+ provides: Slick.Finder
+ requires: Slick.Parser
+ ...
+ */
 
 ;
 (function () {
@@ -2720,20 +2720,20 @@ requires: Slick.Parser
 }).apply(/*<CommonJS>*/(typeof exports != 'undefined') ? exports : /*</CommonJS>*/this);
 
 /*
----
+ ---
 
-name: Element
+ name: Element
 
-description: One of the most important items in MooTools. Contains the dollar function, the dollars function, and an handful of cross-browser, time-saver methods to let you easily work with HTML Elements.
+ description: One of the most important items in MooTools. Contains the dollar function, the dollars function, and an handful of cross-browser, time-saver methods to let you easily work with HTML Elements.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Window, Document, Array, String, Function, Number, Slick.Parser, Slick.Finder]
+ requires: [Window, Document, Array, String, Function, Number, Slick.Parser, Slick.Finder]
 
-provides: [Element, Elements, $, $$, Iframe, Selectors]
+ provides: [Element, Elements, $, $$, Iframe, Selectors]
 
-...
-*/
+ ...
+ */
 
 var Element = function (tag, props) {
     var konstructor = Element.Constructors[tag];
@@ -3491,20 +3491,20 @@ Element.Properties.html = (function () {
 
 
 /*
----
+ ---
 
-name: Element.Style
+ name: Element.Style
 
-description: Contains methods for interacting with the styles of Elements in a fashionable way.
+ description: Contains methods for interacting with the styles of Elements in a fashionable way.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Element
+ requires: Element
 
-provides: Element.Style
+ provides: Element.Style
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -3697,20 +3697,20 @@ provides: Element.Style
 })();
 
 /*
----
+ ---
 
-name: Element.Event
+ name: Element.Event
 
-description: Contains Element methods for dealing with events. This file also includes mouseenter and mouseleave custom Element Events.
+ description: Contains Element methods for dealing with events. This file also includes mouseenter and mouseleave custom Element Events.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Element, Event]
+ requires: [Element, Event]
 
-provides: Element.Event
+ provides: Element.Event
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -3869,24 +3869,24 @@ provides: Element.Event
 })();
 
 /*
----
+ ---
 
-name: Element.Dimensions
+ name: Element.Dimensions
 
-description: Contains methods to work with size, scroll, or positioning of Elements and the window object.
+ description: Contains methods to work with size, scroll, or positioning of Elements and the window object.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-credits:
-  - Element positioning based on the [qooxdoo](http://qooxdoo.org/) code and smart browser fixes, [LGPL License](http://www.gnu.org/licenses/lgpl.html).
-  - Viewport dimensions based on [YUI](http://developer.yahoo.com/yui/) code, [BSD License](http://developer.yahoo.com/yui/license.html).
+ credits:
+ - Element positioning based on the [qooxdoo](http://qooxdoo.org/) code and smart browser fixes, [LGPL License](http://www.gnu.org/licenses/lgpl.html).
+ - Viewport dimensions based on [YUI](http://developer.yahoo.com/yui/) code, [BSD License](http://developer.yahoo.com/yui/license.html).
 
-requires: [Element, Element.Style]
+ requires: [Element, Element.Style]
 
-provides: [Element.Dimensions]
+ provides: [Element.Dimensions]
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -4159,20 +4159,20 @@ Element.alias({position: 'setPosition'}); //compatability
 });
 
 /*
----
+ ---
 
-name: Fx
+ name: Fx
 
-description: Contains the basic animation logic to be extended by all other Fx Classes.
+ description: Contains the basic animation logic to be extended by all other Fx Classes.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Chain, Events, Options]
+ requires: [Chain, Events, Options]
 
-provides: Fx
+ provides: Fx
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -4182,10 +4182,10 @@ provides: Fx
 
         options: {
             /*
-		onStart: nil,
-		onCancel: nil,
-		onComplete: nil,
-		*/
+             onStart: nil,
+             onCancel: nil,
+             onComplete: nil,
+             */
             fps: 60,
             unit: false,
             duration: 500,
@@ -4343,20 +4343,20 @@ provides: Fx
 })();
 
 /*
----
+ ---
 
-name: Fx.CSS
+ name: Fx.CSS
 
-description: Contains the CSS animation logic. Used by Fx.Tween, Fx.Morph, Fx.Elements.
+ description: Contains the CSS animation logic. Used by Fx.Tween, Fx.Morph, Fx.Elements.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Fx, Element.Style]
+ requires: [Fx, Element.Style]
 
-provides: Fx.CSS
+ provides: Fx.CSS
 
-...
-*/
+ ...
+ */
 
 Fx.CSS = new Class({
 
@@ -4487,20 +4487,20 @@ Fx.CSS.Parsers = {
 };
 
 /*
----
+ ---
 
-name: Fx.Tween
+ name: Fx.Tween
 
-description: Formerly Fx.Style, effect to transition any CSS property for an element.
+ description: Formerly Fx.Style, effect to transition any CSS property for an element.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Fx.CSS
+ requires: Fx.CSS
 
-provides: [Fx.Tween, Element.fade, Element.highlight]
+ provides: [Fx.Tween, Element.fade, Element.highlight]
 
-...
-*/
+ ...
+ */
 
 Fx.Tween = new Class({
 
@@ -4600,20 +4600,20 @@ Element.implement({
 });
 
 /*
----
+ ---
 
-name: Fx.Morph
+ name: Fx.Morph
 
-description: Formerly Fx.Styles, effect to transition any number of CSS properties for an element using an object of rules, or CSS based selector rules.
+ description: Formerly Fx.Styles, effect to transition any number of CSS properties for an element using an object of rules, or CSS based selector rules.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: Fx.CSS
+ requires: Fx.CSS
 
-provides: Fx.Morph
+ provides: Fx.Morph
 
-...
-*/
+ ...
+ */
 
 Fx.Morph = new Class({
 
@@ -4678,23 +4678,23 @@ Element.implement({
 });
 
 /*
----
+ ---
 
-name: Fx.Transitions
+ name: Fx.Transitions
 
-description: Contains a set of advanced transitions to be used with any of the Fx Classes.
+ description: Contains a set of advanced transitions to be used with any of the Fx Classes.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-credits:
-  - Easing Equations by Robert Penner, <http://www.robertpenner.com/easing/>, modified and optimized to be used with MooTools.
+ credits:
+ - Easing Equations by Robert Penner, <http://www.robertpenner.com/easing/>, modified and optimized to be used with MooTools.
 
-requires: Fx
+ requires: Fx
 
-provides: Fx.Transitions
+ provides: Fx.Transitions
 
-...
-*/
+ ...
+ */
 
 Fx.implement({
 
@@ -4786,20 +4786,20 @@ Fx.Transitions.extend({
 });
 
 /*
----
+ ---
 
-name: Request
+ name: Request
 
-description: Powerful all purpose Request Class. Uses XMLHTTPRequest.
+ description: Powerful all purpose Request Class. Uses XMLHTTPRequest.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Object, Element, Chain, Events, Options, Browser]
+ requires: [Object, Element, Chain, Events, Options, Browser]
 
-provides: Request
+ provides: Request
 
-...
-*/
+ ...
+ */
 
 (function () {
 
@@ -4813,17 +4813,17 @@ provides: Request
 
         options: {
             /*
-		onRequest: function(){},
-		onLoadstart: function(event, xhr){},
-		onProgress: function(event, xhr){},
-		onComplete: function(){},
-		onCancel: function(){},
-		onSuccess: function(responseText, responseXML){},
-		onFailure: function(xhr){},
-		onException: function(headerName, value){},
-		onTimeout: function(){},
-		user: '',
-		password: '',*/
+             onRequest: function(){},
+             onLoadstart: function(event, xhr){},
+             onProgress: function(event, xhr){},
+             onComplete: function(){},
+             onCancel: function(){},
+             onSuccess: function(responseText, responseXML){},
+             onFailure: function(xhr){},
+             onException: function(headerName, value){},
+             onTimeout: function(){},
+             user: '',
+             password: '',*/
             url: '',
             data: '',
             headers: {
@@ -5075,20 +5075,20 @@ provides: Request
 })();
 
 /*
----
+ ---
 
-name: Request.HTML
+ name: Request.HTML
 
-description: Extends the basic Request Class with additional methods for interacting with HTML responses.
+ description: Extends the basic Request Class with additional methods for interacting with HTML responses.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Element, Request]
+ requires: [Element, Request]
 
-provides: Request.HTML
+ provides: Request.HTML
 
-...
-*/
+ ...
+ */
 
 Request.HTML = new Class({
 
@@ -5157,22 +5157,22 @@ Element.implement({
 });
 
 /*
----
+ ---
 
-name: JSON
+ name: JSON
 
-description: JSON encoder and decoder.
+ description: JSON encoder and decoder.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-See Also: <http://www.json.org/>
+ See Also: <http://www.json.org/>
 
-requires: [Array, String, Number, Function]
+ requires: [Array, String, Number, Function]
 
-provides: JSON
+ provides: JSON
 
-...
-*/
+ ...
+ */
 
 if (typeof JSON == 'undefined') this.JSON = {};
 
@@ -5223,31 +5223,33 @@ if (typeof JSON == 'undefined') this.JSON = {};
     JSON.decode = function (string, secure) {
         if (!string || typeOf(string) != 'string') return null;
 
-        if (secure || JSON.secure) {
-            if (JSON.parse) return JSON.parse(string);
-            if (!JSON.validate(string)) throw new Error('JSON could not decode the input; security is enabled and the value is not secure.');
-        }
+        return string;
 
-        return eval('(' + string + ')');
+        //if (secure || JSON.secure) {
+        //    if (JSON.parse) return JSON.parse(string);
+        //    if (!JSON.validate(string)) throw new Error('JSON could not decode the input; security is enabled and the value is not secure.');
+        //}
+
+        //return eval('(' + string + ')');
     };
 
 })();
 
 /*
----
+ ---
 
-name: Request.JSON
+ name: Request.JSON
 
-description: Extends the basic Request Class with additional methods for sending and receiving JSON data.
+ description: Extends the basic Request Class with additional methods for sending and receiving JSON data.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Request, JSON]
+ requires: [Request, JSON]
 
-provides: Request.JSON
+ provides: Request.JSON
 
-...
-*/
+ ...
+ */
 
 Request.JSON = new Class({
 
@@ -5281,23 +5283,23 @@ Request.JSON = new Class({
 });
 
 /*
----
+ ---
 
-name: Cookie
+ name: Cookie
 
-description: Class for creating, reading, and deleting browser Cookies.
+ description: Class for creating, reading, and deleting browser Cookies.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-credits:
-  - Based on the functions by Peter-Paul Koch (http://quirksmode.org).
+ credits:
+ - Based on the functions by Peter-Paul Koch (http://quirksmode.org).
 
-requires: [Options, Browser]
+ requires: [Options, Browser]
 
-provides: Cookie
+ provides: Cookie
 
-...
-*/
+ ...
+ */
 
 var Cookie = new Class({
 
@@ -5356,20 +5358,20 @@ Cookie.dispose = function (key, options) {
 };
 
 /*
----
+ ---
 
-name: DOMReady
+ name: DOMReady
 
-description: Contains the custom event domready.
+ description: Contains the custom event domready.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-requires: [Browser, Element, Element.Event]
+ requires: [Browser, Element, Element.Event]
 
-provides: [DOMReady, DomReady]
+ provides: [DOMReady, DomReady]
 
-...
-*/
+ ...
+ */
 
 (function (window, document) {
 
@@ -5380,7 +5382,7 @@ provides: [DOMReady, DomReady]
         timer,
         testElement = document.createElement('div');
 
-    var domready = function () {
+    function domready() {
         clearTimeout(timer);
         if (ready) return;
         Browser.loaded = ready = true;
@@ -5388,7 +5390,7 @@ provides: [DOMReady, DomReady]
 
         document.fireEvent('domready');
         window.fireEvent('domready');
-    };
+    }
 
     var check = function () {
         for (var i = checks.length; i--;) if (checks[i]()) {
@@ -5463,23 +5465,23 @@ provides: [DOMReady, DomReady]
 })(window, document);
 
 /*
----
+ ---
 
-name: Swiff
+ name: Swiff
 
-description: Wrapper for embedding SWF movies. Supports External Interface Communication.
+ description: Wrapper for embedding SWF movies. Supports External Interface Communication.
 
-license: MIT-style license.
+ license: MIT-style license.
 
-credits:
-  - Flash detection & Internet Explorer + Flash Player 9 fix inspired by SWFObject.
+ credits:
+ - Flash detection & Internet Explorer + Flash Player 9 fix inspired by SWFObject.
 
-requires: [Options, Object, Element]
+ requires: [Options, Object, Element]
 
-provides: Swiff
+ provides: Swiff
 
-...
-*/
+ ...
+ */
 
 (function () {
 
