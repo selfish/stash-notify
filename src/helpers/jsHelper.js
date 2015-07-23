@@ -4,20 +4,18 @@
  * 14/07/2015.
  */
 
-function najax(uri, cb) {
-    $.ajax({
-        url: uri,
-        type: "GET",
-        dataType: "html",
-        error: cb,
-        success: function (data) {
-            var res;
-            try {
-                res = JSON.parse(data);
-            } catch (e) {
-                res = data;
+function najax(uri) {
+    return new Promise(function (resolve, reject) {
+        $.ajax({
+            url: uri,
+            type: "GET",
+            dataType: "html",
+            error: function (jqXHR, textStatus, errorThrown) {
+                reject(errorThrown);
+            },
+            success: function (data) {
+                resolve(data);
             }
-            cb(null, res);
-        }
+        });
     });
 }

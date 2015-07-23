@@ -38,7 +38,9 @@ function mk() {
         // Fill in content:
         //$('body').prepend($(localStorage.div || '<div style="padding: 20px;">Loading...</div>'));
         $('#inbox-pull-request-reviewer').remove();
+        $('#inbox-pull-request-author').remove();
         $('body').prepend($(response.div));
+        if (localStorage["_hide_section_title"] != "true")$('#inbox-pull-request-reviewer').after($(response.myDiv));
         var remove = ['.spinner', '.secondary-link'];
 
         if (!response.show_repo_icon) remove.push('.aui-avatar-project');
@@ -76,7 +78,7 @@ function mk() {
             $('.updated').attr('colspan', 2);
         }
 
-        if (localStorage["store.settings.hide_bottom_bar"] == "true") {
+        if (localStorage["_hide_bottom_bar"] == "true") {
             $('.bottom_bar').remove();
         }
     });

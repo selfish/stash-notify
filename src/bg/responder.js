@@ -14,18 +14,19 @@ chrome.runtime.onMessage.addListener(
         }
         if (request.getPRdiv) {
             sendResponse({
-                div: mkDIV(),
-                host: localStorage["settings.server"],
-                hideHead: localStorage["store.settings.hide_popup_head"] == 'true',
-                multiline: localStorage["store.settings.multiline_popup"] == 'true',
-                show_repo_icon: localStorage["store.settings.show_repo_icon"] == 'true',
-                line_height: Number(localStorage["store.settings.line_height"].replace(/"/g, ''))
+                div: mkDIV(JSON.parse(localStorage.prData), 'inbox-pull-request-reviewer', "Pending Review"),
+                myDiv: mkDIV(JSON.parse(localStorage.prDataMine), 'inbox-pull-request-author', "My Pull Requests"),
+                host: localStorage["_server"],
+                hideHead: localStorage["_hide_popup_head"] == 'true',
+                multiline: localStorage["_multiline_popup"] == 'true',
+                show_repo_icon: localStorage["_show_repo_icon"] == 'true',
+                line_height: Number(localStorage["_line_height"].replace(/"/g, ''))
             });
         }
         if (request.login) {
             sendResponse({
-                user: localStorage["store.settings.username"],
-                pass: localStorage["store.settings.password"]
+                user: localStorage["_username"],
+                pass: localStorage["_password"]
             });
         }
         if (request.go) {

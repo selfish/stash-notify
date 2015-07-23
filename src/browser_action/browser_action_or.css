@@ -24,3 +24,7 @@ button.bottom_bar {
 .title {
     max-width: 365px !important;
 }
+
+div.aui-inline-dialog-contents {
+    padding: 10px 0 0px 50px !important;
+}
