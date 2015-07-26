@@ -15,7 +15,7 @@ this.manifest = {
             "group": "Details",
             "name": "versionDetails",
             "type": "description",
-            "text": "Version: " + chrome.runtime.getManifest().version
+            "text": "Version: " + chrome.runtime.getManifest().version + " - Updated: " + localStorage["_updated"] || ''
         },
         {
             "tab": i18n.get("general"),

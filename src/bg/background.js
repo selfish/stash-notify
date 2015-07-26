@@ -6,6 +6,7 @@ var MIN_INTERVAL = 10000;
 initSettings();
 
 chrome.runtime.onInstalled.addListener(function (details) {
+    localStorage["_updated"] = moment(Date.now()).format("DD/MM/YY, HH:mm");
     chrome.tabs.create({
         url: "/src/options_custom/index.html"
     });
