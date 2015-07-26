@@ -5,6 +5,20 @@ this.manifest = {
     "settings": [
         {
             "tab": i18n.get("general"),
+            "group": "Details",
+            "name": "versionDetails",
+            "type": "description",
+            "text": chrome.runtime.getManifest().name
+        },
+        {
+            "tab": i18n.get("general"),
+            "group": "Details",
+            "name": "versionDetails",
+            "type": "description",
+            "text": "Version: " + chrome.runtime.getManifest().version
+        },
+        {
+            "tab": i18n.get("general"),
             "group": i18n.get("stash_server"),
             "name": "refreshInterval",
             "type": "popupButton",
