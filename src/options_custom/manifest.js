@@ -200,6 +200,13 @@ this.manifest = {
         {
             "tab": i18n.get("general"),
             "group": i18n.get("appearance"),
+            "name": "hide_my_pr",
+            "type": "checkbox",
+            "label": i18n.get("hide_my_pr")
+        },
+        {
+            "tab": i18n.get("general"),
+            "group": i18n.get("appearance"),
             "name": "hide_section_title",
             "type": "checkbox",
             "label": i18n.get("hide_section_title")

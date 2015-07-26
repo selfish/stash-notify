@@ -38,7 +38,9 @@ this.i18n = {
     "display_density": {
         "en": "Mailbox display density:"
     },
-
+    "hide_my_pr": {
+        "en": "Hide my own pull requests"
+    },
     "snooze_duration": {
         "en": "Snooze duration:"
     },

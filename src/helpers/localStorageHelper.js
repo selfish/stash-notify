@@ -23,6 +23,7 @@ var lsDefaults = {
     "_snooze_all_btn": false,
     "_hide_pr_with_tasks": false,
     "_hide_section_title": false,
+    "_hide_my_pr": false,
 
     // Intervals:
     "_notifyInterval": 300000,

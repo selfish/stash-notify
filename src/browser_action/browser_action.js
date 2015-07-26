@@ -18,7 +18,7 @@ _gaq.push(['_trackPageview']);
     s.parentNode.insertBefore(ga, s);
 })();
 
-// Onclose:
+// OnClose:
 window.addEventListener("beforeunload", function (e) {
     chrome.runtime.sendMessage({go: true});
 }, false);
@@ -39,8 +39,11 @@ function mk() {
         //$('body').prepend($(localStorage.div || '<div style="padding: 20px;">Loading...</div>'));
         $('#inbox-pull-request-reviewer').remove();
         $('#inbox-pull-request-author').remove();
+        if (localStorage["_hide_my_pr"] != "true") {
+            $('body').prepend($(response.myDiv));
+        }
         $('body').prepend($(response.div));
-        if (localStorage["_hide_section_title"] != "true")$('#inbox-pull-request-reviewer').after($(response.myDiv));
+
         var remove = ['.spinner', '.secondary-link'];
 
         if (!response.show_repo_icon) remove.push('.aui-avatar-project');
