@@ -10,7 +10,7 @@ var whoAmI = '/plugins/servlet/applinks/whoami';
 
 function host(uri) {
     var splitRegExp = /\/(\b|$)/g;
-    if(!uri) return localStorage["_server"];
+    if (!uri) return localStorage["_server"];
     return (_.compact(host().split(splitRegExp).concat(uri.split(splitRegExp)))).join('/');
 }
 
