@@ -11,6 +11,7 @@ div.bottom_bar {
     padding: 17px;
     display: flex !important;
     justify-content: space-around !important;
+    border-top: 2px solid #E0E0E0 !important;
 }
 
 button.bottom_bar {
@@ -26,5 +27,5 @@ button.bottom_bar {
 }
 
 div.aui-inline-dialog-contents {
-    padding: 10px 0 0px 50px !important;
+    padding: 10px 0 0 50px !important;
 }
