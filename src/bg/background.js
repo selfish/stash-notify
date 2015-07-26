@@ -7,12 +7,12 @@ initSettings();
 
 chrome.runtime.onInstalled.addListener(function (details) {
     localStorage["_updated"] = moment(Date.now()).format("DD/MM/YY, HH:mm");
-    chrome.tabs.create({
-        url: "/src/options_custom/index.html"
-    });
     if (details.reason == "install") {
         initSettings(true);
         console.log("First install");
+        chrome.tabs.create({
+            url: "/src/options_custom/index.html"
+        });
     } else if (details.reason == "update") {
         var thisVersion = chrome.runtime.getManifest().version;
         console.log("Updated from " + details.previousVersion + " to " + thisVersion);
