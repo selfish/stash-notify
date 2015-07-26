@@ -14,7 +14,7 @@ var lsDefaults = {
     "_repeatUntilNoticed": "click",
 
     // Appearance:
-    "_hide_popup_head": false,
+    "_hide_popup_head": true,
     "_hide_bottom_bar": false,
     "_line_height": 7,
     "_multiline_popup": true,
