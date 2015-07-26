@@ -44,14 +44,14 @@ this.manifest = {
             "label": i18n.get("server_address"),
             "text": i18n.get("url_example")
         },
-        {
-            "tab": i18n.get("general"),
-            "group": i18n.get("stash_server"),
-            "name": "username",
-            "type": "text",
-            "label": i18n.get("username"),
-            "text": i18n.get("x-characters")
-        },
+        //{
+        //    "tab": i18n.get("general"),
+        //    "group": i18n.get("stash_server"),
+        //    "name": "username",
+        //    "type": "text",
+        //    "label": i18n.get("username"),
+        //    "text": i18n.get("x-characters")
+        //},
         {
             "tab": i18n.get("general"),
             "group": i18n.get("pull_requests"),
@@ -308,7 +308,7 @@ this.manifest = {
     "alignment": [
         [
             "server",
-            "username"
+            //"username"
             //"password"
         ]
 

@@ -6,8 +6,27 @@
 
 var pullRequestsURL = '/rest/inbox/latest/pull-requests?role=reviewer&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest';
 var myPullRequestsURL = '/rest/inbox/latest/pull-requests?role=author&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest';
+var whoAmI = '/plugins/servlet/applinks/whoami';
+
+function host(uri) {
+    var splitRegExp = /\/(\b|$)/g;
+    if(!uri) return localStorage["_server"];
+    return (_.compact(host().split(splitRegExp).concat(uri.split(splitRegExp)))).join('/');
+}
 
 var _listeners = {};
+
+function me() {
+    if (localStorage["_username"].length) {
+        return localStorage["_username"];
+    } else {
+        return najax(host(whoAmI))
+            .then(function (data) {
+                localStorage["_username"] = data;
+                return data;
+            });
+    }
+}
 
 function filterResult(data) {
     data = JSON.parse(data);
@@ -24,8 +43,7 @@ function filterResult(data) {
 
     // Scrum master:
     if (localStorage["_scrum_master"] == "true"
-        && localStorage["_username"]
-        && localStorage["_username"].length
+        && me()
     ) {
         data.values = _.filter(data.values, function (pr) {
             // If I'm the only reviewer, display:
@@ -34,7 +52,7 @@ function filterResult(data) {
             return _.some(pr["reviewers"], function (rev) {
                 return (
                     rev['approved'] == true
-                    && rev['user']['name'] != localStorage["_username"]
+                    && rev['user']['name'] != me()
                 );
             });
         });
