@@ -47,15 +47,14 @@ function filterResult(data) {
 function getPullRequestData() {
 
     // TODO: Improve
-    if (!localStorage._server) return;
-    var uri = (localStorage._server + pullRequestsURL).replace("/" + pullRequestsURL, pullRequestsURL);
+    var uri = host(pullRequestsURL);
 
     return najax(uri)
         .then(filterResult)
         .then(function (res) {
             if (res.size == 0) clearBadge();
             else setBadge(res.size, null, "#ff0000");
-            localStorage.prData = JSON.stringify(res);;
+            localStorage.prData = JSON.stringify(res);
             return res;
         })
         .catch(errHandle);
@@ -63,8 +62,7 @@ function getPullRequestData() {
 
 function getMyRequestsData() {
 
-    if (!localStorage._server) return;
-    var uri = (localStorage._server + myPullRequestsURL).replace("/" + myPullRequestsURL, myPullRequestsURL);
+    var uri = host(myPullRequestsURL);
 
     return najax(uri)
         .then(filterResult)
@@ -113,7 +111,7 @@ function notifyPullRequest(pr) {
         type: "basic",
         message: pr.title,
         title: pr['author']['user']['displayName'],
-        iconUrl: localStorage["settings.server"] + pr['author']['user']['avatarUrl'].split("?")[0],
+        iconUrl: host(pr['author']['user']['avatarUrl'].split("?")[0]),
         buttons: buttons
     }, function () {
         // Mark as shown:

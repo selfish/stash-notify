@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener(
             sendResponse({
                 div: mkDIV(JSON.parse(localStorage.prData), 'inbox-pull-request-reviewer', "Pending Review"),
                 myDiv: mkDIV(JSON.parse(localStorage.prDataMine), 'inbox-pull-request-author', "My Pull Requests"),
-                host: localStorage["_server"],
+                host: host(),
                 hideHead: localStorage["_hide_popup_head"] == 'true',
                 multiline: localStorage["_multiline_popup"] == 'true',
                 show_repo_icon: localStorage["_show_repo_icon"] == 'true',

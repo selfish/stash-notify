@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
             select: 'stash',
             action: function () {
                 chrome.tabs.create({
-                    url: localStorage["settings.server"]
+                    url: host()
                 });
             }
         },

@@ -10,10 +10,6 @@ function divBase(id, title, ignoreThead) {
         '<tbody></tbody></table></div></div>');
 }
 
-function host(uri) {
-    return localStorage["_server"] + uri;
-}
-
 function mkTD(pr, tdType) {
     switch (tdType) {
         case 'repository':
