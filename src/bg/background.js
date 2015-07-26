@@ -29,8 +29,8 @@ function go() {
     }
 
     main()
-        .then(getPullRequestData)
         .then(getMyRequestsData)
+        .then(getPullRequestData)
         .then(notifyPullRequests)
         .then(function () {
             chrome.runtime.sendMessage({loaded: true});
