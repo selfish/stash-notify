@@ -1,5 +1,7 @@
 // Check whether new version is installed
 
+ga('send', 'pageview', '/background');
+
 var DEFAULT_INTERVAL = 120000;
 var MIN_INTERVAL = 10000;
 

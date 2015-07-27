@@ -4,11 +4,6 @@
  * 15/07/2015.
  */
 
-// OnClose:
-window.addEventListener("beforeunload", function (e) {
-    chrome.runtime.sendMessage({go: true});
-}, false);
-
 function mk() {
     chrome.runtime.sendMessage({getPRdiv: true}, function (response) {
         // Add base for relative URLs:
@@ -74,7 +69,13 @@ function mk() {
 }
 
 mk();
+var bg = chrome.extension.getBackgroundPage();
+bg.ga('send', 'pageview', '/popup');
 chrome.runtime.onMessage.addListener(
     function (request) {
         if (request.loaded) mk();
     });
+// OnClose:
+window.addEventListener("beforeunload", function (e) {
+    chrome.runtime.sendMessage({go: true});
+}, false);
