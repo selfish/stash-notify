@@ -21,6 +21,7 @@
       "src/helpers/mkPRDiv.js",
       "src/models/stashModel.js",
       "src/bg/responder.js",
+      "src/services/gsService.js",
       "src/bg/background.js"
     ],
     "persistent": true
