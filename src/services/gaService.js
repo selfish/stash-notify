@@ -1,19 +1,16 @@
 /**
  * Created by nitaip on 27/07/2015.
  */
+// @formatter:off
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+// @formatter:on
 
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-59789536-3']);
-_gaq.push(['_trackPageview']);
-
-(function () {
-    var ga = document.createElement('script');
-    ga.type = 'text/javascript';
-    ga.async = true;
-    ga.src = 'https://ssl.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(ga, s);
-})();
+ga('create', 'UA-59789536-3', 'auto');
+ga('set', 'checkProtocolTask', function () {
+});
 
 function hashCode(str) {
     var hash = 0, i, chr, len;
@@ -44,5 +41,5 @@ ga('set', 'uid', getUUID());
 ga('set', 'version', chrome.runtime.getManifest().version);
 
 if (host()) {
-    ga('set', 'organization', hashCode(host()));
+    ga('set', 'organization', md5(host()));
 }
