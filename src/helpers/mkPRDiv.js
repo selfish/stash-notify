@@ -2,27 +2,11 @@
  * Created by nitaip on 19/07/2015.
  */
 
-function trHeaders(ignoreHeaders) {
-    return (ignoreHeaders ? '' : '<tr>' +
-        '<th class="repository" scope="col">Repository</th>' +
-        '<th class="title" scope="col">Title</th><th class="author" scope="col">Author</th>' +
-        '<th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th>' +
-        '<th class="pull-request-list-task-count-column" title="" scope="col"></th>' +
-        '<th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th>' +
-        '<th class="updated" scope="col">Updated</th>' +
-        '</tr>'
-    )
-}
-
-function trTitle(title, ignoreTitle) {
-    return (ignoreTitle ? '' : '<tr colspan="20"><h4>' + title + '</h4></tr>');
-}
-
-function divBase(id, title, ignoreHeaders, ignoreTitle) {
+function divBase(id, title, ignoreThead) {
     return $('<div><div id="' + (id || '') + '" class="tabs-pane active-pane" aria-hidden="false">' +
-        '<table class="aui paged-table pull-requests-table" id="inbox-pull-request-table-reviewer" ' +
-        'data-last-updated="' + Date.now() + '" style="display: table;">' +
-        '<thead>' + trTitle(title, ignoreTitle) + trHeaders(ignoreHeaders) + '</thead>' +
+        ((title && !(localStorage["_hide_section_title"] == "true")) ? ('<div class="aui-inline-dialog-contents contents" style="width: 870px; max-height: 718px;"><h4>' + title + '</h4></div>') : '') +
+        '<table class="aui paged-table pull-requests-table" id="inbox-pull-request-table-reviewer" data-last-updated="1437304041274" style="display: table;">' +
+        (ignoreThead ? "" : '<thead><tr><th class="repository" scope="col">Repository</th><th class="title" scope="col">Title</th><th class="author" scope="col">Author</th><th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th><th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th></tr></thead>') +
         '<tbody></tbody></table></div></div>');
 }
 
@@ -118,10 +102,7 @@ function mkTD(pr, tdType) {
                 '</td>');
 
         case 'updated':
-            return $('<td class="updated">' +
-                '<time title="' + moment(pr['updatedDate']).format("D MMMM YYYY HH:mm") + '" ' +
-                'datetime="' + moment(pr['updatedDate']).format() + '">'
-                + moment(pr['updatedDate']).fromNow() + '</time></td>');
+            return $('<td class="updated"><time title="16 July 2015 04:37 PM" datetime="2015-07-16T16:37:07+0300">2 days ago</time></td>');
 
         default:
             return $('<td class="repository"></td>');
@@ -138,12 +119,8 @@ function mkTR(pr) {
 }
 
 function mkDIV(data, divId, divTitle) {
-
-    if (!data.values.length) {
-        return divBase(divId, null);
-    }
-
     var div = divBase(divId, divTitle);
+    console.log("VALUES:" + data.values.length);
     data.values.forEach(function (pr) {
         div.find('tbody').append(mkTR(pr));
     });
