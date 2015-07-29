@@ -1,6 +1,15 @@
 
 var intervals = [
     {
+        "text": "30 Seconds",
+        "value": 1000 * 30
+    },{
+        "text": "1 Minute",
+        "value": 1000 * 60
+    },{
+        "text": "2 Minutes",
+        "value": 1000 * 60 * 2
+    }, {
         "text": "5 Minutes",
         "value": 1000 * 60 * 5
     }, {
