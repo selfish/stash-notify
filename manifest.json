@@ -21,7 +21,6 @@
       "src/helpers/localStorageHelper.js",
       "src/helpers/mkPRDiv.js",
       "src/models/stashModel.js",
-      "src/bg/responder.js",
       "src/services/gaService.js",
       "src/bg/background.js"
     ],
