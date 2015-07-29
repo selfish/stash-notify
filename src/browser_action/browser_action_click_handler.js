@@ -4,6 +4,8 @@
  * 16/07/2015.
  */
 
+var bg = chrome.extension.getBackgroundPage();
+
 document.addEventListener('DOMContentLoaded', function () {
 
     var clickMap = [
@@ -18,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         {
             select: 'refresh',
             action: function () {
-                chrome.runtime.sendMessage({go: true});
+                bg.go(true, false);
             }
         },
         {
