@@ -83,8 +83,7 @@ function mk() {
     bg.ga('send', 'pageview', '/popup');
 }
 
-mk();
-
+$('body').ready(mk);
 
 chrome.runtime.onMessage.addListener(
     function (request) {
