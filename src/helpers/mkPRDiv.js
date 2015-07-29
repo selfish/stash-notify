@@ -70,14 +70,16 @@ function mkTD(pr, tdType) {
             return td_comm;
 
         case 'task-count':
-            var tasks = pr['attributes']['openTaskCount'] || 0;
+            var tasks = Number(pr['attributes']['openTaskCount'] || 0);
+            var resolvedTasks = Number(pr['attributes']['resolvedTaskCount'] || 0);
+            var totTasks = tasks + resolvedTasks;
             var td_tasks = $('<td class="pull-request-list-task-count-column-value"></td>');
             if (Number(tasks)) {
                 td_tasks.append($(
                     '<span class="replacement-placeholder" data-pull-request-id="' + pr['id'] + '" data-repository-id="' + pr['fromRef']['repository']['id'] + '" style="display: inline;">' +
                     '<span class="pr-list-open-task-count" title="' + tasks + ' open tasks">' +
-                    '<span class="aui-icon aui-icon-small aui-iconfont-editor-task" data-pull-request-id="' + tasks + '">Open tasks: </span>' +
-                    '<span class="task-count">' + tasks + '<span></span></span></span></span>'
+                    '<span class="aui-icon aui-icon-small aui-iconfont-editor-task" data-pull-request-id="' + tasks + '">Resolved/Total tasks:</span>' +
+                    '<span class="task-count">' + resolvedTasks + ' / ' + totTasks + '<span></span></span></span></span>'
                 ));
             }
             return td_tasks;
