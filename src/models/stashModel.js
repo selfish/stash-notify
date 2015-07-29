@@ -91,12 +91,12 @@ function getMyRequestsData() {
         .catch(errHandle);
 }
 
-function notifyPullRequests(PRData) {
+var notifyPullRequests = _.throttle(function (PRData) {
     if (localStorage["_notifyPRs"] == "true" && !(localStorage['snooze_all'] > Date.now())) {
         PRData.values.forEach(notifyPullRequest);
     }
     return Promise.resolve();
-}
+}, localStorage["_notifyInterval"], {});
 
 function notifyPullRequest(pr) {
 
