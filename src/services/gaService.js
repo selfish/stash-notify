@@ -8,7 +8,7 @@
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 // @formatter:on
 
-ga('create', 'UA-59789536-3', 'auto');
+ga('create', 'UA-65738374-2', 'auto');
 ga('set', 'checkProtocolTask', function () {
 });
 
