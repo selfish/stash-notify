@@ -134,24 +134,24 @@ function notifyPullRequest(pr) {
     }, function () {
         // Mark as shown:
         localStorage["notif." + prID] = 1;
-        if (!_listeners[prID]) {
+        if (!(_listeners[prID] == 'true')) {
             _listeners[prID] = true;
             chrome.notifications.onClicked.addListener(function (prID) {
                 window.open(prID);
                 localStorage["click." + prID] = 1;
             });
-        }
-
-        chrome.notifications.onButtonClicked.addListener(function (prID, buttonIndex) {
-                switch (buttonIndex) {
-                    case 0: // Snooze THIS!
-                        localStorage['snooze.' + prID] = Date.now() + Number(localStorage["_snooze_duration"].replace(/"/g, ''));
-                        break;
-                    case 1: // Snooze ALL!
-                        localStorage['snooze_all'] = Date.now() + Number(localStorage["_snooze_duration"].replace(/"/g, ''));
-                        break;
+            
+            chrome.notifications.onButtonClicked.addListener(function (prID, buttonIndex) {
+                    switch (buttonIndex) {
+                        case 0: // Snooze THIS!
+                            localStorage['snooze.' + prID] = Date.now() + Number(localStorage["_snooze_duration"].replace(/"/g, ''));
+                            break;
+                        case 1: // Snooze ALL!
+                            localStorage['snooze_all'] = Date.now() + Number(localStorage["_snooze_duration"].replace(/"/g, ''));
+                            break;
+                    }
                 }
-            }
-        );
+            );
+        }
     });
 }
