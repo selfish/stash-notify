@@ -87,8 +87,17 @@ function mk() {
         $('.bottom_bar').remove();
     }
 
+
+    var maxWidth = Math.max.apply(Math, $('td.reviewers').map(function () {
+        return $(this).width();
+    }).get());
+
+    var startTD = $($('td.reviewers').filter(function () {
+        return $(this).width() == maxWidth;
+    })[0]);
+
     // Align TDs:
-    $($('td.repository')[0]).parent().children().each(function (ielem, elem) {
+    startTD.parent().children().each(function (ielem, elem) {
         elem = $(elem);
         if (elem.is('td')) {
             $('td.' + elem.attr('class')).each(function (itarget, target) {
