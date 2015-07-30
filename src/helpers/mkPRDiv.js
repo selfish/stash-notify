@@ -104,7 +104,10 @@ function mkTD(pr, tdType) {
                 '</td>');
 
         case 'updated':
-            return $('<td class="updated"><time title="16 July 2015 04:37 PM" datetime="2015-07-16T16:37:07+0300">2 days ago</time></td>');
+            return $('<td class="updated">' +
+                '<time title="' + moment(pr['updatedDate']).format("D MMMM YYYY HH:mm") + '" ' +
+                'datetime="' + moment(pr['updatedDate']).format() + '">'
+                + moment(pr['updatedDate']).fromNow() + '</time></td>');
 
         default:
             return $('<td class="repository"></td>');
