@@ -43,7 +43,6 @@ function getTasks(pr) {
 }
 
 function filterResult(data) {
-    data = JSON.parse(data);
 
     // Open tasks:
     if (localStorage["_hide_pr_with_tasks"] == "true") {
@@ -82,6 +81,7 @@ function getPullRequestData() {
     var uri = host(pullRequestsURL);
 
     return najax(uri)
+        .then(JSON.parse)
         .then(filterResult)
         .then(function (res) {
             if (res.size == 0) clearBadge();
@@ -97,6 +97,7 @@ function getMyRequestsData() {
     var uri = host(myPullRequestsURL);
 
     return najax(uri)
+        .then(JSON.parse)
         .then(function (res) {
             localStorage.prDataMine = JSON.stringify(res);
             return res;
@@ -153,7 +154,7 @@ function notifyPullRequest(pr) {
                 window.open(prID);
                 localStorage["click." + prID] = 1;
             });
-            
+
             chrome.notifications.onButtonClicked.addListener(function (prID, buttonIndex) {
                     switch (buttonIndex) {
                         case 0: // Snooze THIS!
