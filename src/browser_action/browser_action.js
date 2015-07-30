@@ -54,6 +54,15 @@ function mk() {
     $('td').css('padding-top', line_height).css('padding-bottom', line_height);
     $('th.author').html("By");
 
+    if (localStorage["_highlight_mine_with_tasks"] == 'true') {
+        $('#inbox-pull-request-author').find('td.pull-request-list-task-count-column-value').each(function (i, td) {
+            td = $(td);
+            if (Number(td.attr('redify'))) {
+                td.parent().css('background', '#FDF4D4');
+            }
+        });
+    }
+
     if (multiline) {
         // Break rows:
 

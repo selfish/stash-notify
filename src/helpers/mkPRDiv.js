@@ -5,7 +5,7 @@
 function divBase(id, title, ignoreThead) {
     return $('<div><div id="' + (id || '') + '" class="tabs-pane active-pane" aria-hidden="false">' +
         ((title && !(localStorage["_hide_section_title"] == "true")) ? ('<div class="aui-inline-dialog-contents contents" style="width: 870px; max-height: 718px;"><h4>' + title + '</h4></div>') : '') +
-        '<table class="aui paged-table pull-requests-table" id="inbox-pull-request-table-reviewer" data-last-updated="1437304041274" style="display: table;">' +
+        '<table class="aui paged-table pull-requests-table" id="' + id + '" data-last-updated="' + Date.now() + '" style="display: table;">' +
         (ignoreThead ? "" : '<thead><tr><th class="repository" scope="col">Repository</th><th class="title" scope="col">Title</th><th class="author" scope="col">Author</th><th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th><th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th></tr></thead>') +
         '<tbody></tbody></table></div></div>');
 }
@@ -73,12 +73,12 @@ function mkTD(pr, tdType) {
             var tasks = Number(pr['attributes']['openTaskCount'] || 0);
             var resolvedTasks = Number(pr['attributes']['resolvedTaskCount'] || 0);
             var totTasks = tasks + resolvedTasks;
-            var td_tasks = $('<td class="pull-request-list-task-count-column-value"></td>');
+            var td_tasks = $('<td class="pull-request-list-task-count-column-value" redify="' + tasks + '"></td>');
             if (Number(totTasks)) {
                 td_tasks.append($(
                     '<span class="replacement-placeholder" data-pull-request-id="' + pr['id'] + '" data-repository-id="' + pr['fromRef']['repository']['id'] + '" style="display: inline;">' +
                     '<span class="pr-list-open-task-count" title="' + tasks + ' open tasks">' +
-                    '<span class="aui-icon aui-icon-small aui-iconfont-editor-task" data-pull-request-id="' + tasks + '">Resolved/Total tasks:</span>' +
+                    '<span class="aui-icon aui-icon-small aui-iconfont-editor-task" data-pull-request-id="' + pr['id'] + '">Resolved/Total tasks:</span>' +
                     '<span class="task-count">' + resolvedTasks + ' / ' + totTasks + '<span></span></span></span></span>'
                 ));
             }

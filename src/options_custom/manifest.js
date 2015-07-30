@@ -1,12 +1,11 @@
-
 var intervals = [
     {
         "text": "30 Seconds",
         "value": 1000 * 30
-    },{
+    }, {
         "text": "1 Minute",
         "value": 1000 * 60
-    },{
+    }, {
         "text": "2 Minutes",
         "value": 1000 * 60 * 2
     }, {
@@ -101,6 +100,24 @@ this.manifest = {
             "type": "checkbox",
             "label": i18n.get("hide_pr_with_tasks")
         },
+
+
+        {
+            "tab": i18n.get("general"),
+            "group": i18n.get("my_pull_requests"),
+            "name": "hide_my_pr",
+            "type": "checkbox",
+            "label": i18n.get("hide_my_pr")
+        },
+        {
+            "tab": i18n.get("general"),
+            "group": i18n.get("my_pull_requests"),
+            "name": "highlight_mine_with_tasks",
+            "type": "checkbox",
+            "label": i18n.get("highlight_mine_with_tasks")
+        },
+
+
         {
             "tab": i18n.get("general"),
             "group": i18n.get("notifications"),
@@ -194,13 +211,6 @@ this.manifest = {
             "name": "multiline_popup",
             "type": "checkbox",
             "label": i18n.get("multiline_popup")
-        },
-        {
-            "tab": i18n.get("general"),
-            "group": i18n.get("appearance"),
-            "name": "hide_my_pr",
-            "type": "checkbox",
-            "label": i18n.get("hide_my_pr")
         },
         {
             "tab": i18n.get("general"),

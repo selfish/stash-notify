@@ -24,6 +24,7 @@ var lsDefaults = {
     "_hide_pr_with_tasks": false,
     "_hide_section_title": false,
     "_hide_my_pr": false,
+    "_highlight_mine_with_tasks": true,
 
     // Intervals:
     "_notifyInterval": 300000,

@@ -35,6 +35,9 @@ this.i18n = {
         "en": "Show notifications every:"
     },
 
+    "highlight_mine_with_tasks": {
+        "en": "Highlight my pull requests having open tasks"
+    },
     "display_density": {
         "en": "Mailbox display density:"
     },
@@ -49,6 +52,9 @@ this.i18n = {
     },
     "pull_requests": {
         "en": "Pull Requests"
+    },
+    "my_pull_requests": {
+        "en": "My Pull Requests"
     },
 
     "scrum_master": {
