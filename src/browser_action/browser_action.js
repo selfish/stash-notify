@@ -79,10 +79,14 @@ function mk() {
     }
 
     // Align TDs:
-    $($('td.repository')[0]).parent().children().each(function (i, elem) {
+    $($('td.repository')[0]).parent().children().each(function (ielem, elem) {
         elem = $(elem);
         if (elem.is('td')) {
-            $('td.' + elem.attr('class')).width(elem.width());
+            $('td.' + elem.attr('class')).each(function (itarget, target) {
+                $(target).width(elem.width());
+                $(target).css('min-width', elem.width());
+                $(target).css('max-width', elem.width());
+            });
         }
     });
 
