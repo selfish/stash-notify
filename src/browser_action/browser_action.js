@@ -78,6 +78,14 @@ function mk() {
         $('.bottom_bar').remove();
     }
 
+    // Align TDs:
+    $($('td.repository')[0]).parent().children().each(function (i, elem) {
+        elem = $(elem);
+        if (elem.is('td')) {
+            $('td.' + elem.attr('class')).width(elem.width());
+        }
+    });
+
     // Reset page height:
     $('html').height(body.height());
     bg.ga('send', 'pageview', '/popup');
