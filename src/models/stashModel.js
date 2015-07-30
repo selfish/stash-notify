@@ -97,7 +97,6 @@ function getMyRequestsData() {
     var uri = host(myPullRequestsURL);
 
     return najax(uri)
-        .then(filterResult)
         .then(function (res) {
             localStorage.prDataMine = JSON.stringify(res);
             return res;
