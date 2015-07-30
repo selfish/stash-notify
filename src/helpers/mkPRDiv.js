@@ -74,7 +74,7 @@ function mkTD(pr, tdType) {
             var resolvedTasks = Number(pr['attributes']['resolvedTaskCount'] || 0);
             var totTasks = tasks + resolvedTasks;
             var td_tasks = $('<td class="pull-request-list-task-count-column-value"></td>');
-            if (Number(tasks)) {
+            if (Number(totTasks)) {
                 td_tasks.append($(
                     '<span class="replacement-placeholder" data-pull-request-id="' + pr['id'] + '" data-repository-id="' + pr['fromRef']['repository']['id'] + '" style="display: inline;">' +
                     '<span class="pr-list-open-task-count" title="' + tasks + ' open tasks">' +
