@@ -9,8 +9,11 @@ var myPullRequestsURL = '/rest/inbox/latest/pull-requests?role=author&start=0&li
 var whoAmI = '/plugins/servlet/applinks/whoami';
 
 function host(uri) {
-    var splitRegExp = /\/(\b|$)/g;
+
     if (!uri) return localStorage["_server"];
+    if (uri.indexOf('http') === 0) return uri;
+
+    var splitRegExp = /\/(\b|$)/g;
     return (_.compact(host().split(splitRegExp).concat(uri.split(splitRegExp)))).join('/');
 }
 
