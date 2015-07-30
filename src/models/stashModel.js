@@ -28,6 +28,17 @@ function me() {
     }
 }
 
+function getTasks(pr) {
+    var uri = host("/rest/api/latest" + pr["link"]["url"] + "/tasks?start=0&limit=5");
+    var idx = 0;
+    return najax(uri)
+        .then(function (data) {
+            return JSON.parse(data).values.map(function (task) {
+                return ++idx + ". " + task.anchor.text.split(/\n/)[0];
+            }).join('\n');
+        });
+}
+
 function filterResult(data) {
     data = JSON.parse(data);
 
