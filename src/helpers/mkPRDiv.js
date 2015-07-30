@@ -124,7 +124,7 @@ function mkTR(pr) {
 }
 
 function mkDIV(data, divId, divTitle) {
-    var div = divBase(divId, divTitle);
+    var div = divBase(divId, divTitle + " (" + data.values.length + ")");
     console.log("VALUES:" + data.values.length);
     data.values.forEach(function (pr) {
         div.find('tbody').append(mkTR(pr));
