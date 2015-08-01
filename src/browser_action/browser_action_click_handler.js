@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
             select: 'stash',
             action: function () {
                 chrome.tabs.create({
-                    url: host()
+                    url: bg.host()
                 });
             }
         },
