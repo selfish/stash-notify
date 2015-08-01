@@ -16,6 +16,7 @@
       "src/lib/async.js",
       "src/lib/moment.min.js",
       "src/lib/md5.min.js",
+      "src/lib/bluebird.min.js",
       "src/helpers/badgeHelper.js",
       "src/helpers/jsHelper.js",
       "src/helpers/localStorageHelper.js",
