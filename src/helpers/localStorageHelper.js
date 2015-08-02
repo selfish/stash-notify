@@ -29,12 +29,7 @@ var lsDefaults = {
     // Intervals:
     "_notifyInterval": 300000,
     "_refreshInterval": 120000,
-    "_snooze_duration": 3600000,
-
-    // Login settings:
-    "_username": '',
-    "_password": '',
-    "_login": false
+    "_snooze_duration": 3600000
 };
 
 function initSettings(override) {
