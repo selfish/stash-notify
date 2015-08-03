@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             select: 'snooze',
             action: function () {
                 localStorage['snooze_all'] = Date.now() + Number(localStorage["_snooze_duration"].replace(/"/g, ''));
+                bg.dismissAllNotifications();
             }
         },
         {

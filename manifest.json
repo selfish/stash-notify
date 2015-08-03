@@ -19,6 +19,7 @@
       "src/helpers/badgeHelper.js",
       "src/helpers/jsHelper.js",
       "src/helpers/localStorageHelper.js",
+      "src/helpers/notificationHelper.js",
       "src/helpers/mkPRDiv.js",
       "src/models/stashModel.js",
       "src/services/gaService.js",

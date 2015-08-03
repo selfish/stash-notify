@@ -162,6 +162,7 @@ function notifyPullRequest(pr) {
                             break;
                         case 1: // Snooze ALL!
                             localStorage['snooze_all'] = Date.now() + Number(localStorage["_snooze_duration"].replace(/"/g, ''));
+                            dismissAllNotifications();
                             break;
                     }
                 }
