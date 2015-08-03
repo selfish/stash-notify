@@ -2,12 +2,23 @@
  * Created by nitaip on 19/07/2015.
  */
 
-function divBase(id, title, ignoreThead) {
-    return $('<div><div id="' + (id || '') + '" class="tabs-pane active-pane" aria-hidden="false">' +
-        ((title && !(localStorage["_hide_section_title"] == "true")) ? ('<div class="aui-inline-dialog-contents contents" style="width: 870px; max-height: 718px;"><h4>' + title + '</h4></div>') : '') +
-        '<table class="aui paged-table pull-requests-table" id="' + id + '" data-last-updated="' + Date.now() + '" style="display: table;">' +
-        (ignoreThead ? "" : '<thead><tr><th class="repository" scope="col">Repository</th><th class="title" scope="col">Title</th><th class="author" scope="col">Author</th><th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th><th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th></tr></thead>') +
-        '<tbody></tbody></table></div></div>');
+
+function inboxZero(){
+    return $('<div>' +
+        '<div id="inbox-pull-request-reviewer" class="tabs-pane active-pane" aria-hidden="false">' +
+        '<table class="aui paged-table pull-requests-table no-rows" id="inbox-pull-request-table-reviewer" data-last-updated="1438589113976">' +
+        '<thead>' +
+        '<tr>' +
+        '<th class="repository" scope="col">Repository</th>' +
+        '<th class="title" scope="col">Title</th><th class="author" scope="col">Author</th>' +
+        '<th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th>' +
+        '<th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th>' +
+        '<th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th>' +
+        '</tr>' +
+        '</thead><tbody></tbody></table>' +
+        '<div class="paged-table-message pull-request-table-message">' +
+        '<span class="aui-icon aui-icon-large aui-iconfont-workbox-empty">No pull requests to approve</span>' +
+        '<h3>Inbox Zero</h3></div><div class="spinner" style="display: none;"></div></div><div>');
 }
 
 function mkTD(pr, tdType) {
@@ -121,6 +132,14 @@ function mkTR(pr) {
         tr.append(mkTD(pr, tdType));
     });
     return tr;
+}
+
+function divBase(id, title, ignoreThead) {
+    return $('<div><div id="' + (id || '') + '" class="tabs-pane active-pane" aria-hidden="false">' +
+        ((title && !(localStorage["_hide_section_title"] == "true")) ? ('<div class="aui-inline-dialog-contents contents" style="width: 870px; max-height: 718px;"><h4>' + title + '</h4></div>') : '') +
+        '<table class="aui paged-table pull-requests-table" id="' + id + '" data-last-updated="' + Date.now() + '" style="display: table;">' +
+        (ignoreThead ? "" : '<thead><tr><th class="repository" scope="col">Repository</th><th class="title" scope="col">Title</th><th class="author" scope="col">Author</th><th class="reviewers" scope="col">Reviewers</th><th class="comment-count" scope="col"></th><th class="pull-request-list-task-count-column" title="" scope="col"></th><th class="source" scope="col">Source</th><th class="destination" scope="col">Destination</th><th class="updated" scope="col">Updated</th></tr></thead>') +
+        '<tbody></tbody></table></div></div>');
 }
 
 function mkDIV(data, divId, divTitle) {
