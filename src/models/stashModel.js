@@ -17,8 +17,6 @@ function host(uri) {
     return (_.compact(host().split(splitRegExp).concat(uri.split(splitRegExp)))).join('/');
 }
 
-var _listeners = {};
-
 function me() {
     if (localStorage["_username"].length) {
         return localStorage["_username"];
@@ -166,9 +164,7 @@ function notifyPullRequest(pr) {
         buttons: buttons
     }, function () {
         // Mark as shown:
-        localStorage["notif." + prID] = 1;
-        if (!(_listeners[prID] == 'true')) {
-            _listeners[prID] = true;
+        if (localStorage["notif." + prID] != 1) {
             chrome.notifications.onClicked.addListener(function (prID) {
                 window.open(prID);
                 localStorage["click." + prID] = 1;
@@ -187,5 +183,6 @@ function notifyPullRequest(pr) {
                 }
             );
         }
+        localStorage["notif." + prID] = 1;
     });
 }
