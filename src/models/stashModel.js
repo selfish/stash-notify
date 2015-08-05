@@ -31,14 +31,32 @@ function me() {
     }
 }
 
-function getTasks(pr) {
-    var uri = host("/rest/api/latest" + pr["link"]["url"] + "/tasks?start=0&limit=5");
+function getTasksByPR(pr, limit) {
+    var uri = host("/rest/api/latest" + pr["link"]["url"] + "/tasks?start=0&limit=" + (limit || 5));
     var idx = 0;
     return najax(uri)
         .then(function (data) {
-            return JSON.parse(data).values.map(function (task) {
-                return ++idx + ". " + task.anchor.text.split(/\n/)[0];
-            }).join('\n');
+            return JSON.parse(data).values.map(function (t) {
+                debugger;
+                return {text: t.text, author: t.author.displayName, state: t.state, created: t.createdDate}
+            });
+        })
+        .catch(function (e) {
+            debugger;
+        });
+}
+
+function getTasks(data) {
+    return Promise.map(data.values, function (pr) {
+        return getTasksByPR(pr)
+            .then(function (tasks) {
+                pr.tasks = tasks;
+                return pr;
+            });
+    })
+        .then(function (res) {
+            data.values = res;
+            return data;
         });
 }
 
@@ -83,6 +101,7 @@ function getPullRequestData() {
     return najax(uri)
         .then(JSON.parse)
         .then(filterResult)
+        .then(getTasks)
         .then(function (res) {
             if (res.size == 0) clearBadge();
             else setBadge(res.size, null, "#ff0000");
