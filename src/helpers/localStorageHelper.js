@@ -50,4 +50,12 @@ function initSettings(override) {
             localStorage[key] = val;
         }
     });
+
+    var testReg = /^notif\.|^click\.|^snooze\./;
+    Object.keys(localStorage).forEach(function (lsKey) {
+        if(testReg.test(lsKey)){
+            delete localStorage[lsKey]
+        }
+    });
+
 }
