@@ -29,3 +29,14 @@ button.bottom_bar {
 div.aui-inline-dialog-contents {
     padding: 10px 0 0 50px !important;
 }
+
+td.pull-request-list-task-count-column-value {
+    width: 50px;
+    max-width: 50px;
+    min-width: 50px;
+}
+td.comment-count{
+    width: 25px;
+    max-width: 25px;
+    min-width: 25px;
+}
