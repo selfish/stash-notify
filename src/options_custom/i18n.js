@@ -56,7 +56,6 @@ this.i18n = {
     "my_pull_requests": {
         "en": "My Pull Requests"
     },
-
     "scrum_master": {
         "en": "Scrum master mode"
     },
@@ -111,23 +110,6 @@ this.i18n = {
     "x-characters-pw": {
         "en": "10 - 18 characters",
         "de": "10 - 18 Zeichen"
-    },
-    "description": {
-        "en": "This is a description. You can write any text inside of this.<br>\
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut\
-        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores\
-        et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem\
-        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et\
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.\
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-
-        "de": "Das ist eine Beschreibung. Du kannst hier beliebigen Text einfügen.<br>\
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut\
-        labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores\
-        et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem\
-        ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et\
-        dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.\
-        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
     },
     "logout": {
         "en": "Logout",
