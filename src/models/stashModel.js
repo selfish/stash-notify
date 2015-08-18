@@ -30,17 +30,31 @@ function me() {
 }
 
 function getTasksByPR(pr, limit) {
-    var uri = host("/rest/api/latest" + pr["link"]["url"] + "/tasks?start=0&limit=" + (limit || 5));
-    var idx = 0;
-    return najax(uri)
-        .then(function (data) {
-            return JSON.parse(data).values.map(function (t) {
-                debugger;
+    return najax(host("/rest/api/latest" + pr["link"]["url"] + "/tasks?start=0&limit=" + (limit || 5)))
+        .then(function (taskData) {
+            return JSON.parse(taskData).values.map(function (t) {
                 return {text: t.text, author: t.author.displayName, state: t.state, created: t.createdDate}
             });
         })
-        .catch(function (e) {
-            debugger;
+}
+
+function getMergeStatusByPR(pr) {
+    return najax(host("/rest/api/1.0" + pr["link"]["url"] + "/merge"))
+        .then(JSON.parse);
+}
+
+function getMergeStatus(data) {
+
+    return Promise.map(data.values, function (pr) {
+        return getMergeStatusByPR(pr)
+            .then(function (mergeStatus) {
+                pr.mergeStatus = mergeStatus;
+                return pr;
+            });
+    })
+        .then(function (res) {
+            data.values = res;
+            return data;
         });
 }
 
@@ -100,6 +114,7 @@ function getPullRequestData() {
         .then(JSON.parse)
         .then(filterResult)
         .then(getTasks)
+        .then(getMergeStatus)
         .then(function (res) {
             if (res.size == 0) clearBadge();
             else setBadge(res.size, null, "#ff0000");
