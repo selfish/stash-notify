@@ -100,6 +100,13 @@ this.manifest = {
             "type": "checkbox",
             "label": i18n.get("hide_pr_with_tasks")
         },
+        {
+            "tab": i18n.get("general"),
+            "group": i18n.get("pull_requests"),
+            "name": "show_mergability",
+            "type": "checkbox",
+            "label": i18n.get("show_mergability")
+        },
 
 
         {

@@ -12,6 +12,7 @@ var lsDefaults = {
     "_scrum_master": false,
     "_notifyPRs": true,
     "_repeatUntilNoticed": "click",
+    "_show_mergability": true,
 
     // Appearance:
     "_hide_popup_head": true,

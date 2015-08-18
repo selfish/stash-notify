@@ -130,6 +130,8 @@ function getMyRequestsData() {
 
     return najax(uri)
         .then(JSON.parse)
+        .then(getTasks)
+        .then(getMergeStatus)
         .then(function (res) {
             localStorage.prDataMine = JSON.stringify(res);
             return res;

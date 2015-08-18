@@ -3,7 +3,7 @@
  */
 
 
-function inboxZero(){
+function inboxZero() {
     return $('<div>' +
         '<div id="inbox-pull-request-reviewer" class="tabs-pane active-pane" aria-hidden="false">' +
         '<table class="aui paged-table pull-requests-table no-rows" id="inbox-pull-request-table-reviewer" data-last-updated="1438589113976">' +
@@ -36,9 +36,15 @@ function mkTD(pr, tdType) {
                 '</td>'
             );
         case 'title':
+            var margeData = 'title="' + pr['title'];
+            if (localStorage["_show_mergability"] == true && !pr.mergeStatus.canMerge) {
+                margeData = 'title="' + _.map(pr.mergeStatus.vetoes, function (veto) {
+                        return veto.detailedMessage
+                    }).join('\n') + '" class="merge-disabled"';
+            }
             return $(
                 '<td class="title">' +
-                '<a title="' + pr['title'] + '" href="' + pr['link']['url'] + '">' + pr['title'] + '</a>' +
+                '<a ' + margeData + ' href="' + pr['link']['url'] + '">' + pr['title'] + '</a>' +
                 '</td>');
         case 'author':
             return $(
@@ -82,19 +88,19 @@ function mkTD(pr, tdType) {
             return td_comm;
 
         case 'task-count':
-        var tasks = Number(pr['attributes']['openTaskCount'] || 0);
-        var resolvedTasks = Number(pr['attributes']['resolvedTaskCount'] || 0);
-        var totTasks = tasks + resolvedTasks;
-        var td_tasks = $('<td class="pull-request-list-task-count-column-value" redify="' + tasks + '"></td>');
-        if (Number(totTasks)) {
-            td_tasks.append($(
-                '<span class="replacement-placeholder" data-pull-request-id="' + pr['id'] + '" data-repository-id="' + pr['fromRef']['repository']['id'] + '" style="display: inline;">' +
-                '<span class="pr-list-open-task-count" title="' + tasks + ' open tasks">' +
-                '<span class="aui-icon aui-icon-small aui-iconfont-editor-task" data-pull-request-id="' + pr['id'] + '">Resolved/Total tasks:</span>' +
-                '<span class="task-count">' + resolvedTasks + ' / ' + totTasks + '<span></span></span></span></span>'
-            ));
-        }
-        return td_tasks;
+            var tasks = Number(pr['attributes']['openTaskCount'] || 0);
+            var resolvedTasks = Number(pr['attributes']['resolvedTaskCount'] || 0);
+            var totTasks = tasks + resolvedTasks;
+            var td_tasks = $('<td class="pull-request-list-task-count-column-value" redify="' + tasks + '"></td>');
+            if (Number(totTasks)) {
+                td_tasks.append($(
+                    '<span class="replacement-placeholder" data-pull-request-id="' + pr['id'] + '" data-repository-id="' + pr['fromRef']['repository']['id'] + '" style="display: inline;">' +
+                    '<span class="pr-list-open-task-count" title="' + tasks + ' open tasks">' +
+                    '<span class="aui-icon aui-icon-small aui-iconfont-editor-task" data-pull-request-id="' + pr['id'] + '">Resolved/Total tasks:</span>' +
+                    '<span class="task-count">' + resolvedTasks + ' / ' + totTasks + '<span></span></span></span></span>'
+                ));
+            }
+            return td_tasks;
         case 'source':
             return $('<td class="source"><span class="aui-lozenge ref-lozenge monospace-lozenge" data-ref-tooltip="' + pr['fromRef']['displayId'] + '">' +
                 '<span class="ref branch">' +
@@ -155,7 +161,7 @@ function divBase(id, title, ignoreThead) {
         '<tbody></tbody></table></div></div>');
 }
 
-function mkDIV(data, divId, divTitle){
+function mkDIV(data, divId, divTitle) {
 
     var div = divBase(divId, divTitle + " (" + data.values.length + ")");
     return Promise.map(data.values, mkTR)

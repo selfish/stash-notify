@@ -65,6 +65,9 @@ this.i18n = {
     "hide_pr_with_tasks": {
         "en": "Hide pull requests with open tasks"
     },
+    "show_mergability":{
+        "en": "Show merge status for unmergable pull requests."
+    },
     "notifications": {
         "en": "Notifications"
     },

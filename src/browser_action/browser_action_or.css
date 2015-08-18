@@ -39,8 +39,15 @@ td.pull-request-list-task-count-column-value {
     max-width: 50px;
     min-width: 50px;
 }
-td.comment-count{
+
+td.comment-count {
     width: 25px;
     max-width: 25px;
     min-width: 25px;
+}
+
+.merge-disabled {
+    background: rgba(0, 0, 0, 0) url(/assets/icon-warning.svg) no-repeat scroll !important;
+    background-size: 16px !important;
+    padding-left: 21px !important;
 }

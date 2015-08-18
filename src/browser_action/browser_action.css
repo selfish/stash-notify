@@ -4593,8 +4593,7 @@ form.aui.long-label .field-group .ffi {
 }
 
 .ffi:active:before, .ffi:active:hover:before {
-    background-color: #f2f2f2;
-    background-image: none;
+    background: #f2f2f2 none;
     text-decoration: none;
     text-shadow: none
 }
@@ -4644,7 +4643,6 @@ form.aui.long-label .field-group .ffi {
     line-height: 1;
     margin-top: -8px;
     position: absolute;
-    speak: none;
     text-indent: 0;
     top: 50%
 }
