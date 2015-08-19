@@ -38,6 +38,9 @@ function mkTD(pr, tdType) {
         case 'title':
             var margeData = 'title="' + pr['title'].replace(/"/g, '\"') + '" ';
             if ((localStorage["_show_mergability"] == "true") && (!pr.mergeStatus.canMerge)) {
+                if(pr.mergeStatus.conflicted){
+                    pr.mergeStatus.vetoes.unshift("Conflicts must be resolved before pull request can be merged.")
+                }
                 margeData = 'title="' + _.map(pr.mergeStatus.vetoes, function (veto) {
                         return veto.detailedMessage
                     }).join('\n') + '" class="merge-disabled"';
