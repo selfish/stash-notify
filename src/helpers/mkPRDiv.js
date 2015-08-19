@@ -36,8 +36,8 @@ function mkTD(pr, tdType) {
                 '</td>'
             );
         case 'title':
-            var margeData = 'title="' + pr['title'];
-            if (localStorage["_show_mergability"] == true && !pr.mergeStatus.canMerge) {
+            var margeData = 'title="' + pr['title'].replace(/"/g, '\"') + '" ';
+            if ((localStorage["_show_mergability"] == "true") && (!pr.mergeStatus.canMerge)) {
                 margeData = 'title="' + _.map(pr.mergeStatus.vetoes, function (veto) {
                         return veto.detailedMessage
                     }).join('\n') + '" class="merge-disabled"';
