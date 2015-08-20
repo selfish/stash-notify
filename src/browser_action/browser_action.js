@@ -54,7 +54,9 @@ function mk() {
                 })
             });
 
-            $("a").attr("target", "_blank");
+            $('a').filter(function () {
+                return !$(this).attr('target');
+            }).attr('target', '_blank');
             $('td').css('padding-top', line_height).css('padding-bottom', line_height);
             $('th.author').html("By");
 

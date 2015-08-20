@@ -21,6 +21,15 @@ function inboxZero() {
         '<h3>Inbox Zero</h3></div><div class="spinner" style="display: none;"></div></div><div>');
 }
 
+function branchBlock(ref) {
+    var url = "sourcetree://checkoutRef?type=stash&ref=" + ref['id'] + "&" +
+        "baseWebUrl=" + host() + "&cloneUrl=" + ref['repository']['cloneUrl'];
+    return '<a href="' + url + '" target="stree">' + '<span class="aui-lozenge ref-lozenge monospace-lozenge" data-ref-tooltip="' + ref['displayId'] + '">' +
+        '<span class="ref branch"><span class="aui-icon aui-icon-small aui-iconfont-devtools-branch-small"></span>' +
+        '<span class="name" aria-label="branch ' + ref['displayId'] + '">' + ref['displayId'] + '</span>' +
+        '</span>' +
+        '</a>';
+}
 
 function mkTD(pr, tdType) {
     switch (tdType) {
@@ -38,7 +47,7 @@ function mkTD(pr, tdType) {
         case 'title':
             var margeData = 'title="' + pr['title'].replace(/"/g, '\"') + '" ';
             if ((localStorage["_show_mergability"] == "true") && (!pr.mergeStatus.canMerge)) {
-                if(pr.mergeStatus.conflicted){
+                if (pr.mergeStatus.conflicted) {
                     pr.mergeStatus.vetoes.unshift("Conflicts must be resolved before pull request can be merged.")
                 }
                 margeData = 'title="' + _.map(pr.mergeStatus.vetoes, function (veto) {
@@ -105,22 +114,14 @@ function mkTD(pr, tdType) {
             }
             return td_tasks;
         case 'source':
-            return $('<td class="source"><span class="aui-lozenge ref-lozenge monospace-lozenge" data-ref-tooltip="' + pr['fromRef']['displayId'] + '">' +
-                '<span class="ref branch">' +
-                '<span class="aui-icon aui-icon-small aui-iconfont-devtools-branch-small"></span>' +
-                '<span class="name" aria-label="branch ' + pr['fromRef']['displayId'] + '">' + pr['fromRef']['displayId'] + '</span>' +
-                '</span>' +
-                '</span>' +
+            return $('<td class="source">' +
+                branchBlock(pr['fromRef']) +
                 '</td>');
 
         case 'destination':
             return $(
                 '<td class="destination">' +
-                '<span class="aui-lozenge ref-lozenge monospace-lozenge" data-ref-tooltip="' + pr['toRef']['displayId'] + '">' +
-                '<span class="ref branch"><span class="aui-icon aui-icon-small aui-iconfont-devtools-branch-small"></span>' +
-                '<span class="name" aria-label="branch ' + pr['toRef']['displayId'] + '">' + pr['toRef']['displayId'] + '</span>' +
-                '</span>' +
-                '</span>' +
+                branchBlock(pr['toRef']) +
                 '</td>');
 
         case 'updated':
