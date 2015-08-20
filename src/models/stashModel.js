@@ -140,7 +140,7 @@ function getMyRequestsData() {
 }
 
 var notifyPullRequests = _.throttle(function (PRData) {
-    if (_.get(PRData, 'values') && localStorage["_notifyPRs"] == "true" && !(localStorage['snooze_all'] > Date.now())) {
+    if (PRData && PRData.values && localStorage["_notifyPRs"] == "true" && !(localStorage['snooze_all'] > Date.now())) {
         PRData.values.forEach(notifyPullRequest);
     }
     return Promise.resolve();
