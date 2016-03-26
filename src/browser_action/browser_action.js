@@ -123,7 +123,8 @@ function mk() {
                     showTasks(elem.attributes['stashLink'].value);
                 }
             })
-        });
+        })
+        .catch(console.error.bind(console));
 }
 
 $('body').ready(mk);
