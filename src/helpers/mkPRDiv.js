@@ -166,9 +166,9 @@ function divBase(id, title, ignoreThead) {
 }
 
 function mkDIV(data, divId, divTitle) {
-
-    var div = divBase(divId, divTitle + " (" + data.values.length + ")");
-    return Promise.map(data.values, mkTR)
+    var values = (data && data.values) || [];
+    var div = divBase(divId, divTitle + " (" + values.length + ")");
+    return Promise.map(values, mkTR)
         .each(function (tr) {
             div.find('tbody').append(tr);
         })
