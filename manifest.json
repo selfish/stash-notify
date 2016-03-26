@@ -10,6 +10,7 @@
   },
   "background": {
     "scripts": [
+      "src/lib/infect.min.js",
       "src/lib/jquery-2.1.1.min.js",
       "src/lib/lodash.js",
       "src/lib/async.js",
