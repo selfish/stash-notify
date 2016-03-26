@@ -24,7 +24,10 @@
       "src/helpers/mkPRDiv.js",
       "src/models/stashModel.js",
       "src/services/gaService.js",
-      "src/bg/background.js"
+      "src/bg/background.js",
+
+      "src/helpers/splitUrl.js",
+      "src/helpers/stashRemoteFromUrl.js"
     ],
     "persistent": true
   },
