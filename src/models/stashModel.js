@@ -48,10 +48,19 @@ getTasksByPR = infect.func(function (pr, limit, $stashRemoteFromUrl) {
 }, this);
 getTasksByPR.$infect = ['stashRemoteFromUrl'];
 
-function getMergeStatusByPR(pr) {
-    return najax(host("/rest/api/1.0" + pr["link"]["url"] + "/merge"))
-        .then(JSON.parse);
-}
+getMergeStatusByPR = infect.func(function (pr, $stashRemoteFromUrl) {
+    const stashRemote = $stashRemoteFromUrl(pr.links.self[0].href);
+    const url = [
+        stashRemote.scheme, '://',
+        stashRemote.host, '/rest/api/1.0',
+        '/projects/', stashRemote.project,
+        '/repos/', stashRemote.repo,
+        '/pull-requests/', stashRemote.pr,
+        '/merge'
+    ].join('');
+    return najax(url).then(JSON.parse);;
+}, this);
+getMergeStatusByPR.$infect = ['stashRemoteFromUrl'];
 
 function getMergeStatus(data) {
 
