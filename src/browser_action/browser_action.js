@@ -9,8 +9,8 @@ var bg = chrome.extension.getBackgroundPage();
 function mk() {
 
     Promise.all([
-        bg.mkDIV(JSON.parse(localStorage.prData), 'inbox-pull-request-reviewer', "Pending Review"),
-        bg.mkDIV(JSON.parse(localStorage.prDataMine), 'inbox-pull-request-author', "My Pull Requests")
+        bg.mkDIV(JSON.parse(localStorage.prData || null), 'inbox-pull-request-reviewer', "Pending Review"),
+        bg.mkDIV(JSON.parse(localStorage.prDataMine || null), 'inbox-pull-request-author', "My Pull Requests")
     ])
         .spread(function (div, myDiv) {
 
@@ -123,7 +123,8 @@ function mk() {
                     showTasks(elem.attributes['stashLink'].value);
                 }
             })
-        });
+        })
+        .catch(console.error.bind(console));
 }
 
 $('body').ready(mk);

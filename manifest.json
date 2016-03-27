@@ -10,6 +10,7 @@
   },
   "background": {
     "scripts": [
+      "src/lib/infect.min.js",
       "src/lib/jquery-2.1.1.min.js",
       "src/lib/lodash.js",
       "src/lib/async.js",
@@ -23,7 +24,10 @@
       "src/helpers/mkPRDiv.js",
       "src/models/stashModel.js",
       "src/services/gaService.js",
-      "src/bg/background.js"
+      "src/bg/background.js",
+
+      "src/helpers/splitUrl.js",
+      "src/helpers/stashRemoteFromUrl.js"
     ],
     "persistent": true
   },

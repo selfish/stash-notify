@@ -29,19 +29,38 @@ function me() {
     }
 }
 
-function getTasksByPR(pr, limit) {
-    return najax(host("/rest/api/latest" + pr["link"]["url"] + "/tasks?start=0&limit=" + (limit || 5)))
-        .then(function (taskData) {
-            return JSON.parse(taskData).values.map(function (t) {
-                return {text: t.text, author: t.author.displayName, state: t.state, created: t.createdDate}
-            });
-        })
-}
+getTasksByPR = infect.func(function (pr, limit, $stashRemoteFromUrl) {
+    const stashRemote = $stashRemoteFromUrl(pr.links.self[0].href);
+    const url = [
+        stashRemote.scheme, '://',
+        stashRemote.host, '/rest/api/1.0',
+        '/projects/', stashRemote.project,
+        '/repos/', stashRemote.repo,
+        '/pull-requests/', stashRemote.pr,
+        '/tasks?start=0&limit=', limit || 5
+    ].join('');
 
-function getMergeStatusByPR(pr) {
-    return najax(host("/rest/api/1.0" + pr["link"]["url"] + "/merge"))
-        .then(JSON.parse);
-}
+    return najax(url).then(function (taskData) {
+        return JSON.parse(taskData).values.map(function (t) {
+            return {text: t.text, author: t.author.displayName, state: t.state, created: t.createdDate}
+        });
+    });
+}, this);
+getTasksByPR.$infect = ['stashRemoteFromUrl'];
+
+getMergeStatusByPR = infect.func(function (pr, $stashRemoteFromUrl) {
+    const stashRemote = $stashRemoteFromUrl(pr.links.self[0].href);
+    const url = [
+        stashRemote.scheme, '://',
+        stashRemote.host, '/rest/api/1.0',
+        '/projects/', stashRemote.project,
+        '/repos/', stashRemote.repo,
+        '/pull-requests/', stashRemote.pr,
+        '/merge'
+    ].join('');
+    return najax(url).then(JSON.parse);;
+}, this);
+getMergeStatusByPR.$infect = ['stashRemoteFromUrl'];
 
 function getMergeStatus(data) {
 

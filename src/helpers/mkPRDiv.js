@@ -33,19 +33,27 @@ function branchBlock(ref) {
 
 function mkTD(pr, tdType) {
     switch (tdType) {
-        case 'repository':
+        case 'repository': {
+            /** @TODO REMAKE THIS! */
+            const repository = pr.fromRef.repository;
+            const project = repository.project;
+            const repositoryUrl = repository.links.self[0].href;
+            const projectUrl = project.links.self[0].href;
             return $(
                 '<td class="repository">' +
                 '<span class="aui-avatar aui-avatar-small aui-avatar-project">' +
                 '<span class="aui-avatar-inner">' +
-                '<img src="' + host(pr['fromRef']['repository']['project']['avatarUrl']) + '" alt="' + pr['fromRef']['repository']['project']['name'] + '">' +
+                `<img src="${projectUrl}/avatar.png" alt="${project.name}">` +
                 '</span>' +
                 '</span>' +
-                '<span title="apkMetadata"><a href="' + host(pr['fromRef']['repository']['link']['url']) + '">' + pr['fromRef']['repository']['name'] + '</a></span>' +
+                `<span title="apkMetadata"><a href="${repositoryUrl}">${repository.name}</a></span>` +
                 '</td>'
             );
-        case 'title':
-            var margeData = 'title="' + pr['title'].replace(/"/g, '\"') + '" ';
+        }
+        case 'title': {
+            /** @TODO REMAKE THIS! */
+            const mergeData = 'title="' + pr['title'].replace(/"/g, '\"') + '" ';
+            const prUrl = pr.links.self[0].href;
             if ((localStorage["_show_mergability"] == "true") && (!pr.mergeStatus.canMerge)) {
                 if (pr.mergeStatus.conflicted) {
                     pr.mergeStatus.vetoes.unshift("Conflicts must be resolved before pull request can be merged.")
@@ -56,30 +64,41 @@ function mkTD(pr, tdType) {
             }
             return $(
                 '<td class="title">' +
-                '<a ' + margeData + ' href="' + pr['link']['url'] + '">' + pr['title'] + '</a>' +
-                '</td>');
-        case 'author':
+                `<a ${mergeData} href="${prUrl}">${pr.title}</a>` +
+                '</td>'
+            );
+        }
+        case 'author': {
+            /** @TODO REMAKE THIS! */
+            const author = pr.author.user;
+            const authorUrl = author.links.self[0].href;
+
             return $(
                 '<td class="author">' +
-                '<div class="avatar-with-name" title="' + pr['author']['user']['displayName'] + '">' +
-                '<span class="aui-avatar aui-avatar-small user-avatar" data-username="' + pr['author']['user']['name'] + '">' +
-                '<span class="aui-avatar-inner"><img src="' + host(pr['author']['user']['avatarUrl']) + '" alt="' + pr['author']['user']['displayName'] + '"></span>' +
+                `<div class="avatar-with-name" title="${author.displayName}">` +
+                `<span class="aui-avatar aui-avatar-small user-avatar" data-username="${author.name}">` +
+                `<span class="aui-avatar-inner"><img src="${authorUrl}/avatar.png" alt="${author.displayName}"></span>` +
                 '</span>' +
-                '<a href="' + host(pr['author']['user']['link']['url']) + '" class="secondary-link">' + pr['author']['user']['displayName'] + '</a>' +
+                `<a href="${authorUrl}" class="secondary-link">${author.displayName}</a>` +
                 '</div>' +
-                '</td>');
+                '</td>'
+            );
+        }
         case 'reviewers':
+            /** @TODO REMAKE THIS! */
             var td = $('<td class="reviewers"></td>');
             var revs = _.sortBy(pr['reviewers'],
                 function (rev) {
                     return -1 * (rev.user.id);
                 });
             revs.forEach(function (rev) {
+                const revUrl = rev.user.links.self[0].href;
                 td.append($(
                     '<span class="aui-avatar aui-avatar-small aui-avatar-badged user-avatar ' +
-                    (rev['approved'] ? '' : 'badge-hidden') + ' avatar-dimmed avatar-tooltip participant-item" data-username="' + rev['user']['name'] + '">' +
+                    `${rev.approved ? '' : 'badge-hidden'}  avatar-dimmed avatar-tooltip participant-item" ` +
+                    `data-username="${rev.user.name}">` +
                     '<span class="aui-avatar-inner">' +
-                    '<img src="' + host(rev['user']['avatarUrl']) + '" alt="' + rev['user']['displayName'] + '" original-title="' + rev['user']['displayName'] + '">' +
+                    `<img src="${revUrl}/avatar.png" alt="${rev.user.displayName}" original-title="${rev.user.displayName}">` +
                     '</span>' +
                     '<span class="badge approved">?</span>' +
                     '</span>'
@@ -87,7 +106,11 @@ function mkTD(pr, tdType) {
             });
             return td;
 
-        case 'comment-count':
+        /**
+          * Comments seem to be gone from the response json (Dedicated endpoint)
+          * @see https://developer.atlassian.com/static/rest/bitbucket-server/4.4.1/bitbucket-rest.html#idp3523056
+          */
+        case 'comment-count_':
             var comments = pr['attributes']['commentCount'] || 0;
             var td_comm = $('<td class="comment-count"></td>');
             if (Number(comments)) {
@@ -99,7 +122,11 @@ function mkTD(pr, tdType) {
             }
             return td_comm;
 
-        case 'task-count':
+        /**
+          * Tasks are gone as well (Dedicated endpoint)
+          * https://developer.atlassian.com/static/rest/bitbucket-server/4.4.1/bitbucket-rest.html#idp2156352
+          */
+        case 'task-count_':
             var tasks = Number(pr['attributes']['openTaskCount'] || 0);
             var resolvedTasks = Number(pr['attributes']['resolvedTaskCount'] || 0);
             var totTasks = tasks + resolvedTasks;
@@ -166,9 +193,9 @@ function divBase(id, title, ignoreThead) {
 }
 
 function mkDIV(data, divId, divTitle) {
-
-    var div = divBase(divId, divTitle + " (" + data.values.length + ")");
-    return Promise.map(data.values, mkTR)
+    var values = (data && data.values) || [];
+    var div = divBase(divId, divTitle + " (" + values.length + ")");
+    return Promise.map(values, mkTR)
         .each(function (tr) {
             div.find('tbody').append(tr);
         })
