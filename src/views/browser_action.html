@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/browser_action.css">
+
+    <script src="../lib/md5.min.js"></script>
+    <script src="../lib/lodash.min.js"></script>
+    <script src="../lib/moment.min.js"></script>
+
+    <script src="../lib/angular.min.js"></script>
+    <script src="../lib/ngStorage.min.js"></script>
+    <script src="../lib/img-fallback.min.js"></script>
+
+    <script src="../js/browser_action.js"></script>
+
+    <script src="../services/ga.service.js"></script>
+    <script src="../services/util.service.js"></script>
+
+    <meta charset="UTF-8">
+    <title>Stash Notifier</title>
+</head>
+
+<body id="body" ng-app="prApp" ng-controller="prCtrl">
+<div class="container">
+
+    <table class="stickCells" ng-if="$ls.prData.values.length">
+        <tr>
+            <td colspan="7" class="title"> Pending Review ({{$ls.prData.values.length}})
+            </td>
+        </tr>
+        <tr ng-repeat-start="pr in $ls.prData.values">
+            <td><a target="_blank"
+                   href="{{pr.fromRef.repository.links.self[0].href}}">{{pr.fromRef.repository.name}}</a></td>
+            <td><a target="_blank" href="{{pr.links.self[0].href}}">{{pr.title.indexOf('/')== -1 ?
+                util.toTitleCase(pr.title) : pr.title}}</a></td>
+            <td>
+                <img class="avatar"
+                     ng-src="{{util.getAvatar(pr.author.user)}}"
+                     ng-style='{"background-color": "#"+util.seedColor(pr.author.user.emailAddress)}'
+                     fallback-src="../assets/qm.svg"
+                     title="{{pr.author.user.displayName}}">
+            </td>
+            <td class="alignRight">
+                <div class="reviewers">
+                    <div class="badgewrap" ng-repeat="r in pr.reviewers">
+                        <img class="avatar"
+                             ng-class='{"fade": r.approved}'
+                             ng-src="{{util.getAvatar(r.user)}}"
+                             ng-style='{"background-color": "#"+util.seedColor(r.user.emailAddress)}'
+                             fallback-src="../assets/qm.svg"
+                             title="{{r.user.displayName}}">
+                        <span class="badge approved" ng-if="r.approved"></span>
+                    </div>
+
+                </div>
+
+            </td>
+            <td class="center" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
+        </tr>
+        <tr ng-repeat-end>
+
+
+            <td colspan="4">
+                <div class="refs">
+                    <span class="branch">{{pr.fromRef.displayId}}</span>
+<span>
+                    <img class="into" src="../assets/right_arrow.svg">
+            <span class="branch dest"
+                  ng-class='{"caution": pr.mergeStatus.conflicted}'>{{pr.toRef.displayId}}</span></span>
+                </div>
+            </td>
+            <td>
+                <div class="status">
+                    <span>{{pr.properties.commentCount || '0'}}</span>
+                    <img class="comments" src="../assets/chat.svg" title="{{util.commentTooltip(pr)}}"></div>
+            </td>
+            <td>
+                <div class="status">
+                    <span>{{pr.mergeStatus.vetoes.length}}</span>
+                    <img class="comments"
+                         ng-src="{{pr.mergeStatus.vetoes.length ? '../assets/block2.svg' : '../assets/check.svg'}}"
+                         title="{{util.vetoTooltip(pr)}}">
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <table class="stickCells" ng-if="$ls.prDataMine.values.length">
+        <tr>
+            <td colspan="7" class="title"> My Pull Requests ({{$ls.prDataMine.values.length}})
+            </td>
+        </tr>
+        <tr ng-repeat-start="pr in $ls.prDataMine.values">
+            <td><a target="_blank"
+                   href="{{pr.fromRef.repository.links.self[0].href}}">{{pr.fromRef.repository.name}}</a></td>
+            <td><a target="_blank" href="{{pr.links.self[0].href}}">{{util.toTitleCase(pr.title)}}</a></td>
+            <td>
+                <img class="avatar"
+                     ng-src="{{util.getAvatar(pr.author.user)}}"
+                     ng-style='{"background-color": "#"+util.seedColor(pr.author.user.emailAddress)}'
+                     fallback-src="../assets/qm.svg"
+                     title="{{pr.author.user.displayName}}">
+            </td>
+            <td class="alignRight">
+                <div class="reviewers">
+                    <div class="badgewrap" ng-repeat="r in pr.reviewers">
+                        <img class="avatar"
+                             ng-class='{"fade": r.approved}'
+                             ng-src="{{util.getAvatar(r.user)}}"
+                             ng-style='{"background-color": "#"+util.seedColor(r.user.emailAddress)}'
+                             fallback-src="../assets/qm.svg"
+                             title="{{r.user.displayName}}">
+                        <span class="badge approved" ng-if="r.approved"></span>
+                    </div>
+
+                </div>
+
+            </td>
+            <td class="center" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
+        </tr>
+        <tr ng-repeat-end>
+
+
+            <td colspan="4">
+                <div class="refs">
+                    <span class="branch">{{pr.fromRef.displayId}}</span>
+<span>
+                    <img class="into" src="../assets/right_arrow.svg">
+            <span class="branch dest"
+                  ng-class='{"caution": pr.mergeStatus.conflicted}'>{{pr.toRef.displayId}}</span></span>
+                </div>
+            </td>
+            <td>
+                <div class="status">
+                    <span>{{pr.properties.commentCount || '0'}}</span>
+                    <img class="comments" src="../assets/chat.svg" title="{{util.commentTooltip(pr)}}"></div>
+            </td>
+            <td>
+                <div class="status">
+                    <span>{{pr.mergeStatus.vetoes.length}}</span>
+                    <img class="comments"
+                         ng-src="{{pr.mergeStatus.vetoes.length ? '../assets/block2.svg' : '../assets/check.svg'}}"
+                         title="{{util.vetoTooltip(pr)}}">
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="footer" ng-class='{loader: $ls.loading, error: $ls.error}'>
+    <a href="{{$ls.stashURL}}" target="_blank">
+        <button ng-click="">Go to Stash</button>
+    </a>
+    <button ng-click="bgFetch()">Refresh</button>
+    <button ng-click="">Snooze All</button>
+    <button ng-click="showOptions = !showOptions">Options</button>
+</div>
+<div class="options" ng-if="showOptions">
+    <input placeholder="Stash URL">
+    <input placeholder="bla">
+    <input placeholder="Bla">
+    <input placeholder="Blau">
+</div>
+
+<iframe style="display:none;" name="stree"></iframe>
+</body>
+
