@@ -41,9 +41,9 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
     }
 
     function vetoTooltip(pr) {
-        var blockers = pr.mergeStatus.vetoes.length == 1 ? ' Blocker for merge' : ' Blockers for merge';
+        var blockers = pr.mergeStatus.vetoes.length == 1 ? 'Blocker for merge' : 'Blockers for merge';
         var colon = pr.mergeStatus.vetoes.length == 0 ? '' : ':';
-        return [pr.mergeStatus.vetoes.length + ' ' + blockers + colon]
+        return [(pr.mergeStatus.vetoes.length || 'No') + ' ' + blockers + colon]
             .concat(pr.mergeStatus.vetoes.map((veto) => {
                 return '- ' + veto.summaryMessage
             }))
