@@ -1,6 +1,11 @@
 ![](https://raw.githubusercontent.com/NitaiPerez/stash-notify/master/icons/logo32.png) Stash Pull Request Notifier
 ====================
 
+<a href="https://travis-ci.org/NitaiPerez/stash-notify">
+  <img src="https://img.shields.io/travis/NitaiPerez/stash-notify.svg?style=flat"
+    alt="Build Status">
+</a>
+
 ## Overview:
 
 Stash Pull Request Notifier will let you know when you have pending reviews.
