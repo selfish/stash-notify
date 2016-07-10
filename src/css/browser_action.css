@@ -256,22 +256,28 @@ body {
     width: 100px;
     height: 100px; }
 
-.options .optionsTable {
-  display: table;
-  width: 100%;
-  table-layout: fixed; }
-  .options .optionsTable div {
-    display: inline-block;
-    width: 22%; }
-    .options .optionsTable div input[type="text"], .options .optionsTable div select {
-      width: 90%; }
-  .options .optionsTable .doubleWidth {
-    width: 44%; }
-  .options .optionsTable .title, .options .optionsTable .subtitle {
-    width: 12%; }
+.options {
+  padding: 10px; }
+  .options .optionsTable {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+    border-top: 2px #3572b0 solid;
+    padding-top: 7px;
+    padding-bottom: 7px; }
+    .options .optionsTable div {
+      display: inline-block;
+      width: 22%; }
+      .options .optionsTable div input[type="text"], .options .optionsTable div select {
+        width: 90%; }
+    .options .optionsTable .doubleWidth {
+      width: 44%; }
+    .options .optionsTable .title, .options .optionsTable .subtitle {
+      width: 12%;
+      font-weight: 600; }
 
 .about {
-  padding: 30px; }
+  padding: 0 20px 10px; }
   .about div {
     border-top: 2px #3572b0 solid;
     padding: 15px 0; }

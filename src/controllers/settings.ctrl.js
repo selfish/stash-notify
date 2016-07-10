@@ -4,7 +4,7 @@
  * on 23/05/2016
  */
 
-app.controller('options', ['$scope', $scope => {
+app.controller('settings', ['$scope', $scope => {
     $scope.validateInput = function (input) {
         return Boolean(input.type);
     };
@@ -22,6 +22,10 @@ app.controller('options', ['$scope', $scope => {
             id: 'scrumMaster',
             type: 'checkbox',
             text: 'Scrum Master Mode'
+        },{
+            id: 'showApprovedPRs',
+            type: 'checkbox',
+            text: 'Show PRs approved but not merged'
         }, {
             id: 'hidePrWithTasks',
             type: 'checkbox',

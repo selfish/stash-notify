@@ -13,7 +13,7 @@
     <script src="../lib/img-fallback.min.js"></script>
 
     <script src="../controllers/browser-action.ctrl.js"></script>
-    <script src="../controllers/options.ctrl.js"></script>
+    <script src="../controllers/settings.ctrl.js"></script>
 
     <script src="../services/localstorage.service.js"></script>
     <script src="../services/ga.service.js"></script>
@@ -164,11 +164,11 @@
     </a>
     <button ng-click="bgFetch()">Refresh</button>
     <button ng-click="">Snooze All</button>
-    <button ng-click="showOptions = !showOptions">Options</button>
+    <button ng-click="showOptions = !showOptions">Settings</button>
     <button ng-click="showAbout = !showAbout">About</button>
 </div>
 
-<div class="options" ng-if="showOptions" ng-include="'./options.html'"></div>
+<div class="options" ng-if="showOptions" ng-include="'./settings.html'"></div>
 <div class="about" ng-if="showAbout" ng-include="'./about.html'"></div>
 
 <iframe style="display:none;" name="stree"></iframe>
