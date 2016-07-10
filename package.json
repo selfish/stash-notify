@@ -40,8 +40,8 @@
         ],
         "rules": {
             "max-params": [
-                1,
-                7
+                0,
+                5
             ],
             "linebreak-style": [
                 1,

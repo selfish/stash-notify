@@ -4,8 +4,9 @@
  * on 10/05/2016
  */
 
-/* eslint no-use-before-define: 0*/
-app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
+app.factory('schedule', ['ls', ls => {
+    var TIMER;
+
     function _log(str) {
         console.log(`%c SC: ${str}`, 'background-color: #FFF9DB;');
     }
@@ -15,8 +16,8 @@ app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
 
     function _clearSchedule() {
         _log(`Notifications schedule cleared`);
-        if (timer && _.isFunction(_.get(timer, 'clear'))) {
-            timer.clear();
+        if (TIMER && _.isFunction(_.get(TIMER, 'clear'))) {
+            TIMER.clear();
         }
     }
 
@@ -26,25 +27,29 @@ app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
         later.setInterval(fetchFunction, sched);
     }
 
-    function schedNotifications(remindEvery) {
+    function schedNotifications(fetchFunction, notifyFunction) {
+        const remindEvery = ls.get('remindEvery') || 2;
         _clearSchedule();
 
         _log(`Notifications scheduled every ${remindEvery} hours, next occurences:`);
         var sched = later.parse.recur().every(remindEvery).hour();
 
-        var timer = later.setInterval(notifications.notify, sched);
+        function updateNotify() {
+            _log('Notification triggered');
+            fetchFunction().then(notifyFunction);
+        }
+
+        var timer = later.setInterval(updateNotify, sched);
         var next = later.schedule(sched).next(6);
         next.shift();
         next.forEach(o => {
             _log(o);
         });
-        return timer;
+        TIMER = timer;
     }
 
-    var timer = schedNotifications(ls.get('remindEvery') || 2);
-
     return {
-        updateSchedule: schedNotifications,
+        updateNotifySchedule: schedNotifications,
         scheduleDataFetch: scheduleDataFetch
     };
 }]);
