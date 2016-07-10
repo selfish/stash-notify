@@ -1,6 +1,6 @@
 {
     "name": "stash-notify",
-    "version": "1.0.0",
+    "version": "3.0.0",
     "description": "Stash Pull Request Notifier",
     "private": true,
     "main": "index.js",
@@ -14,7 +14,7 @@
         "type": "git",
         "url": "git+https://github.com/CommonRaven/stash-notify.git"
     },
-    "author": "Nitai J. Perez <nitai.perez@gmail.com> (https://github.com/NitaiPerez)",
+    "author": "CommonRaven (Nitai J. Perez) <nitai.perez@gmail.com> (https://github.com/CommonRaven)",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/CommonRaven/stash-notify/issues"
