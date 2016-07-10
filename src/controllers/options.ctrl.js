@@ -4,31 +4,30 @@
  * on 23/05/2016
  */
 
-app.controller('options', ['$scope', ($scope) => {
-
+app.controller('options', ['$scope', $scope => {
     $scope.validateInput = function (input) {
-        return !!input.type;
+        return Boolean(input.type);
     };
 
     $scope.ops = {
-        Details: [
+        'Details': [
             {
                 id: 'stashURL',
                 type: 'textbox',
                 text: 'Stash Server URL',
-                placeholder: "Stash URL"
+                placeholder: 'Stash URL'
             }
         ],
-        "Pull Requests": [{
-            id: 'scrum_master',
+        'Pull Requests': [{
+            id: 'scrumMaster',
             type: 'checkbox',
             text: 'Scrum Master Mode'
         }, {
-            id: 'hide_pr_with_tasks',
+            id: 'hidePrWithTasks',
             type: 'checkbox',
             text: 'Hide pull requests with open tasks'
         }],
-        "My Pull Requests": [{
+        'My Pull Requests': [{
             id: 'hide_my_pr',
             type: 'checkbox',
             text: 'Hide my own pull requests'
@@ -37,7 +36,7 @@ app.controller('options', ['$scope', ($scope) => {
             type: 'checkbox',
             text: 'Highlight my pull requests having open tasks'
         }],
-        "Notifications": [{
+        'Notifications': [{
             id: 'hide_my_pr',
             type: 'Notify on new pull requests',
             text: 'Hide my own pull requests'
@@ -54,46 +53,43 @@ app.controller('options', ['$scope', ($scope) => {
             type: 'select',
             text: 'Notify until',
             options: [
-                {val: "once", text: "Shown once"},
-                {val: "click", text: "Clicked"},
-                {val: "always", text: "As long as active"}
+                {val: 'once', text: 'Shown once'},
+                {val: 'click', text: 'Clicked'},
+                {val: 'always', text: 'As long as active'}
             ]
         }, {
             id: 'notifyInterval',
             type: 'select',
             text: 'Hide my own pull requests',
             options: [
-                {val: 1, text: "1 Hour"},
-                {val: 2, text: "2 Hours"},
-                {val: 3, text: "3 Hours"},
-                {val: 4, text: "4 Hours"},
-                {val: 6, text: "6 Hours"},
-                {val: 8, text: "8 Hours"},
-                {val: 12, text: "12 Hours"}
+                {val: 1, text: '1 Hour'},
+                {val: 2, text: '2 Hours'},
+                {val: 3, text: '3 Hours'},
+                {val: 4, text: '4 Hours'},
+                {val: 6, text: '6 Hours'},
+                {val: 8, text: '8 Hours'},
+                {val: 12, text: '12 Hours'}
             ]
         }, {
             id: 'snooze_duration',
             type: 'select',
             text: 'Snooze duration',
             options: [
-                {val: 2, text: "2 Hours"},
-                {val: 3, text: "3 Hours"},
-                {val: 4, text: "4 Hours"},
-                {val: 6, text: "6 Hours"},
-                {val: 8, text: "8 Hours"},
-                {val: 12, text: "12 Hours"},
-                {val: 24, text: "24 Hours"},
-                {val: 48, text: "48 Hours"}
+                {val: 2, text: '2 Hours'},
+                {val: 3, text: '3 Hours'},
+                {val: 4, text: '4 Hours'},
+                {val: 6, text: '6 Hours'},
+                {val: 8, text: '8 Hours'},
+                {val: 12, text: '12 Hours'},
+                {val: 24, text: '24 Hours'},
+                {val: 48, text: '48 Hours'}
             ]
         }],
-        "Appearance": [{
+        'Appearance': [{
             id: 'staffshURL',
             text: 'Stash Server URL',
-            getter: "stashURL",
-            placeholder: "Stash URL"
+            getter: 'stashURL',
+            placeholder: 'Stash URL'
         }]
     };
 }]);
-
-
-//

@@ -12,7 +12,7 @@ var whoAmI = '/plugins/servlet/applinks/whoami';
 function filterResult(data) {
 
     // Open tasks:
-    if (localStorage["_hide_pr_with_tasks"] == "true") {
+    if (localStorage["_hidePrWithTasks"] == "true") {
         data.values = _.filter(data.values, (pr) => {
             return !(
                 pr['attributes']['openTaskCount']
@@ -22,7 +22,7 @@ function filterResult(data) {
     }
 
     // Scrum master:
-    if (localStorage["_scrum_master"] == "true"
+    if (localStorage["_scrumMaster"] == "true"
         && me()
     ) {
         data.values = _.filter(data.values, (pr) => {

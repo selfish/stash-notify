@@ -4,10 +4,10 @@
  * on 10/05/2016
  */
 
+/* eslint no-use-before-define: 0*/
 app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
-
     function _log(str) {
-        console.log(`%c SC: ${str}`, "background-color: #FFF9DB;");
+        console.log(`%c SC: ${str}`, 'background-color: #FFF9DB;');
     }
 
     // Set later to use local time:
@@ -15,7 +15,9 @@ app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
 
     function _clearSchedule() {
         _log(`Notifications schedule cleared`);
-        if (_.isFunction(_.get(timer, 'clear'))) timer.clear();
+        if (timer && _.isFunction(_.get(timer, 'clear'))) {
+            timer.clear();
+        }
     }
 
     function scheduleDataFetch(fetchFunction) {
@@ -25,16 +27,15 @@ app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
     }
 
     function schedNotifications(remindEvery) {
-
         _clearSchedule();
 
         _log(`Notifications scheduled every ${remindEvery} hours, next occurences:`);
         var sched = later.parse.recur().every(remindEvery).hour();
 
-        timer = later.setInterval(notifications.notify, sched);
+        var timer = later.setInterval(notifications.notify, sched);
         var next = later.schedule(sched).next(6);
         next.shift();
-        next.forEach((o) => {
+        next.forEach(o => {
             _log(o);
         });
         return timer;
@@ -45,7 +46,5 @@ app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
     return {
         updateSchedule: schedNotifications,
         scheduleDataFetch: scheduleDataFetch
-    }
-
-
+    };
 }]);

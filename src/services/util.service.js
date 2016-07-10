@@ -5,10 +5,8 @@
  */
 
 app.factory('util', ['ls', '$http', (ls, $http) => {
-
-
     function uuid() {
-        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, a=>(a ^ Math.random() * 16 >> a / 4).toString(16));
+        return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, a => ((a ^ Math.random()) * 16 >> a / 4).toString(16));
     }
 
     function seedColor(str) {
@@ -20,19 +18,23 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
             .toString(16)
             .toUpperCase();
 
-        return "00000".substring(0, 6 - c.length) + c;
+        return '00000'.substring(0, 6 - c.length) + c;
     }
 
     function host(uri) {
-        if (!uri) return ls.get('config').stashURL;
-        if (uri.indexOf('http') === 0) return uri;
+        if (!uri) {
+            return ls.get('config').stashURL;
+        }
+        if (uri.indexOf('http') === 0) {
+            return uri;
+        }
 
         var splitRegExp = /\/(\b|$)/g;
         return (_.compact(host().split(splitRegExp).concat(uri.split(splitRegExp)))).join('/');
     }
 
     function getAvatar(user) {
-        //return host(user.avatarUrl.split("?")[0]);
+        // return host(user.avatarUrl.split("?")[0]);
         return host(user.avatarUrl);
     }
 
@@ -41,37 +43,38 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     }
 
     function vetoTooltip(pr) {
-        var blockers = pr.mergeStatus.vetoes.length == 1 ? 'Blocker for merge' : 'Blockers for merge';
-        var colon = pr.mergeStatus.vetoes.length == 0 ? '' : ':';
+        var blockers = pr.mergeStatus.vetoes.length === 1 ? 'Blocker for merge' : 'Blockers for merge';
+        var colon = pr.mergeStatus.vetoes.length === 0 ? '' : ':';
         return [(pr.mergeStatus.vetoes.length || 'No') + ' ' + blockers + colon]
-            .concat(pr.mergeStatus.vetoes.map((veto) => {
-                return '- ' + veto.summaryMessage
+            .concat(pr.mergeStatus.vetoes.map(veto => {
+                return '- ' + veto.summaryMessage;
             }))
             .join('\n');
     }
 
     function toTitleCase(str) {
-        return str.replace(/\w\S*/g, (txt) => {
+        return str.replace(/\w\S*/g, txt => {
             return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
         });
     }
 
     function _breakCamelCase(str) {
-        return str.replace(/([A-Z])/g, ' $1').trim()
+        return str.replace(/([A-Z])/g, ' $1').trim();
     }
 
     function commentTooltip(pr) {
-        return Object.keys(pr.properties).map((prop) => {
+        return Object.keys(pr.properties).map(prop => {
             return toTitleCase(_breakCamelCase(prop)) + ': ' + pr.properties[prop];
         }).join('\n');
     }
 
     function get(uri, cb) {
-
         ls.set('error', false);
         ls.delete('errorMsg');
 
-        if (!_.isFunction(cb)) cb = _.noop;
+        if (!_.isFunction(cb)) {
+            cb = _.noop;
+        }
 
         return new Promise((resolve, reject) => {
             $http({
@@ -90,23 +93,23 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     }
 
     // Identity function:
-    const identity = (v) => v;
+    const identity = (v => v);
 
     // Regex parts:  scheme  junk           host      path      query
-    const regex = /^(https?)(?:\:\/\/)?(\/?[^\/]+)(\/?.+?)(?:\?(.+))?$/;
+    const regex = /^(https?)(?::\/\/)?(\/?[^\/]+)(\/?.+?)(?:\?(.+))?$/;
 
     function splitUrl(url) {
         // Split url into parts:
         var [scheme, host, path, query] = url.match(regex).slice(1);
 
         // Path to array:
-        path = !path ? [] : path.split('/').map(decodeURIComponent).filter(identity);
+        path = (path ? path : []).split('/').map(decodeURIComponent).filter(identity);
 
         // Query to object
-        query = !query ? [] : query.split('&').reduce((result, pair) => {
+        query = (query ? query.split('&') : []).reduce((result, pair) => {
             var [name, value] = pair.split('=');
             result[decodeURIComponent(name)] = decodeURIComponent(value);
-            return result
+            return result;
         }, {});
 
         return {scheme, host, path, query};
@@ -140,7 +143,6 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
                 }
             });
         }
-
         return result;
     }
 
@@ -157,6 +159,4 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
         stashRemoteFromUrl: stashRemoteFromUrl,
         uuid: uuid
     };
-
-
 }]);

@@ -5,11 +5,10 @@
  */
 
 app.factory('ls', [() => {
-
     function get(key) {
         try {
             return JSON.parse(localStorage[key]);
-        } catch (e) {
+        } catch (err) {
             return undefined;
         }
     }
@@ -26,7 +25,6 @@ app.factory('ls', [() => {
     }
 
     function setConfig(key, val, init) {
-
         function mkObj() {
             var o = {};
             o[key] = val;
@@ -40,10 +38,10 @@ app.factory('ls', [() => {
 
     // Returns a getter-setter function for a config value:
     function sgConfig(key) {
-        return (val) => {
+        return (val => {
             console.log(`SET-GET: ${key}\t${val}`);
             return val ? setConfig(key, val) : get('config')[key];
-        }
+        });
     }
 
     return {
@@ -52,5 +50,5 @@ app.factory('ls', [() => {
         delete: del,
         setConfig: setConfig,
         sgConfig: sgConfig
-    }
+    };
 }]);

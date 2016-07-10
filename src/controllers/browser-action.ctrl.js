@@ -8,7 +8,7 @@ var bg = chrome.extension.getBackgroundPage();
 
 var app = angular.module('prApp', ['dcbImgFallback']);
 
-app.config(['$compileProvider', ($compileProvider) => {
+app.config(['$compileProvider', $compileProvider => {
     // Allow URLS that angular considers unsafe:
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|chrome-extension):/);
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|chrome-extension):/);
@@ -16,7 +16,6 @@ app.config(['$compileProvider', ($compileProvider) => {
 
 app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
     ($rootScope, $scope, $location, ls, util) => {
-
         bg.GA.pageview('/browser_action');
 
         $scope.showOptions = false;
@@ -24,14 +23,14 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
         $scope.util = util;
         $scope.ls = ls;
 
-        $scope.inboxZeroIcon = `../assets/signed/signed${_.random(6)+1}.svg`;
+        $scope.inboxZeroIcon = `../assets/signed/signed${_.random(6) + 1}.svg`;
 
         $scope.fullscreen = window.location.search.indexOf('full=true') > -1;
 
-        $scope.bgFetch = ()=> {
-            //ls.set('loading', true);
+        $scope.bgFetch = () => {
+            // ls.set('loading', true);
             bg.fetch()
-                .then(()=> {
+                .then(() => {
                     ls.delete('loading');
                     $scope.$digest();
                 });
@@ -41,12 +40,14 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
             var partURL = 'src/views/browser_action.html?full=true';
             var pageURL = chrome.extension.getURL(partURL);
             chrome.tabs.query({}, function (tabs) {
-                if (!tabs.some((tab)=> {
-                        if (tab.url == pageURL) {
-                            chrome.tabs.update(tab.id, {"selected": true});
-                            return true;
-                        }
-                    })) {
+                var tabExists = tabs.some(tab => {
+                    if (tab.url === pageURL) {
+                        chrome.tabs.update(tab.id, {selected: true});
+                        return true;
+                    }
+                    return false;
+                });
+                if (!tabExists) {
                     chrome.tabs.create({url: partURL});
                 }
                 window.close();
@@ -59,5 +60,5 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
         }
 
         updateView();
-       // crosstab.on('ls', updateView);
+        // crosstab.on('ls', updateView);
     }]);
