@@ -22,7 +22,7 @@ app.controller('settings', ['$scope', $scope => {
             id: 'scrumMaster',
             type: 'checkbox',
             text: 'Scrum Master Mode'
-        },{
+        }, {
             id: 'showApprovedPRs',
             type: 'checkbox',
             text: 'Show PRs approved but not merged'
