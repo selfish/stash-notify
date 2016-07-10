@@ -1,15 +1,17 @@
 /**
  * Created by nitaip on 27/07/2015.
  */
-
+var ga;
 // @formatter:off
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;//noinspection CommaExpressionJS
+i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();//noinspection CommaExpressionJS
+a=s.createElement(o),
 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 // @formatter:on
 
-app.factory('gaService', ['$localStorage', 'util', ($ls, util) => {
+app.factory('gaService', ['ls', 'util', (ls, util) => {
 
     ga('create', 'UA-65738374-2', {userId: getUUID()});
 
@@ -18,10 +20,10 @@ app.factory('gaService', ['$localStorage', 'util', ($ls, util) => {
     }
 
     function getUUID() {
-        if (!$ls.uiud || !$ls.uiud.length) {
-            $ls.uiud = util.uuid();
+        if (ls.get('uuid') == undefined) {
+            ls.set('uuid', util.uuid());
         }
-        return $ls.uiud;
+        return ls.get('uuid');
     }
 
     function ga_heartbeat() {
@@ -51,7 +53,7 @@ app.factory('gaService', ['$localStorage', 'util', ($ls, util) => {
 
     function setMeta(key, value) {
         if (!key || !value) {
-            console.error(`missing data for set: {${eventCategory} : ${eventAction}}`);
+            console.error(`missing data for set: {${key} : ${value}}`);
             return;
         }
         _log(`Set: (${key}=${value})`);
@@ -64,6 +66,7 @@ app.factory('gaService', ['$localStorage', 'util', ($ls, util) => {
     setMeta('dimension3', chrome.runtime.getManifest().version);
 
     if (util.host()) {
+        //noinspection JSUnresolvedFunction
         setMeta('dimension2', md5(util.host()));
     }
 

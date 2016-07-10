@@ -5,7 +5,7 @@
  */
 
 
-app.factory('badge', ['$localStorage', ($ls) => {
+app.factory('badge', [() => {
 
 
     function set(text, title, color, nText) {
@@ -30,11 +30,10 @@ app.factory('badge', ['$localStorage', ($ls) => {
     }
 
 
-    const ex = {
+    return {
         clear: clear,
         set: set,
         error: error
     };
-    return ex;
 
 }]);

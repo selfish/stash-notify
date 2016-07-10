@@ -4,7 +4,7 @@
  * on 09/05/2016
  */
 
-app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
+app.factory('util', ['ls', '$http', (ls, $http) => {
 
 
     function uuid() {
@@ -24,7 +24,7 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
     }
 
     function host(uri) {
-        if (!uri) return $ls.stashURL;
+        if (!uri) return ls.get('config').stashURL;
         if (uri.indexOf('http') === 0) return uri;
 
         var splitRegExp = /\/(\b|$)/g;
@@ -68,8 +68,8 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
 
     function get(uri, cb) {
 
-        $ls.error = false;
-        delete $ls.errorMsg;
+        ls.set('error', false);
+        ls.delete('errorMsg');
 
         if (!_.isFunction(cb)) cb = _.noop;
 
@@ -81,28 +81,28 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
                 resolve(res.data);
                 cb(null, res.data);
             }, function error(res) {
-                $ls.error = true;
-                $ls.errorMsg = res.status + ': ' + res.statusText;
+                ls.error = true;
+                ls.errorMsg = res.status + ': ' + res.statusText;
                 cb(new Error(res.status));
                 reject(res.status);
             });
         });
     }
 
-    /** Identity function */
+    // Identity function:
     const identity = (v) => v;
 
     // Regex parts:  scheme  junk           host      path      query
     const regex = /^(https?)(?:\:\/\/)?(\/?[^\/]+)(\/?.+?)(?:\?(.+))?$/;
 
     function splitUrl(url) {
-        /** Split url into parts */
+        // Split url into parts:
         var [scheme, host, path, query] = url.match(regex).slice(1);
 
-        /** Path to array */
+        // Path to array:
         path = !path ? [] : path.split('/').map(decodeURIComponent).filter(identity);
 
-        /** Query to object */
+        // Query to object
         query = !query ? [] : query.split('&').reduce((result, pair) => {
             var [name, value] = pair.split('=');
             result[decodeURIComponent(name)] = decodeURIComponent(value);
@@ -121,8 +121,6 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
             }
         };
         if (path.length) {
-            let i;
-
             path.forEach((node, idx, arr) => {
                 switch (node) {
                     case 'projects':
@@ -146,7 +144,7 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
         return result;
     }
 
-    const ex = {
+    return {
         seedColor: seedColor,
         host: host,
         getAvatar: getAvatar,
@@ -159,8 +157,6 @@ app.factory('util', ['$localStorage', '$http', ($ls, $http) => {
         stashRemoteFromUrl: stashRemoteFromUrl,
         uuid: uuid
     };
-
-    return ex;
 
 
 }]);
