@@ -4,8 +4,7 @@
  * on 10/05/2016
  */
 
-
-app.factory('schedule', ['$localStorage', ($ls) => {
+app.factory('schedule', ['ls', 'notifications', (ls, notifications) => {
 
     function _log(str) {
         console.log(`%c SC: ${str}`, "background-color: #FFF9DB;");
@@ -32,7 +31,7 @@ app.factory('schedule', ['$localStorage', ($ls) => {
         _log(`Notifications scheduled every ${remindEvery} hours, next occurences:`);
         var sched = later.parse.recur().every(remindEvery).hour();
 
-        timer = later.setInterval(notify, sched);
+        timer = later.setInterval(notifications.notify, sched);
         var next = later.schedule(sched).next(6);
         next.shift();
         next.forEach((o) => {
@@ -41,15 +40,9 @@ app.factory('schedule', ['$localStorage', ($ls) => {
         return timer;
     }
 
-    function notify() {
-        _log(`NOTIFY!`);
-
-    }
-
-    var timer = schedNotifications($ls.remindEvery || 2);
+    var timer = schedNotifications(ls.get('remindEvery') || 2);
 
     return {
-        notify: notify,
         updateSchedule: schedNotifications,
         scheduleDataFetch: scheduleDataFetch
     }

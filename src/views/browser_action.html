@@ -6,13 +6,15 @@
     <script src="../lib/md5.min.js"></script>
     <script src="../lib/lodash.min.js"></script>
     <script src="../lib/moment.min.js"></script>
+    <script src="../lib/crosstab.min.js"></script>
 
     <script src="../lib/angular.min.js"></script>
-    <script src="../lib/ngStorage.min.js"></script>
     <script src="../lib/img-fallback.min.js"></script>
 
-    <script src="../js/browser_action.js"></script>
+    <script src="../controllers/browserActionCtrl.js"></script>
+    <script src="../controllers/optionsCtrl.js"></script>
 
+    <script src="../services/localstorage.service.js"></script>
     <script src="../services/ga.service.js"></script>
     <script src="../services/util.service.js"></script>
 
@@ -21,35 +23,39 @@
 </head>
 
 <body id="body" ng-app="prApp" ng-controller="prCtrl">
-<div class="container">
+<div id="fullMode" class="floater" ng-if="!fullscreen" ng-click="showTasks()" title="Show on full screen"></div>
+<div class="container" ng-class="{stretch: fullscreen}">
 
-    <table class="stickCells" ng-if="$ls.prData.values.length">
-        <tr>
-            <td colspan="7" class="title"> Pending Review ({{$ls.prData.values.length}})
+    <table class="stickCells">
+        <tr ng-if="prData.length">
+            <td colspan="7" class="title"> Pending Review ({{prData.length}})
             </td>
         </tr>
-        <tr ng-repeat-start="pr in $ls.prData.values">
+        <tr ng-repeat-start="pr in prData">
             <td><a target="_blank"
-                   href="{{pr.fromRef.repository.links.self[0].href}}">{{pr.fromRef.repository.name}}</a></td>
+                   href="{{pr.fromRef.repository.links.self[0].href.replace('browse', 'pull-requests')}}">{{pr.fromRef.repository.name}}</a>
+            </td>
             <td><a target="_blank" href="{{pr.links.self[0].href}}">{{pr.title.indexOf('/')== -1 ?
                 util.toTitleCase(pr.title) : pr.title}}</a></td>
-            <td>
+            <td class="tooltip">
                 <img class="avatar"
                      ng-src="{{util.getAvatar(pr.author.user)}}"
                      ng-style='{"background-color": "#"+util.seedColor(pr.author.user.emailAddress)}'
-                     fallback-src="../assets/qm.svg"
-                     title="{{pr.author.user.displayName}}">
+                     style="z-index:500"
+                     fallback-src="../assets/qm.svg">
+                <span class="tooltiptext">{{pr.author.user.displayName}}</span>
             </td>
             <td class="alignRight">
                 <div class="reviewers">
-                    <div class="badgewrap" ng-repeat="r in pr.reviewers">
+                    <div class="badgewrap tooltip" ng-repeat="r in pr.reviewers">
                         <img class="avatar"
-                             ng-class='{"fade": r.approved}'
+                             ng-class='{"fade": r.approved || (r.status == "NEEDS_WORK")}'
                              ng-src="{{util.getAvatar(r.user)}}"
                              ng-style='{"background-color": "#"+util.seedColor(r.user.emailAddress)}'
-                             fallback-src="../assets/qm.svg"
-                             title="{{r.user.displayName}}">
+                             fallback-src="../assets/qm.svg">
+                        <span class="tooltiptext" style="right: 29px; top: -2px;">{{r.user.displayName}}</span>
                         <span class="badge approved" ng-if="r.approved"></span>
+                        <span class="badge declined" ng-if="r.status == 'NEEDS_WORK'"></span>
                     </div>
 
                 </div>
@@ -75,22 +81,20 @@
                     <img class="comments" src="../assets/chat.svg" title="{{util.commentTooltip(pr)}}"></div>
             </td>
             <td>
-                <div class="status">
+                <div class="status tooltip">
                     <span>{{pr.mergeStatus.vetoes.length}}</span>
                     <img class="comments"
-                         ng-src="{{pr.mergeStatus.vetoes.length ? '../assets/block2.svg' : '../assets/check.svg'}}"
-                         title="{{util.vetoTooltip(pr)}}">
+                         ng-src="{{pr.mergeStatus.vetoes.length ? '../assets/block2.svg' : '../assets/check.svg'}}">
+                    <span class="tooltiptext">{{util.vetoTooltip(pr)}}</span>
                 </div>
             </td>
         </tr>
-    </table>
 
-    <table class="stickCells" ng-if="$ls.prDataMine.values.length">
-        <tr>
-            <td colspan="7" class="title"> My Pull Requests ({{$ls.prDataMine.values.length}})
+        <tr ng-if="prDataMine.length">
+            <td colspan="7" class="title"> My Pull Requests ({{prDataMine.length}})
             </td>
         </tr>
-        <tr ng-repeat-start="pr in $ls.prDataMine.values">
+        <tr ng-repeat-start="pr in prDataMine">
             <td><a target="_blank"
                    href="{{pr.fromRef.repository.links.self[0].href}}">{{pr.fromRef.repository.name}}</a></td>
             <td><a target="_blank" href="{{pr.links.self[0].href}}">{{util.toTitleCase(pr.title)}}</a></td>
@@ -105,12 +109,13 @@
                 <div class="reviewers">
                     <div class="badgewrap" ng-repeat="r in pr.reviewers">
                         <img class="avatar"
-                             ng-class='{"fade": r.approved}'
+                             ng-class='{"fade": r.approved || (r.status == "NEEDS_WORK")}'
                              ng-src="{{util.getAvatar(r.user)}}"
                              ng-style='{"background-color": "#"+util.seedColor(r.user.emailAddress)}'
                              fallback-src="../assets/qm.svg"
                              title="{{r.user.displayName}}">
                         <span class="badge approved" ng-if="r.approved"></span>
+                        <span class="badge declined" ng-if="r.status == 'NEEDS_WORK'"></span>
                     </div>
 
                 </div>
@@ -147,20 +152,23 @@
     </table>
 </div>
 
-<div class="footer" ng-class='{loader: $ls.loading, error: $ls.error}'>
-    <a href="{{$ls.stashURL}}" target="_blank">
+<div class="zero" ng-if="prData.length + prDataMine.length == 0">
+    <img class="inboxZeroIcon" ng-src="{{inboxZeroIcon}}">
+    <h2>Inbox Zero!</h2>
+</div>
+
+<div class="footer" ng-class='{loader: ls.get("loading"), error: ls.get("error"), stretch: fullscreen}'>
+    <a href="{{ls.get('config').stashURL}}" target="_blank">
         <button ng-click="">Go to Stash</button>
     </a>
     <button ng-click="bgFetch()">Refresh</button>
     <button ng-click="">Snooze All</button>
     <button ng-click="showOptions = !showOptions">Options</button>
+    <button ng-click="showAbout = !showAbout">About</button>
 </div>
-<div class="options" ng-if="showOptions">
-    <input placeholder="Stash URL">
-    <input placeholder="bla">
-    <input placeholder="Bla">
-    <input placeholder="Blau">
-</div>
+
+<div class="options" ng-if="showOptions" ng-include="'./options.html'"></div>
+<div class="about" ng-if="showAbout" ng-include="'./about.html'"></div>
 
 <iframe style="display:none;" name="stree"></iframe>
 </body>

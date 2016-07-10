@@ -8,22 +8,22 @@
     <script src="../lib/moment.min.js"></script>
     <script src="../lib/later.min.js"></script>
     <script src="../lib/bluebird.min.js"></script>
+    <script src="../lib/crosstab.min.js"></script>
 
     <script src="../lib/angular.min.js"></script>
-    <script src="../lib/ngStorage.min.js"></script>
 
-    <script src="../js/background.js"></script>
+    <script src="../controllers/backgroundCtrl.js"></script>
 
+    <script src="../services/localstorage.service.js"></script>
     <script src="../services/ga.service.js"></script>
     <script src="../services/badge.service.js"></script>
     <script src="../services/util.service.js"></script>
     <script src="../services/stash.service.js"></script>
+    <script src="../services/notifications.service.js"></script>
     <script src="../services/schedule.service.js"></script>
 
     <meta charset="UTF-8">
     <title>Background: Stash Notifier</title>
 </head>
-<body ng-app="bgApp" ng-controller="bgCtrl" style="font-family: monospace">
-{{JSON.stringify($ls.prData, null, 2)}}
-</body>
+<body ng-app="bgApp" ng-controller="bgCtrl" style="font-family: monospace"></body>
 </html>

@@ -1,0 +1,35 @@
+<div ng-controller="options">
+    <div class="optionsTable" ng-repeat="(title, options) in ops">
+        <div class="title">{{title}}</div>
+
+        <div ng-if="!($index % 2) && $index > 0" class="subtitle"
+             ng-repeat-start="o in options | filter:validateInput">
+
+        </div>
+        <div ng-if="o.type != 'checkbox'">
+            <label for="{{o.id}}">{{o.text}}:</label>
+        </div>
+        <div ng-class="{doubleWidth: o.type == 'checkbox'}" ng-repeat-end>
+            <input id="{{o.id}}"
+                   ng-if="o.type == 'textbox'"
+                   ng-model="ls.sgConfig(o.id)"
+                   ng-model-options="{getterSetter: true}"
+                   placeholder="{{o.placeholder || ''}}">
+
+            <input id="{{o.id}}"
+                   type="checkbox"
+                   ng-if="o.type == 'checkbox'"
+                   ng-model="ls.sgConfig(o.id)"
+                   ng-model-options="{getterSetter: true}">
+            <label ng-if="o.type == 'checkbox'" for="{{o.id}}">{{o.text}}</label>
+
+            <select id="{{o.id}}"
+                    ng-if="o.type == 'select'"
+                    ng-model="ls.sgConfig(o.id)"
+                    ng-model-options="{getterSetter: true}">
+                <option ng-repeat="op in o.options" value="{{op.val}}">{{op.text}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
