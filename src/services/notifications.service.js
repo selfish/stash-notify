@@ -6,9 +6,14 @@
 
 app.factory('notifications', ['ls', ls => {
     function notify(prs) {
+        function _log(str) {
+            console.log(`%c NO: ${str}`, 'background-color: #DBFF9F;');
+        }
+
         prs = prs || ls.get('prData');
 
         if (prs.length) {
+            _log(`Notifying ${prs.length} PRs`);
             var buttons = [];
             // if (!(localStorage["_snooze_this_btn"] == 'true')) {
             //     buttons.push({title: "Snooze this Pull Request", iconUrl: "../assets/snooze.svg"});
@@ -27,6 +32,8 @@ app.factory('notifications', ['ls', ls => {
                 iconUrl: `../assets/signed/signed${_.random(6) + 1}.svg`,
                 buttons: buttons
             });
+        } else {
+            _log(`Notification skipped (inbox zero)`);
         }
     }
 

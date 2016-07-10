@@ -6,8 +6,8 @@ var app = angular.module('bgApp', []);
 var fetch = Promise.resolve();
 var GA;
 
-app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'ls', 'badge',
-    ($scope, util, stash, schedule, gaService, ls, badge) => {
+app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'ls', 'badge', 'notifications',
+    ($scope, util, stash, schedule, gaService, ls, badge, notifications) => {
         function _log(str) {
             console.log(`%c BG: ${str}`, 'background-color: #F2F2F2;');
         }
@@ -32,6 +32,7 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
         };
         fetch();
 
+        schedule.updateNotifySchedule(fetch, notifications.notify);
         schedule.scheduleDataFetch(fetch);
 
         function initSettings() {
