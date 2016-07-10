@@ -1,8 +1,8 @@
-![](https://raw.githubusercontent.com/NitaiPerez/stash-notify/master/icons/logo32.png) Stash Pull Request Notifier
+![](https://raw.githubusercontent.com/CommonRaven/stash-notify/master/icons/logo32.png) Stash Pull Request Notifier
 ====================
 
-<a href="https://travis-ci.org/NitaiPerez/stash-notify">
-  <img src="https://img.shields.io/travis/NitaiPerez/stash-notify.svg?style=flat"
+<a href="https://travis-ci.org/CommonRaven/stash-notify.svg">
+  <img src="https://img.shields.io/travis/CommonRaven/stash-notify.svg?style=flat"
     alt="Build Status">
 </a>
 
@@ -47,6 +47,6 @@ Pull Requests are very welcome. In case you're not sure how to begin:
 
 Copyright © 2016 Nitai J. Perez ([CommonRaven](https://github.com/CommonRaven))
 
-Stash Notifier extension is licensed under the terms of the [MIT Open Source license](https://raw.githubusercontent.com/NitaiPerez/stash-notify/master/LICENSE) and is available for free.
+Stash Notifier extension is licensed under the terms of the [MIT Open Source license](https://raw.githubusercontent.com/CommonRaven/stash-notify/master/LICENSE) and is available for free.
 
 All images, assets and other media used under [Creative Commons Attribution 4.0 International Public License](http://creativecommons.org/licenses/by/4.0/legalcode) or [GNU General Public License (GPL)](http://www.gnu.org/copyleft/gpl.html), and are copyright of their original creators.
