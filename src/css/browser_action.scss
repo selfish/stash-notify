@@ -346,10 +346,14 @@ body {
 }
 
 .options {
+  padding: 10px;
   .optionsTable {
     display: table;
     width: 100%;
     table-layout: fixed;
+    border-top: 2px $blue solid;
+    padding-top: 7px;
+    padding-bottom: 7px;
 
     div {
       display: inline-block;
@@ -366,12 +370,13 @@ body {
     }
     .title, .subtitle {
       width: 12%;
+      font-weight: 600;
     }
   }
 }
 
 .about {
-  padding: 30px;
+  padding: 0 20px 10px;
   div {
     border-top: 2px $blue solid;
 
