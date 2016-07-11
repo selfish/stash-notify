@@ -32,10 +32,6 @@
                 "files": "test/*.js",
                 "esnext": true,
                 "space": 3
-            },
-            {
-                "files": "test/foo.js",
-                "esnext": false
             }
         ],
         "rules": {
