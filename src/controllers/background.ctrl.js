@@ -1,6 +1,5 @@
 // Check whether new version is installed
 
-
 var app = angular.module('bgApp', []);
 
 var fetch = Promise.resolve();
@@ -11,6 +10,9 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
         function _log(str) {
             console.log(`%c BG: ${str}`, 'background-color: #F2F2F2;');
         }
+
+        // Fetch my name:
+        util.me();
 
         window.ls = ls;
 
@@ -37,8 +39,18 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
 
         function initSettings() {
             ls.setConfig({
-                hidePrWithTasks: false,
-                scrumMaster: false
+                // Pull Requests:
+                "scrumMaster": false,
+                "showApprovedPRs": false,
+                "showPrWithTasks": false,
+                // My Pull Requests:
+                "showMine": false,
+                // Notifications
+                "notifyNew": false,
+                "periodicReminder": false,
+                "showSnooze": false,
+                "notifyInterval": "2",
+                "snoozeDuration": "4"
             }, null, true);
 
             _log('Settings initialized');
