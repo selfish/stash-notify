@@ -40,17 +40,17 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
         function initSettings() {
             ls.setConfig({
                 // Pull Requests:
-                "scrumMaster": false,
-                "showApprovedPRs": false,
-                "showPrWithTasks": false,
+                scrumMaster: false,
+                showApprovedPRs: false,
+                showPrWithTasks: false,
                 // My Pull Requests:
-                "showMine": false,
+                showMine: false,
                 // Notifications
-                "notifyNew": false,
-                "periodicReminder": false,
-                "showSnooze": false,
-                "notifyInterval": "2",
-                "snoozeDuration": "4"
+                notifyNew: false,
+                periodicReminder: false,
+                showSnooze: false,
+                notifyInterval: '2',
+                snoozeDuration: '4'
             }, null, true);
 
             _log('Settings initialized');

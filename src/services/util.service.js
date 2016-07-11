@@ -155,7 +155,7 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     function me() {
         if (_.isUndefined(ls.get('me'))) {
             // Will return null, and skip the check.
-            util.get('/plugins/servlet/applinks/whoami')
+            get('/plugins/servlet/applinks/whoami')
                 .then(data => {
                     _log(`me fetched: '${ls.set('me', data)}'`);
                 }).catch(_.noop);
