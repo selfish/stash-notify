@@ -31,7 +31,7 @@ app.factory('ls', [() => {
             return o;
         }
 
-        var configObj = val ? mkObj() : key;
+        var configObj = (val === undefined ? key : mkObj());
         set('config', (init === true) ? _.defaults(get('config'), configObj) : _.defaults(configObj, get('config')));
         return val;
     }
@@ -39,8 +39,8 @@ app.factory('ls', [() => {
     // Returns a getter-setter function for a config value:
     function sgConfig(key) {
         return (val => {
-            console.log(`SET-GET: ${key}\t${val}`);
-            return val ? setConfig(key, val) : get('config')[key];
+            // console.log(`SET-GET: ${key}\t${val} -> ${val === undefined ? 'get' : 'set'}`);
+            return val === undefined ? get('config')[key] : setConfig(key, val);
         });
     }
 
