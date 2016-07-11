@@ -35,11 +35,11 @@ app.controller('settings', ['$rootScope', '$scope', 'ls', ($rootScope, $scope, l
             id: 'scrumMasterDescription2',
             type: 'description',
             text: 'more approver, making you the second reviewer for every pull reuqest.'
-        }, {
+        }, /*{
             id: 'showApprovedPRs',
             type: 'checkbox',
             text: 'Show pull requests which were approved but not merged (always enabled in SM Mode)'
-        }, {
+        },*/ {
             id: 'showPrWithTasks',
             type: 'checkbox',
             text: 'Show pull requests with open tasks'
