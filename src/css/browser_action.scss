@@ -354,23 +354,31 @@ body {
     border-top: 2px $blue solid;
     padding-top: 7px;
     padding-bottom: 7px;
+    display: flex;
+    flex-direction: column;
 
+    .title {
+      font-weight: 600;
+    }
     div {
       display: inline-block;
-      width: 22%;
       //border: 1px solid black;
 
-      input[type="text"], select {
-        width: 90%;
+      label {
+        display: inline-block;
+        min-width: 280px;
       }
-    }
 
-    .doubleWidth {
-      width: 44%;
-    }
-    .title, .subtitle {
-      width: 12%;
-      font-weight: 600;
+      .description {
+        margin-left: 40px;
+      }
+
+      select {
+        min-width: 200px;
+      }
+      input[type="text"] {
+        min-width: 380px;
+      }
     }
   }
 }

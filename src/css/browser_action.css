@@ -264,17 +264,22 @@ body {
     table-layout: fixed;
     border-top: 2px #3572b0 solid;
     padding-top: 7px;
-    padding-bottom: 7px; }
-    .options .optionsTable div {
-      display: inline-block;
-      width: 22%; }
-      .options .optionsTable div input[type="text"], .options .optionsTable div select {
-        width: 90%; }
-    .options .optionsTable .doubleWidth {
-      width: 44%; }
-    .options .optionsTable .title, .options .optionsTable .subtitle {
-      width: 12%;
+    padding-bottom: 7px;
+    display: flex;
+    flex-direction: column; }
+    .options .optionsTable .title {
       font-weight: 600; }
+    .options .optionsTable div {
+      display: inline-block; }
+      .options .optionsTable div label {
+        display: inline-block;
+        min-width: 280px; }
+      .options .optionsTable div .description {
+        margin-left: 40px; }
+      .options .optionsTable div select {
+        min-width: 200px; }
+      .options .optionsTable div input[type="text"] {
+        min-width: 380px; }
 
 .about {
   padding: 0 20px 10px; }
