@@ -5,6 +5,10 @@
  */
 
 app.factory('util', ['ls', '$http', (ls, $http) => {
+    function _log(str) {
+        console.log(`%c UT: ${str}`, 'background-color: #E8DDBD;');
+    }
+
     function uuid() {
         return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, a => ((a ^ Math.random()) * 16 >> a / 4).toString(16));
     }
@@ -76,10 +80,13 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
             cb = _.noop;
         }
 
+        uri = host(uri);
+
+        _log(`Fetch URL : ${uri}`);
         return new Promise((resolve, reject) => {
             $http({
                 method: 'GET',
-                url: host(uri)
+                url: uri
             }).then(function success(res) {
                 resolve(res.data);
                 cb(null, res.data);
@@ -92,7 +99,6 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
         });
     }
 
-    // Identity function:
     const identity = (v => v);
 
     // Regex parts:  scheme  junk           host      path      query
@@ -146,6 +152,18 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
         return result;
     }
 
+    function me() {
+        if (_.isUndefined(ls.get('me'))) {
+            // Will return null, and skip the check.
+            util.get('/plugins/servlet/applinks/whoami')
+                .then(data => {
+                    _log(`me fetched: '${ls.set('me', data)}'`);
+                }).catch(_.noop);
+        } else {
+            return ls.get('me');
+        }
+    }
+
     return {
         seedColor: seedColor,
         host: host,
@@ -157,6 +175,7 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
         get: get,
         splitUrl: splitUrl,
         stashRemoteFromUrl: stashRemoteFromUrl,
-        uuid: uuid
+        uuid: uuid,
+        me: me
     };
 }]);
