@@ -24,7 +24,8 @@
 </head>
 
 <body id="body" ng-app="prApp" ng-controller="prCtrl">
-<div id="fullMode" class="floater" ng-if="!fullscreen" ng-click="showTasks()" title="Show on full screen"></div>
+<div id="fullMode" class="floater" ng-if="!fullscreen && !showOptions && !showAbout" ng-click="showTasks()"
+     title="Show on full screen"></div>
 <div class="container" ng-class="{stretch: fullscreen}">
 
     <table class="stickCells">
