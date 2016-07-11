@@ -12,6 +12,11 @@ Stash Pull Request Notifier will let you know when you have pending reviews.
 This is an extension for code reviewers using Atlassian Stash.
 Use this to get notified of pending pull requests.
 
+## Installation:
+
+Extension can be most simply installed from the Google Chrome Extension Store:
+https://chrome.google.com/webstore/detail/stash-pull-request-notifi/fmaobhjfejhpefpobcbpehgkgjkijccc
+
 ## Features:
 * Customized view
 * Pull request alerts
@@ -20,10 +25,9 @@ Use this to get notified of pending pull requests.
 * Scrum master mode
 * My Pull requests
 
-## Installation:
-
-Extension can be most simply installed from the Google Chrome Extension Store:
-https://chrome.google.com/webstore/detail/stash-pull-request-notifi/fmaobhjfejhpefpobcbpehgkgjkijccc
+### To do:
+* Re-implement snooze functionality.
+* ([#3](https://github.com/CommonRaven/stash-notify/issues/3)) Find Stash API endpoint for ppproved but not merged pull requests, and support showing those. 
 
 ## Contribution:
 
