@@ -26,8 +26,8 @@ https://chrome.google.com/webstore/detail/stash-pull-request-notifi/fmaobhjfejhp
 * My Pull requests
 
 ### To do:
-* Re-implement snooze functionality.
-* ([#3](https://github.com/CommonRaven/stash-notify/issues/3)) Find Stash API endpoint for ppproved but not merged pull requests, and support showing those. 
+- [ ] Re-implement snooze functionality.
+- [ ] ([#3](https://github.com/CommonRaven/stash-notify/issues/3)) Find Stash API endpoint for ppproved but not merged pull requests, and support showing those. 
 
 ## Contribution:
 
