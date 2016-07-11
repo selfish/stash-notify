@@ -4,13 +4,18 @@
  * on 23/05/2016
  */
 
-app.controller('settings', ['$scope', $scope => {
+app.controller('settings', ['$rootScope', '$scope', 'ls', ($rootScope, $scope, ls) => {
     $scope.validateInput = function (input) {
         return Boolean(input.type);
     };
 
+    $scope.ls = ls;
+    $scope.updateView = function () {
+        $rootScope.$emit('updateView', {});
+    };
+
     $scope.ops = {
-        'Details': [
+        'Stash Server:': [
             {
                 id: 'stashURL',
                 type: 'textbox',
@@ -18,67 +23,50 @@ app.controller('settings', ['$scope', $scope => {
                 placeholder: 'Stash URL'
             }
         ],
-        'Pull Requests': [{
+        'Pull Requests:': [{
             id: 'scrumMaster',
             type: 'checkbox',
             text: 'Scrum Master Mode'
         }, {
+            id: 'scrumMasterDescription',
+            type: 'description',
+            text: 'Scrum Master mode will only show PRs which were approved by at least one'
+        }, {
+            id: 'scrumMasterDescription2',
+            type: 'description',
+            text: 'more approver, making you the second reviewer for every pull reuqest.'
+        }, {
             id: 'showApprovedPRs',
             type: 'checkbox',
-            text: 'Show PRs approved but not merged'
+            text: 'Show pull requests which were approved but not merged (always enabled in SM Mode)'
         }, {
-            id: 'hidePrWithTasks',
+            id: 'showPrWithTasks',
             type: 'checkbox',
-            text: 'Hide pull requests with open tasks'
+            text: 'Show pull requests with open tasks'
         }],
-        'My Pull Requests': [{
-            id: 'hide_my_pr',
+        'My Pull Requests:': [{
+            id: 'showMine',
             type: 'checkbox',
-            text: 'Hide my own pull requests'
-        }, {
-            id: 'highlight_mine_with_tasks',
-            type: 'checkbox',
-            text: 'Highlight my pull requests having open tasks'
+            text: 'Show my own pull requests'
         }],
-        'Notifications': [{
-            id: 'hide_my_pr',
-            type: 'Notify on new pull requests',
-            text: 'Hide my own pull requests'
-        }, {
-            id: 'hide_my_pr',
+        'Notifications:': [{
+            id: 'notifyNew',
             type: 'checkbox',
-            text: 'Hide my own pull requests'
+            text: 'Notify on new pull requests'
         }, {
-            id: 'hide_my_pr',
+            id: 'periodicReminder',
             type: 'checkbox',
-            text: 'Hide my own pull requests'
+            text: 'Remind me periodically on pending pull requests'
         }, {
-            id: 'repeatUntilNoticed',
-            type: 'select',
-            text: 'Notify until',
-            options: [
-                {val: 'once', text: 'Shown once'},
-                {val: 'click', text: 'Clicked'},
-                {val: 'always', text: 'As long as active'}
-            ]
+            id: 'showSnooze',
+            type: 'checkbox',
+            text: 'Show snooze buttofn on notifications'
         }, {
             id: 'notifyInterval',
             type: 'select',
-            text: 'Hide my own pull requests',
+            text: 'Periodic reminder should appear every',
             options: [
                 {val: 1, text: '1 Hour'},
-                {val: 2, text: '2 Hours'},
-                {val: 3, text: '3 Hours'},
-                {val: 4, text: '4 Hours'},
-                {val: 6, text: '6 Hours'},
-                {val: 8, text: '8 Hours'},
-                {val: 12, text: '12 Hours'}
-            ]
-        }, {
-            id: 'snooze_duration',
-            type: 'select',
-            text: 'Snooze duration',
-            options: [
                 {val: 2, text: '2 Hours'},
                 {val: 3, text: '3 Hours'},
                 {val: 4, text: '4 Hours'},
@@ -88,12 +76,21 @@ app.controller('settings', ['$scope', $scope => {
                 {val: 24, text: '24 Hours'},
                 {val: 48, text: '48 Hours'}
             ]
-        }],
-        'Appearance': [{
-            id: 'staffshURL',
-            text: 'Stash Server URL',
-            getter: 'stashURL',
-            placeholder: 'Stash URL'
+        }, {
+            id: 'snoozeDuration',
+            type: 'select',
+            text: 'Snooze should remain active for',
+            options: [
+                {val: 1, text: '1 Hour'},
+                {val: 2, text: '2 Hours'},
+                {val: 3, text: '3 Hours'},
+                {val: 4, text: '4 Hours'},
+                {val: 6, text: '6 Hours'},
+                {val: 8, text: '8 Hours'},
+                {val: 12, text: '12 Hours'},
+                {val: 24, text: '24 Hours'},
+                {val: 48, text: '48 Hours'}
+            ]
         }]
     };
 }]);
