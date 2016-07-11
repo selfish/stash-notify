@@ -1,9 +1,8 @@
 ![](https://raw.githubusercontent.com/CommonRaven/stash-notify/master/icons/logo32.png) Stash Pull Request Notifier
 ====================
 
-<a href="https://travis-ci.org/CommonRaven/stash-notify.svg">
-  <img src="https://img.shields.io/travis/CommonRaven/stash-notify.svg?style=flat"
-    alt="Build Status">
+<a href="https://travis-ci.org/CommonRaven/stash-notify/branches">
+  <img src="https://img.shields.io/travis/CommonRaven/stash-notify.svg" alt="Build Status">
 </a>
 
 ## Overview:
