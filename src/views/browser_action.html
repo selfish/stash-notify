@@ -165,12 +165,12 @@
     </a>
     <button ng-click="bgFetch()">Refresh</button>
     <button ng-click="">Snooze All</button>
-    <button ng-click="showOptions = !showOptions">Settings</button>
-    <button ng-click="showAbout = !showAbout">About</button>
+    <button ng-click="show = (show === 'settings' ? null : 'settings')">Settings</button>
+    <button ng-click="show = (show === 'about' ? null : 'about')">About</button>
 </div>
 
-<div class="options" ng-if="showOptions" ng-include="'./settings.html'"></div>
-<div class="about" ng-if="showAbout" ng-include="'./about.html'"></div>
+<div class="options" ng-if="show === 'settings'" ng-include="'./settings.html'"></div>
+<div class="about" ng-if="show === 'about'" ng-include="'./about.html'"></div>
 
 <iframe style="display:none;" name="stree"></iframe>
 </body>
