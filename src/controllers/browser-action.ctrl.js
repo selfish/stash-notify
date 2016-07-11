@@ -33,6 +33,7 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
                 .then(() => {
                     ls.delete('loading');
                     $scope.$digest();
+                    $rootScope.$emit('updateView', {});
                 });
         };
 
