@@ -39,13 +39,17 @@
             </td>
             <td><a target="_blank" href="{{pr.links.self[0].href}}">{{pr.title.indexOf('/')== -1 ?
                 util.toTitleCase(pr.title) : pr.title}}</a></td>
-            <td class="tooltip">
-                <img class="avatar"
-                     ng-src="{{util.getAvatar(pr.author.user)}}"
-                     ng-style='{"background-color": "#"+util.seedColor(pr.author.user.emailAddress)}'
-                     style="z-index:500"
-                     fallback-src="../assets/qm.svg">
-                <span class="tooltiptext">{{pr.author.user.displayName}}</span>
+            <td class="alignRight">
+                <div class="reviewers">
+                    <div class="badgewrap tooltip">
+                        <img class="avatar"
+                             ng-src="{{util.getAvatar(pr.author.user)}}"
+                             ng-style='{"background-color": "#"+util.seedColor(pr.author.user.emailAddress)}'
+                             fallback-src="../assets/qm.svg">
+                        <span class="tooltiptext" style="right: 29px; top: -2px;">{{pr.author.user.displayName}}</span>
+                    </div>
+
+                </div>
             </td>
             <td class="alignRight">
                 <div class="reviewers">
@@ -63,7 +67,7 @@
                 </div>
 
             </td>
-            <td class="center" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
+            <td class="center time" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
         </tr>
         <tr ng-repeat-end>
 
@@ -123,7 +127,7 @@
                 </div>
 
             </td>
-            <td class="center" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
+            <td class="time center" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
         </tr>
         <tr ng-repeat-end>
 

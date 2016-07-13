@@ -138,9 +138,9 @@ body {
 }
 
 .container {
-
   background: $white-smoke;
   overflow: auto;
+  max-height: 556px;
 
   &.stretch {
     height: calc(100% - 44px);
@@ -149,9 +149,17 @@ body {
   .stickCells {
     width: 100%;
     border-collapse: collapse;
+    max-width: 790px;
 
     td {
       padding: 3px 7px 0 7px;
+
+      &:last-child {
+        padding-right: 12px;
+      }
+    }
+    .time {
+      min-width: 100px;
     }
 
     tr:nth-child(2n-1) {
