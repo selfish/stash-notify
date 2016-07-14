@@ -70,8 +70,6 @@
             <td class="center time" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
         </tr>
         <tr ng-repeat-end>
-
-
             <td colspan="4">
                 <div class="refs">
                     <span class="branch">{{pr.fromRef.displayId}}</span>
@@ -94,7 +92,6 @@
                 </div>
             </td>
         </tr>
-
         <tr ng-if="prDataMine.length && ls.get('config').showMine === true">
             <td colspan="7" class="title"> My Pull Requests ({{prDataMine.length}})
             </td>
@@ -129,8 +126,6 @@
             <td class="time center" colspan="2">{{util.timeAgo(pr.updatedDate)}}</td>
         </tr>
         <tr ng-repeat-end>
-
-
             <td colspan="4">
                 <div class="refs">
                     <span class="branch">{{pr.fromRef.displayId}}</span>
