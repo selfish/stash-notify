@@ -96,7 +96,7 @@
             </td>
         </tr>
 
-        <tr ng-if="prDataMine.length">
+        <tr ng-if="prDataMine.length && ls.get('config').showMine === true">
             <td colspan="7" class="title"> My Pull Requests ({{prDataMine.length}})
             </td>
         </tr>
