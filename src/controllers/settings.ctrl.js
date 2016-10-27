@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 23/05/2016
- */
-
 app.controller('settings', ['$rootScope', '$scope', 'ls', ($rootScope, $scope, ls) => {
     $scope.validateInput = function (input) {
         return Boolean(input.type);

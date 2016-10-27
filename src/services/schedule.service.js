@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 10/05/2016
- */
-
 app.factory('schedule', ['ls', ls => {
     var TIMER;
 

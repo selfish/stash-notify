@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 09/05/2016
- */
-
 var bg = chrome.extension.getBackgroundPage();
 
 var app = angular.module('prApp', ['dcbImgFallback']);
