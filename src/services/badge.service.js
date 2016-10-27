@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 11/05/2016
- */
-
 app.factory('badge', [() => {
     function set(text, title, color, nText) {
         if (text && text.toString()) {

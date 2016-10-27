@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 09/05/2016
- */
-
 app.factory('util', ['ls', '$http', (ls, $http) => {
     function _log(str) {
         console.log(`%c UT: ${str}`, 'background-color: #E8DDBD;');

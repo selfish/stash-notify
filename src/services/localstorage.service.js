@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 22/05/2016
- */
-
 app.factory('ls', [() => {
     function get(key) {
         try {

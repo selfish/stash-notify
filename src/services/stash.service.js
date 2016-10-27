@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 10/05/2016
- */
-
 app.factory('stash', ['ls', 'util', (ls, util) => {
     function _log(str) {
         console.log(`%c ST: ${str}`, 'background-color: #DCE2FF;');

@@ -1,9 +1,3 @@
-/**
- * Created by Nitai J. Perez
- * nitai.perez@ironsrc.com
- * on 10/07/2016
- */
-
 app.factory('notifications', ['ls', ls => {
     function notify(prs) {
         function _log(str) {
