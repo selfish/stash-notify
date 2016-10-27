@@ -28,7 +28,7 @@
      title="Show on full screen"></div>
 <div class="container" ng-class="{stretch: fullscreen}">
 
-    <table class="stickCells">
+    <table class="stickCells" ng-class="{popup: !fullscreen}">
         <tr ng-if="prData.length">
             <td colspan="7" class="title"> Pending Review ({{prData.length}})
             </td>
@@ -71,7 +71,7 @@
         </tr>
         <tr ng-repeat-end>
             <td colspan="4">
-                <div class="refs">
+                <div class="refs" ng-class="{popup: !fullscreen}">
                     <span class="branch">{{pr.fromRef.displayId}}</span>
                     <img class="into" src="../assets/right_arrow.svg">
             <span class="branch dest"
