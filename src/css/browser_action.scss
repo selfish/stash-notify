@@ -144,6 +144,7 @@ body {
 
   &.stretch {
     height: calc(100% - 44px);
+    max-width: 100%;
   }
 
   .stickCells {
@@ -237,6 +238,7 @@ body {
       display: inline-flex;
       justify-content: space-between;
       margin-right: 3px;
+      max-width: 650px;
     }
     .branch {
       text-overflow: ellipsis;
