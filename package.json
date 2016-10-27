@@ -1,67 +1,67 @@
 {
-    "name": "stash-notify",
-    "version": "3.0.0",
-    "description": "Stash Pull Request Notifier",
-    "private": true,
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "xo": "./node_modules/.bin/xo",
-        "shx": "./node_modules/.bin/shx",
-        "travis": "npm run xo"
+  "name": "stash-notify",
+  "version": "3.1.0",
+  "description": "Stash Pull Request Notifier",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "xo": "./node_modules/.bin/xo",
+    "shx": "./node_modules/.bin/shx",
+    "travis": "npm run xo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CommonRaven/stash-notify.git"
+  },
+  "author": "CommonRaven (Nitai J. Perez) <nitai.perez@gmail.com> (https://github.com/CommonRaven)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CommonRaven/stash-notify/issues"
+  },
+  "homepage": "https://github.com/CommonRaven/stash-notify#readme",
+  "devDependencies": {
+    "shx": "^0.1.2",
+    "xo": "^0.16.0"
+  },
+  "xo": {
+    "semicolon": true,
+    "space": 4,
+    "overrides": [
+      {
+        "files": "test/*.js",
+        "esnext": true,
+        "space": 3
+      }
+    ],
+    "rules": {
+      "max-params": [
+        0,
+        5
+      ],
+      "linebreak-style": [
+        0,
+        "windows"
+      ]
     },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/CommonRaven/stash-notify.git"
-    },
-    "author": "CommonRaven (Nitai J. Perez) <nitai.perez@gmail.com> (https://github.com/CommonRaven)",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/CommonRaven/stash-notify/issues"
-    },
-    "homepage": "https://github.com/CommonRaven/stash-notify#readme",
-    "devDependencies": {
-        "shx": "^0.1.2",
-        "xo": "^0.16.0"
-    },
-    "xo": {
-        "semicolon": true,
-        "space": 4,
-        "overrides": [
-            {
-                "files": "test/*.js",
-                "esnext": true,
-                "space": 3
-            }
-        ],
-        "rules": {
-            "max-params": [
-                0,
-                5
-            ],
-            "linebreak-style": [
-                0,
-                "windows"
-            ]
-        },
-        "ignores": [
-            "src/lib/**/*",
-            "src/services/stash.service.old.js"
-        ],
-        "globals": [
-            "window",
-            "localStorage",
-            "chrome",
-            "_",
-            "moment",
-            "later",
-            "crosstab",
-            "md5",
-            "angular",
-            "app",
-            "ga",
-            "host",
-            "errHandle"
-        ]
-    }
+    "ignores": [
+      "src/lib/**/*",
+      "src/services/stash.service.old.js"
+    ],
+    "globals": [
+      "window",
+      "localStorage",
+      "chrome",
+      "_",
+      "moment",
+      "later",
+      "crosstab",
+      "md5",
+      "angular",
+      "app",
+      "ga",
+      "host",
+      "errHandle"
+    ]
+  }
 }
