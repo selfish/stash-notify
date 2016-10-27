@@ -110,8 +110,9 @@ body {
     max-width: 100%; }
   .container .stickCells {
     width: 100%;
-    border-collapse: collapse;
-    max-width: 790px; }
+    border-collapse: collapse; }
+    .container .stickCells.popup {
+      max-width: 790px; }
     .container .stickCells td {
       padding: 3px 7px 0 7px; }
       .container .stickCells td:last-child {
@@ -168,8 +169,9 @@ body {
       width: 100%;
       display: inline-flex;
       justify-content: space-between;
-      margin-right: 3px;
-      max-width: 650px; }
+      margin-right: 3px; }
+      .container .stickCells .refs.popup {
+        max-width: 650px; }
     .container .stickCells .branch {
       text-overflow: ellipsis;
       overflow: hidden;

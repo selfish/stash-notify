@@ -150,7 +150,10 @@ body {
   .stickCells {
     width: 100%;
     border-collapse: collapse;
-    max-width: 790px;
+
+    &.popup {
+      max-width: 790px;
+    }
 
     td {
       padding: 3px 7px 0 7px;
@@ -238,7 +241,11 @@ body {
       display: inline-flex;
       justify-content: space-between;
       margin-right: 3px;
-      max-width: 650px;
+
+      &.popup {
+        max-width: 650px;
+      }
+
     }
     .branch {
       text-overflow: ellipsis;
