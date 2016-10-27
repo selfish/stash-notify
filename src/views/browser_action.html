@@ -74,8 +74,8 @@
                 <div class="refs" ng-class="{popup: !fullscreen}">
                     <span class="branch">{{pr.fromRef.displayId}}</span>
                     <img class="into" src="../assets/right_arrow.svg">
-            <span class="branch dest"
-                  ng-class='{"caution": pr.mergeStatus.conflicted}'>{{pr.toRef.displayId}}</span></span>
+                    <span class="branch dest"
+                          ng-class='{"caution": pr.mergeStatus.conflicted}'>{{pr.toRef.displayId}}</span></span>
                 </div>
             </td>
             <td>
@@ -130,8 +130,8 @@
                 <div class="refs">
                     <span class="branch">{{pr.fromRef.displayId}}</span>
                     <img class="into" src="../assets/right_arrow.svg">
-            <span class="branch dest"
-                  ng-class='{"caution": pr.mergeStatus.conflicted}'>{{pr.toRef.displayId}}</span></span>
+                    <span class="branch dest"
+                          ng-class='{"caution": pr.mergeStatus.conflicted}'>{{pr.toRef.displayId}}</span></span>
                 </div>
             </td>
             <td>
@@ -162,7 +162,9 @@
     </a>
     <button ng-click="bgFetch()">Refresh</button>
     <button ng-click="">Snooze All</button>
-    <button ng-click="show = (show === 'settings' ? null : 'settings')">Settings</button>
+    <button ng-click="show = (show === 'settings' ? null : 'settings')"
+            ng-class="{swing: (show !== 'settings')&&((ls.sgConfig('stashURL')())=='')}">Settings
+    </button>
     <button ng-click="show = (show === 'about' ? null : 'about')">About</button>
 </div>
 
