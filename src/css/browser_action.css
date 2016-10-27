@@ -106,7 +106,8 @@ body {
   overflow: auto;
   max-height: 556px; }
   .container.stretch {
-    height: calc(100% - 44px); }
+    height: calc(100% - 44px);
+    max-width: 100%; }
   .container .stickCells {
     width: 100%;
     border-collapse: collapse;
@@ -167,7 +168,8 @@ body {
       width: 100%;
       display: inline-flex;
       justify-content: space-between;
-      margin-right: 3px; }
+      margin-right: 3px;
+      max-width: 650px; }
     .container .stickCells .branch {
       text-overflow: ellipsis;
       overflow: hidden;
