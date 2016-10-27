@@ -1,3 +1,4 @@
+<!--suppress XmlDuplicatedId -->
 <div ng-controller="settings">
     <h2>Settings</h2>
     <div class="optionsTable" ng-repeat="(title, options) in ops">
@@ -15,7 +16,8 @@
                        ng-if="o.type == 'textbox'"
                        ng-model="ls.sgConfig(o.id)"
                        ng-model-options="{getterSetter: true}"
-                       placeholder="{{o.placeholder || ''}}">
+                       placeholder="{{o.placeholder || ''}}"
+                       ng-class="{swing: ((o.id === 'stashURL') && ((ls.sgConfig(o.id)())==''))}">
 
                 <input id="{{o.id}}"
                        type="checkbox"
