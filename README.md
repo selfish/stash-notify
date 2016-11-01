@@ -23,8 +23,7 @@ https://chrome.google.com/webstore/detail/stash-pull-request-notifi/fmaobhjfejhp
 * Scrum master mode
 * My Pull requests
 
-### To do:
-- [ ] Re-implement snooze functionality.
+### To do (help is welcome):
 - [ ] [Issue #3](https://github.com/CommonRaven/stash-notify/issues/3): Find Stash API endpoint for ppproved but not merged pull requests, and support showing those. 
 
 ## Contribution:
@@ -47,7 +46,7 @@ Pull Requests are very welcome. In case you're not sure how to begin:
 
 ## License:
 
-Copyright © 2016 Nitai J. Perez ([CommonRaven](https://github.com/CommonRaven))
+Created and released by Nitai J. Perez ([CommonRaven](https://github.com/CommonRaven))
 
 Stash Notifier extension is licensed under the terms of the [MIT Open Source license](https://raw.githubusercontent.com/CommonRaven/stash-notify/master/LICENSE) and is available for free.
 
