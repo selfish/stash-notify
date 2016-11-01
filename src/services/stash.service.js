@@ -1,5 +1,3 @@
-/* eslint no-extend-native: ["error", { "exceptions": ["Promise"] }] */
-
 app.factory('stash', ['ls', 'util', (ls, util) => {
     function _log(str) {
         console.log(`%c ST: ${str}`, 'background-color: #DCE2FF;');
@@ -73,13 +71,13 @@ app.factory('stash', ['ls', 'util', (ls, util) => {
 
     function _getTasks(data) {
         _log(`> Getting tasks data: (${data.values.length} items)`);
-        return Promise.map(data.values, pr => {
+        return Promise.all(data.values.map(pr => {
             return _getTasksByPR(pr)
                 .then(tasks => {
                     pr.tasks = tasks;
                     return pr;
                 });
-        })
+        }))
             .then(res => {
                 data.values = res;
                 return data;
@@ -109,13 +107,13 @@ app.factory('stash', ['ls', 'util', (ls, util) => {
 
     function _getMergeStatus(data) {
         _log(`> Getting Merge Status: (${data.values.length} items)`);
-        return Promise.map(data.values, pr => {
+        return Promise.all(data.values.map(pr => {
             return _getMergeStatusByPR(pr)
                 .then(mergeStatus => {
                     pr.mergeStatus = mergeStatus;
                     return pr;
                 });
-        })
+        }))
             .then(res => {
                 data.values = res;
                 return data;
