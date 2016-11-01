@@ -34,7 +34,7 @@ app.factory('ls', [() => {
     function sgConfig(key) {
         return (val => {
             // console.log(`SET-GET: ${key}\t${val} -> ${val === undefined ? 'get' : 'set'}`);
-            return val === undefined ? get('config')[key] : setConfig(key, val);
+            return val === undefined ? (_.get(get('config'), key) || '') : setConfig(key, val);
         });
     }
 

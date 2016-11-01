@@ -21,7 +21,7 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
 
     function host(uri) {
         if (!uri) {
-            return ls.get('config').stashURL;
+            return _.get(ls.get('config'), 'stashURL') || '';
         }
         if (uri.indexOf('http') === 0) {
             return uri;

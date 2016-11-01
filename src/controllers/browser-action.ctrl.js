@@ -50,7 +50,7 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
         };
 
         function updateView() {
-            $scope.prData = ls.get('prData').filter(pr => {
+            $scope.prData = (ls.get('prData') || []).filter(pr => {
                 // Scrum master mode:
 
                 var hasApproval = _.some(pr.reviewers, rev => {
