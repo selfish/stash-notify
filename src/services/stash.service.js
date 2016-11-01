@@ -1,3 +1,5 @@
+/* eslint no-extend-native: ["error", { "exceptions": ["Promise"] }] */
+
 app.factory('stash', ['ls', 'util', (ls, util) => {
     function _log(str) {
         console.log(`%c ST: ${str}`, 'background-color: #DCE2FF;');
