@@ -51,7 +51,7 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
                 showSnooze: true,
                 notifyInterval: '1',
                 snoozeDuration: '2'
-            }, null, true);
+            });
 
             _log('Settings initialized');
         }
