@@ -18,15 +18,14 @@ app.factory('ls', [() => {
         crosstab.broadcast('ls');
     }
 
-    function setConfig(key, val, init) {
-        function mkObj() {
-            var o = {};
-            o[key] = val;
-            return o;
-        }
+    function setConfig(configObj) {
+        set('config', _.defaults(get('config'), configObj));
+    }
 
-        var configObj = (val === undefined ? key : mkObj());
-        set('config', (init === true) ? _.defaults(get('config'), configObj) : _.defaults(configObj, get('config')));
+    function setConfigParam(key, val) {
+        var configObj = {};
+        configObj[key] = val;
+        set('config', _.defaults(configObj, get('config')));
         return val;
     }
 
@@ -34,7 +33,7 @@ app.factory('ls', [() => {
     function sgConfig(key) {
         return (val => {
             // console.log(`SET-GET: ${key}\t${val} -> ${val === undefined ? 'get' : 'set'}`);
-            return val === undefined ? (_.get(get('config'), key) || '') : setConfig(key, val);
+            return val === undefined ? (_.get(get('config'), key) || '') : setConfigParam(key, val);
         });
     }
 
