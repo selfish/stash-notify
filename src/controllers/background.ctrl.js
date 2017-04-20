@@ -39,6 +39,7 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
 
         function initSettings() {
             ls.setConfig({
+                stashAPI: '0',
                 // Pull Requests:
                 scrumMaster: false,
                 showApprovedPRs: true,

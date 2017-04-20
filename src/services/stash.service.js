@@ -3,15 +3,19 @@ app.factory('stash', ['ls', 'util', (ls, util) => {
         console.log(`%c ST: ${str}`, 'background-color: #DCE2FF;');
     }
 
-    const urls = {
-        pullRequestsURL: '/rest/inbox/latest/pull-requests?role=reviewer&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest',
-        myPullRequestsURL: '/rest/inbox/latest/pull-requests?role=author&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest'
-    };
+    function pullRequestsURL(role) {
+        const apiVersion = _.get(ls.get('config'), 'stashAPI') || 0;
+        const baseUrl = [
+            '/rest/inbox/latest/pull-requests',
+            '/rest/api/latest/inbox/pull-requests'
+        ];
+        return baseUrl[apiVersion].concat('?role=').concat(role).concat('&start=0&limit=10&avatarSize=64&state=OPEN&order=oldest');
+    }
 
     function prFetch() {
         ls.set('loading', true);
         _log('Fetching PR Data');
-        return util.get(urls.pullRequestsURL)
+        return util.get(pullRequestsURL('reviewer'))
             .then(_getTasks)
             .then(_getMergeStatus)
             .then(res => {
@@ -35,7 +39,7 @@ app.factory('stash', ['ls', 'util', (ls, util) => {
         ls.set('error', false);
         ls.set('loading', true);
         _log('Fetching MY PR Data');
-        return util.get(urls.myPullRequestsURL)
+        return util.get(pullRequestsURL('author'))
             .then(_getTasks)
             .then(_getMergeStatus)
             .then(res => {
