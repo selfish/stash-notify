@@ -19,7 +19,7 @@ app.controller('settings', ['$rootScope', '$scope', 'ls', ($rootScope, $scope, l
             {
                 id: 'stashAPI',
                 type: 'select',
-                text: 'Stash inbox API',
+                text: 'Stash inbox API type',
                 options: [
                     {val: 0, text: '/rest/inbox/latest/...'},
                     {val: 1, text: '/rest/api/latest/inbox/...'}
