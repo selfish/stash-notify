@@ -37,8 +37,7 @@
             <td><a target="_blank"
                    href="{{pr.fromRef.repository.links.self[0].href.replace('browse', 'pull-requests')}}">{{pr.fromRef.repository.name}}</a>
             </td>
-            <td><a target="_blank" href="{{pr.links.self[0].href}}">{{pr.title.indexOf('/')== -1 ?
-                util.toTitleCase(pr.title) : pr.title}}</a></td>
+            <td><a target="_blank" href="{{pr.links.self[0].href}}">{{pr.title}}</a></td>
             <td class="alignRight">
                 <div class="reviewers">
                     <div class="badgewrap tooltip">
@@ -99,7 +98,7 @@
         <tr ng-repeat-start="pr in prDataMine">
             <td><a target="_blank"
                    href="{{pr.fromRef.repository.links.self[0].href}}">{{pr.fromRef.repository.name}}</a></td>
-            <td><a target="_blank" href="{{pr.links.self[0].href}}">{{util.toTitleCase(pr.title)}}</a></td>
+            <td><a target="_blank" href="{{pr.links.self[0].href}}">{{pr.title}}</a></td>
             <td>
                 <img class="avatar"
                      ng-src="{{util.getAvatar(pr.author.user)}}"
