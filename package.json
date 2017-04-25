@@ -1,6 +1,6 @@
 {
   "name": "stash-notify",
-  "version": "3.1.5",
+  "version": "3.1.6",
   "description": "Stash Pull Request Notifier",
   "private": true,
   "main": "index.js",
