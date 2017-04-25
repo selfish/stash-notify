@@ -125,7 +125,7 @@ app.factory('stash', ['ls', 'util', (ls, util) => {
     }
 
     return {
-        prFetch: prFetch,
-        prFetchMine: prFetchMine
+        prFetch,
+        prFetchMine
     };
 }]);

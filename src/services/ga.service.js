@@ -55,12 +55,12 @@ app.factory('gaService', ['ls', 'util', (ls, util) => {
     setMeta('dimension3', chrome.runtime.getManifest().version);
 
     if (util.host()) {
-        // noinspection JSUnresolvedFunction
+        // Noinspection JSUnresolvedFunction
         setMeta('dimension2', md5(util.host()));
     }
 
     return {
-        pageview: pageview,
-        event: event
+        pageview,
+        event
     };
 }]);

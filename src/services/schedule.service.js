@@ -1,5 +1,5 @@
 app.factory('schedule', ['ls', ls => {
-    var TIMER;
+    let TIMER;
 
     function _log(str) {
         console.log(`%c SC: ${str}`, 'background-color: #FFF9DB;');
@@ -17,7 +17,7 @@ app.factory('schedule', ['ls', ls => {
 
     function scheduleDataFetch(fetchFunction) {
         _log(`Data fetching was scheduled every 5 minutes`);
-        var sched = later.parse.recur().every(5).minute();
+        const sched = later.parse.recur().every(5).minute();
         later.setInterval(fetchFunction, sched);
     }
 
@@ -26,15 +26,15 @@ app.factory('schedule', ['ls', ls => {
         _clearSchedule();
 
         _log(`Notifications scheduled every ${remindEvery} hours, next occurences:`);
-        var sched = later.parse.recur().every(remindEvery).hour();
+        const sched = later.parse.recur().every(remindEvery).hour();
 
         function updateNotify() {
             _log('Notification triggered');
             fetchFunction().then(notifyFunction);
         }
 
-        var timer = later.setInterval(updateNotify, sched);
-        var next = later.schedule(sched).next(6);
+        const timer = later.setInterval(updateNotify, sched);
+        const next = later.schedule(sched).next(6);
         next.shift();
         next.forEach(o => {
             _log(o);
@@ -44,6 +44,6 @@ app.factory('schedule', ['ls', ls => {
 
     return {
         updateNotifySchedule: schedNotifications,
-        scheduleDataFetch: scheduleDataFetch
+        scheduleDataFetch
     };
 }]);

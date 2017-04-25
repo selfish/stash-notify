@@ -46,7 +46,7 @@ app.controller('settings', ['$rootScope', '$scope', 'ls', ($rootScope, $scope, l
          id: 'showApprovedPRs',
          type: 'checkbox',
          text: 'Show pull requests which were approved but not merged (always enabled in SM Mode)'
-         }*/],
+        } */],
         'My Pull Requests:': [{
             id: 'showMine',
             type: 'checkbox',

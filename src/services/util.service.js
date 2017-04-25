@@ -8,11 +8,11 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     }
 
     function seedColor(str) {
-        var hash = 0;
-        for (var i = 0; i < str.length; i++) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
             hash = str.charCodeAt(i) + ((hash << 5) - hash);
         }
-        var c = (hash & 0x00FFFFFF)
+        const c = (hash & 0x00FFFFFF)
             .toString(16)
             .toUpperCase();
 
@@ -27,12 +27,12 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
             return uri;
         }
 
-        var splitRegExp = /\/(\b|$)/g;
+        const splitRegExp = /\/(\b|$)/g;
         return (_.compact(host().split(splitRegExp).concat(uri.split(splitRegExp)))).join('/');
     }
 
     function getAvatar(user) {
-        // return host(user.avatarUrl.split("?")[0]);
+        // Return host(user.avatarUrl.split("?")[0]);
         return host(user.avatarUrl);
     }
 
@@ -41,8 +41,8 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     }
 
     function vetoTooltip(pr) {
-        var blockers = pr.mergeStatus.vetoes.length === 1 ? 'Blocker for merge' : 'Blockers for merge';
-        var colon = pr.mergeStatus.vetoes.length === 0 ? '' : ':';
+        const blockers = pr.mergeStatus.vetoes.length === 1 ? 'Blocker for merge' : 'Blockers for merge';
+        const colon = pr.mergeStatus.vetoes.length === 0 ? '' : ':';
         return [(pr.mergeStatus.vetoes.length || 'No') + ' ' + blockers + colon]
             .concat(pr.mergeStatus.vetoes.map(veto => {
                 return '- ' + veto.summaryMessage;
@@ -81,10 +81,10 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
             $http({
                 method: 'GET',
                 url: uri
-            }).then(function success(res) {
+            }).then(res => {
                 resolve(res.data);
                 cb(null, res.data);
-            }, function error(res) {
+            }, res => {
                 ls.error = true;
                 ls.errorMsg = res.status + ': ' + res.statusText;
                 cb(new Error(res.status));
@@ -96,18 +96,18 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     const identity = (v => v);
 
     // Regex parts:  scheme  junk           host      path      query
-    const regex = /^(https?)(?::\/\/)?(\/?[^\/]+)(\/?.+?)(?:\?(.+))?$/;
+    const regex = /^(https?)(?::\/\/)?(\/?[^/]+)(\/?.+?)(?:\?(.+))?$/;
 
     function splitUrl(url) {
         // Split url into parts:
-        var [scheme, host, path, query] = url.match(regex).slice(1);
+        let [scheme, host, path, query] = url.match(regex).slice(1);
 
         // Path to array:
         path = (path ? path : []).split('/').map(decodeURIComponent).filter(identity);
 
         // Query to object
         query = (query ? query.split('&') : []).reduce((result, pair) => {
-            var [name, value] = pair.split('=');
+            const [name, value] = pair.split('=');
             result[decodeURIComponent(name)] = decodeURIComponent(value);
             return result;
         }, {});
@@ -123,7 +123,7 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
                 result[key] = path[idx + 1];
             }
         };
-        if (path.length) {
+        if (path.length > 0) {
             path.forEach((node, idx, arr) => {
                 switch (node) {
                     case 'projects':
@@ -159,17 +159,17 @@ app.factory('util', ['ls', '$http', (ls, $http) => {
     }
 
     return {
-        seedColor: seedColor,
-        host: host,
-        getAvatar: getAvatar,
-        toTitleCase: toTitleCase,
-        timeAgo: timeAgo,
-        vetoTooltip: vetoTooltip,
-        commentTooltip: commentTooltip,
-        get: get,
-        splitUrl: splitUrl,
-        stashRemoteFromUrl: stashRemoteFromUrl,
-        uuid: uuid,
-        me: me
+        seedColor,
+        host,
+        getAvatar,
+        toTitleCase,
+        timeAgo,
+        vetoTooltip,
+        commentTooltip,
+        get,
+        splitUrl,
+        stashRemoteFromUrl,
+        uuid,
+        me
     };
 }]);

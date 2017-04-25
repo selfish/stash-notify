@@ -23,7 +23,7 @@ app.factory('ls', [() => {
     }
 
     function setConfigParam(key, val) {
-        var configObj = {};
+        const configObj = {};
         configObj[key] = val;
         set('config', _.defaults(configObj, get('config')));
         return val;
@@ -32,16 +32,16 @@ app.factory('ls', [() => {
     // Returns a getter-setter function for a config value:
     function sgConfig(key) {
         return (val => {
-            // console.log(`SET-GET: ${key}\t${val} -> ${val === undefined ? 'get' : 'set'}`);
+            // Console.log(`SET-GET: ${key}\t${val} -> ${val === undefined ? 'get' : 'set'}`);
             return val === undefined ? (_.get(get('config'), key) || '') : setConfigParam(key, val);
         });
     }
 
     return {
-        get: get,
-        set: set,
+        get,
+        set,
         delete: del,
-        setConfig: setConfig,
-        sgConfig: sgConfig
+        setConfig,
+        sgConfig
     };
 }]);

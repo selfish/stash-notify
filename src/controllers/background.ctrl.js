@@ -1,9 +1,9 @@
 // Check whether new version is installed
 
-var app = angular.module('bgApp', []);
+const app = angular.module('bgApp', []);
 
-var fetch = Promise.resolve();
-var GA;
+let fetch = Promise.resolve();
+let GA;
 
 app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'ls', 'badge', 'notifications',
     ($scope, util, stash, schedule, gaService, ls, badge, notifications) => {
@@ -57,7 +57,7 @@ app.controller('bgCtrl', ['$scope', 'util', 'stash', 'schedule', 'gaService', 'l
             _log('Settings initialized');
         }
 
-        // noinspection JSCheckFunctionSignatures
+        // Noinspection JSCheckFunctionSignatures
         chrome.runtime.onInstalled.addListener(details => {
             const version = chrome.runtime.getManifest().version;
             if (details.reason === 'install') {

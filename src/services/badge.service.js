@@ -7,7 +7,7 @@ app.factory('badge', [() => {
             chrome.browserAction.setTitle({title: title.toString()});
         }
         if (color) {
-            chrome.browserAction.setBadgeBackgroundColor({color: color});
+            chrome.browserAction.setBadgeBackgroundColor({color});
         }
         if (nText) {
             chrome.notifications.create(String(Date.now()), {
@@ -29,8 +29,8 @@ app.factory('badge', [() => {
     }
 
     return {
-        clear: clear,
-        set: set,
-        error: error
+        clear,
+        set,
+        error
     };
 }]);

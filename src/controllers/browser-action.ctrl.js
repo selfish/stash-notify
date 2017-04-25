@@ -1,6 +1,6 @@
-var bg = chrome.extension.getBackgroundPage();
+const bg = chrome.extension.getBackgroundPage();
 
-var app = angular.module('prApp', ['dcbImgFallback']);
+const app = angular.module('prApp', ['dcbImgFallback']);
 
 app.config(['$compileProvider', $compileProvider => {
     // Allow URLS that angular considers unsafe:
@@ -22,7 +22,7 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
         $scope.fullscreen = window.location.search.indexOf('full=true') > -1;
 
         $scope.bgFetch = () => {
-            // ls.set('loading', true);
+            // Ls.set('loading', true);
             bg.fetch()
                 .then(() => {
                     ls.delete('loading');
@@ -32,10 +32,10 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
         };
 
         $scope.showTasks = () => {
-            var partURL = 'src/views/browser_action.html?full=true';
-            var pageURL = chrome.extension.getURL(partURL);
-            chrome.tabs.query({}, function (tabs) {
-                var tabExists = tabs.some(tab => {
+            const partURL = 'src/views/browser_action.html?full=true';
+            const pageURL = chrome.extension.getURL(partURL);
+            chrome.tabs.query({}, tabs => {
+                const tabExists = tabs.some(tab => {
                     if (tab.url === pageURL) {
                         chrome.tabs.update(tab.id, {selected: true});
                         return true;
@@ -50,17 +50,17 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
         };
 
         function updateView() {
-            let prData = ls.get('prData');
+            const prData = ls.get('prData');
             $scope.prData = (_.isArray(prData) ? prData : []).filter(pr => {
                 // Scrum master mode:
 
-                var hasApproval = _.some(pr.reviewers, rev => {
+                const hasApproval = _.some(pr.reviewers, rev => {
                     return (rev.approved === true);
                 });
-                var hasOtherApproval = _.some(pr.reviewers, rev => {
+                const hasOtherApproval = _.some(pr.reviewers, rev => {
                     return (rev.approved === true && rev.user.name !== util.me());
                 });
-                var hasMultipleReviewers = pr.reviewers.length > 1;
+                const hasMultipleReviewers = pr.reviewers.length > 1;
 
                 if (ls.get('config').scrumMaster) {
                     if (util.me() && hasMultipleReviewers && !hasOtherApproval) {
@@ -84,5 +84,5 @@ app.controller('prCtrl', ['$rootScope', '$scope', '$location', 'ls', 'util',
 
         $rootScope.$on('updateView', updateView);
         updateView();
-        // crosstab.on('ls', updateView);
+        // Crosstab.on('ls', updateView);
     }]);

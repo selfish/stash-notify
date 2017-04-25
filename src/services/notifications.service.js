@@ -6,10 +6,10 @@ app.factory('notifications', ['ls', ls => {
 
         prs = prs || ls.get('prData');
 
-        if (prs.length) {
+        if (prs.length > 0) {
             _log(`Notifying ${prs.length} PRs`);
-            var buttons = [];
-            // if (!(localStorage["_snooze_this_btn"] == 'true')) {
+            const buttons = [];
+            // If (!(localStorage["_snooze_this_btn"] == 'true')) {
             //     buttons.push({title: "Snooze this Pull Request", iconUrl: "../assets/snooze.svg"});
             // }
             if (!(localStorage._snooze_all_btn === 'true')) {
@@ -24,14 +24,14 @@ app.factory('notifications', ['ls', ls => {
                 message: `${prs.length} pull request${prs.length > 1 ? 's' : ''} pending review`,
                 title: `${prs.length > 1 ? 'P' : 'A p'}ull request${prs.length > 1 ? 's are' : ' is'} waiting..!`,
                 iconUrl: `../assets/signed/signed${_.random(6) + 1}.svg`,
-                buttons: buttons
+                buttons
             });
         } else {
             _log(`Notification skipped (inbox zero)`);
         }
     }
 
-    // function notifyPullRequest(pr) {
+    // Function notifyPullRequest(pr) {
     //
     //     var prID = pr.links.self[0].href;
     //
@@ -90,6 +90,6 @@ app.factory('notifications', ['ls', ls => {
     // }
 
     return {
-        notify: notify
+        notify
     };
 }]);
